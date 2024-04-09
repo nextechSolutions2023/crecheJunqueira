@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+
+    <title>Seja um voluntário</title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+
+
+    <link href="img/Icone_CrecheJunqueira.png" rel="icon">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+     <!-- Google Web Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+        
+     <style>
+      #tabelaVoluntarios {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+    
+      #tabelaVoluntarios th, #tabelaVoluntarios td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+    
+      #tabelaVoluntarios th {
+        background-color: #f2f2f2;
+      }
+    
+      #tabelaVoluntarios tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    
+      #tabelaVoluntarios tbody tr:hover {
+        background-color: #ddd;
+      }
+    
+      #tabela-container {
+        margin-top: 20px;
+      }
+
+      .estilo_botao{
+        
+        height: calc(100% + 5px);
+        border: none;
+        background: #FE5D37;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 10px 10px 10px 10px;
+      }
+    </style>
+     
+  
+  </head>
+
+  <body style="overflow: auto">
+    <div class="container">
+      <header style=" font-family: 'Lobster Two', cursive;">Cadastro de Voluntário</header>
+      <div class="progress-bar">
+        <div class="step">
+          <p>Nome</p>
+          <div class="bullet">
+            <span>1</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        <div class="step">
+          <p>Endereço</p>
+          <div class="bullet">
+            <span>2</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        <div class="step">
+          <p>Contato</p>
+          <div class="bullet">
+            <span>3</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        <div class="step">
+          <p>Enviar</p>
+          <div class="bullet">
+            <span>4</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        
+        <!-- 1 Etapa Formulario Voluntario -->
+      </div>
+      <div class="form-outer">
+        <form action="#"  id="formularioVoluntario">
+          <div class="page slide-page">
+            <div class="title">Informações básicas:</div>
+            <div class="field">
+              <div class="label">Nome <b style="color: red;">*</b></div> 
+              <input title="nome" name="nome" id="nome" type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Sobrenome <b style="color: red;">*</b></div>
+              <input title="sobrenome" id="sobrenome" type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Data de Nascimento <b style="color: red;">*</b></div>
+              <input title="nascimento" id="nascimento" type="date"/>
+            </div>  
+            <div class="field">
+                <div class="label" for="cpf">CPF <b style="color: red;">*</b></div> 
+                <input title="cpf" id="cpf" style="width: 50%;" type="text" oninput="mCpf(this)" maxlength="14" onblur="validarCPF(cpf.value)"/>
+                
+                <div class="label2">RG <b style="color: red;">*</b></div>
+                <input title="rg" id="rg" style="width: 50%;" type="text" oninput="mascaraRG(this)"/>
+            </div>             
+            <div class="field">
+              <div class="label">Gênero <b style="color: red;">*</b></div>
+              <select title="genero" id="genero">
+                <option value="">--Selecione o Gênero--</option>
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Outros</option>
+              </select>
+            </div>     
+            <div class="field">
+              <button type="button" class="firstNext next">Próximo</button>
+            </div>
+            
+          </div>
+        
+
+          <!-- 2 Etapa Formulario Voluntario -->
+        
+          <div class="page">
+            <div class="title">Endereço completo:</div>            
+            <div class="field">
+              <div class="label">CEP <b style="color: red;">*</b></div>
+              <input title="cep" input name="cep" type="text" id="cep" class="mascCEP" value="" size="10" maxlength="9"
+                      onblur="pesquisacep(this.value);"/>
+            </div>
+            <div class="field">         
+              <div class="label">Rua</div>              
+              <input title="rua" name="rua" type="text" id="rua" size="60" />
+              <div class="label2">Nº <b style="color: red;">*</b></div>
+              <input title="numero" id="numero" style="width:25%;" type="text">              
+            </div>
+            <div class="field">
+              <div class="label">Complemento</div>
+              <input title="complemento" id="complemento" type="text">
+            </div>
+            <div class="field">
+              <div class="label">Bairro</div>
+              <input title="bairro" name="bairro" type="text" id="bairro" size="40" />
+            </div>
+            <div class="field">  
+              <div class="label">Cidade</div>
+              <input title="cidade" name="cidade" type="text" id="cidade" size="60" />
+              <div class="label2">UF</div>
+              <input title="uf" style="width: 25%;" name="uf" type="text" id="uf" size="2" />
+            </div>
+            <div class="field btns">
+              <button type="button" class="prev-1 prev">Anterior</button>
+              <button type="button" class="next-1 next">Próximo</button>
+            </div>
+          </div>
+        
+          <!-- 3 Etapa Formulario Voluntario -->
+          <div class="page">
+            <div class="title">Contato</div>
+            <div class="field">
+              <div class="label">E-mail <b style="color: red;">*</b></div>
+              <input title="email" id="email"  type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Número de telefone <b style="color: red;">*</b></div>
+              <input title="telefone" id="telefone" type="text" maxlength="15" onkeyup="handlePhone(event)"/>
+            </div>
+            <div class="field">
+              <div class="label">Preferência de contato <b style="color: red;">*</b></div>
+              <select title="contVoluntario" id="contVoluntario">      
+                <option value="">-Selecione uma Opção-</option>          
+                <option>WhatsApp</option>  
+                <option>E-mail</option>
+                <option>Ligação</option>            
+              </select>
+            </div>                 
+            <div class="field">
+              <div class="label">Disponibilidade <b style="color: red;">*</b></div>
+              <select title="disponibilidade" id="disponibilidade"> 
+                <option value="">--Selecione uma Opção--</option>             
+                <option>Presencial</option>  
+                <option>Hibrido (Parte on-line/Parte presencial)</option>
+                <option>Remoto (On-line)</option>            
+              </select>
+            </div>    
+            <div class="field">
+              <div class="label">Qual periodo você possui disponibilidade? <b style="color: red;">*</b></div>
+              <select title="periodo" id="periodo"> 
+                <option value="">--Selecione uma Opção--</option>             
+                <option>Manhã</option>  
+                <option>Tarde</option>
+                <option>Noite</option>            
+              </select>
+              <!-- <input id="periodo" type=checkbox name="opcao1" value="1"/>Manhã
+              <input id="periodo" type=checkbox name="opcao2" value="1"/>Tarde
+              <input id="periodo" type=checkbox name="opcao3" value="1"/>Noite  -->
+            </div>    
+            <div class="field btns">
+              <button type="button" class="prev-2 prev">Anterior</button>
+              <button type="button" class="next-2 next">Próximo</button>
+            </div>
+          </div>
+
+          <!--<div class="page">
+            <div class="title">Detalhes de login:</div>
+            <div class="field">
+              <div class="label">Nome do usuário</div>
+              <input type="text" required>
+            </div>
+            <div class="field">
+              <div class="label">Senha</div>
+              <input type="password" id="password" required>
+            </div>
+            <div class="field">
+              <div class="label">Confirme a senha</div>
+              <input type="password" id="confirm_password" required>
+            </div>
+            <div class="field btns">
+              <button class="prev-3 prev">Anterior</button>
+              <button class="submit" id="btn2">Enviar</button>
+            </div>
+          </div>-->
+          <div class="page">
+            <img class="imagem-menu"src="img/Logo_CrecheJunqueira.png" alt="Logotipo da Creche Junqueira" width="250px">                   
+            
+            <div class="label">
+              <i><br><br>Você torna o mundo um lugar    
+                melhor <br>com essa contribuição.    
+                <br><br>    
+              </i> 
+              <br><br>    
+                     
+               
+              <div class="field btns">
+              <button type="button" class="prev-3 prev">Anterior</button>
+              <button type="submit" class="submit" id="btn2">Enviar</button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="tabela-container" style="display: none;">
+        <h3>TABELA DINÂMICA</h3>
+        <table id="tabelaVoluntarios">
+         <thead>
+            <tr>
+              <th><input type="checkbox" id="ckTodos" onchange=""></th>
+              <th>Nome</th>
+              <th>Sobrenome</th>              
+              <th>CPF</th>
+              <th>EXCLUIR</th>
+              </tr>
+            </thead>
+          <tbody></tbody>          
+        </table>
+        <br>
+        <br>
+        <div>
+          <input type="button" class="estilo_botao" value="EXCLUIR SELECIONADOS" id="btnExcluirSelecionados">
+          <input type="button" class= "estilo_botao" value="APAGAR TODOS" id="btnApagarTodos">
+          <br>
+        </div>
+    </div>
+
+
+    <script> //script para TABELA DINAMICA
+
+      $(document).ready(function ()
+      {
+        // Adiciona um ouvinte de evento ao checkbox "selecionar todos"
+        $("#ckTodos").on("change", function () 
+        {
+          // Marca ou desmarca todos os checkboxes de voluntários
+          $(".voluntario-checkbox").prop("checked", $(this).prop("checked"));
+        });
+    
+        // Adiciona um ouvinte de evento ao botão "excluir todos"
+        $("#btnExcluirTodos").on("click", function () 
+        {
+          excluirTodos();
+        });
+
+        //// Adiciona um ouvinte de evento ao botão "apagar todos"
+        $("#btnApagarTodos").on("click", function ()
+         {
+        apagarTodos();
+        });        
+
+        // Adiciona um ouvinte de evento ao botão "excluir selecionados"
+        $("#btnExcluirSelecionados").on("click", function () 
+          {
+            excluirSelecionados();
+       });
+
+        // Adiciona um ouvinte de evento ao botão de exclusão
+        $("#tabelaVoluntarios").on("click", ".btn-excluir", function ()
+        {
+          // Remove a linha da tabela ao clicar no botão de exclusão
+          $(this).closest("tr").remove();
+        });
+    
+
+        $("#btn2").click(function () 
+        {
+          // Extrai os valores do formulário e exibira após clicar em OK
+          var nome = $("#nome").val();
+          var sobrenome = $("#sobrenome").val();
+          var cpf = $("#cpf").val();
+    
+          // Adiciona registros fixos à tabela           
+          var registrosFixos =
+          [
+            { nome: "Alice", sobrenome: "Oliveira", cpf: "111.222.333-44" },
+            { nome: "Beatriz", sobrenome: "Araujo", cpf: "555.666.777-88" },
+            { nome: "Caroline", sobrenome: "Silva", cpf: "222.666.799-00" },
+            { nome: "Davi", sobrenome: "Souza", cpf: "000.000.999-88" }          
+
+          ];
+
+          for (var i = 0; i < registrosFixos.length; i++) 
+          {
+            $("#tabelaVoluntarios tbody").append(
+              "<tr>" +
+              "<td><input type='checkbox' class='voluntario-checkbox'></td>" +
+              "<td>" + registrosFixos[i].nome + "</td>" +
+              "<td>" + registrosFixos[i].sobrenome + "</td>" +
+              "<td>" + registrosFixos[i].cpf + "</td>" +
+              "<td><button class='btn-excluir'>Excluir</button></td>" +
+              "</tr>"
+            );
+          }
+    
+          // Adiciona os valores do formulário à tabela
+          $("#tabelaVoluntarios tbody").append(
+            "<tr>" +
+            "<td><input type='checkbox' class='voluntario-checkbox'></td>" +
+            "<td>" + nome + "</td>" +
+            "<td>" + sobrenome + "</td>" +
+            "<td>" + cpf + "</td>" +
+            "<td><button class='btn-excluir'>Excluir</button></td>" +
+            "</tr>"
+          );     
+
+          Swal.fire({ 
+              text: 'Obrigada por se juntar a nós!!',
+              icon: 'success'
+            }).then((result) =>{
+              // Exibe a tabela somente apos clicar em ok do alert estilizado!!!
+              $("#tabela-container").show();
+        
+              // Oculta o formulário e so mostra a tabela (firula pra ficar bonitinho)
+              $(".form-outer").hide();
+            });
+    
+          
+        });
+      });
+    
+      // Função para excluir os itens selecionados
+      function excluirSelecionados()
+      {
+        // Pegar todos os checkboxes da tela e colocar eles num vetor
+        let vetCheckbox = document.querySelectorAll('.voluntario-checkbox');
+    
+        // Verificar se há elementos selecionados
+        let selecionados = Array.from(vetCheckbox).filter(ck => ck.checked);
+    
+        if (selecionados.length > 0)
+        {
+          // Percorrer o vetor e apagar os que têm o checkbox selecionado
+          for (let ck of selecionados) 
+          {
+            // Chamar a função para excluir o item
+            excluirItem(ck.closest('tr'));
+          }    
+          // Desmarcar o checkbox "selecionar todos"
+          $("#ckTodos").prop("checked", false);
+        } 
+        else 
+        {
+          alert('Não há itens selecionados para serem excluídos!');
+        }
+      }
+    
+      // Função para excluir todos os itens
+      function excluirTodos() 
+      {
+        // Remover todas as linhas da tabela
+        $("#tabelaVoluntarios tbody").empty();
+    
+        // Desmarcar o checkbox "selecionar todos"
+        $("#ckTodos").prop("checked", false);
+      }
+    
+      // Função para excluir um item somente
+      function excluirItem(item) 
+      {
+        // Remover a linha da tabela
+        $(item).remove();
+      }
+
+      function apagarTodos()
+      {
+        // Verifica se todos os checkboxes estão marcados
+        let todosSelecionados = $(".voluntario-checkbox").length === $(".voluntario-checkbox:checked").length;
+
+        if (todosSelecionados)
+        {
+          // Remove todas as linhas da tabela
+          $("#tabelaVoluntarios tbody").empty();
+
+          // Desmarca o checkbox "selecionar todos"
+          $("#ckTodos").prop("checked", false);
+        } 
+        else 
+        {
+          alert('Todos os registros precisam estar selecionados para apagar todos.');
+        }
+      }
+
+      function mCpf() 
+  {
+    var cpf = document.getElementById("cpf").value;
+    cpf = cpf.replace(/\D/g, "")
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+    event.target.value = cpf;
+ }
+ 
+  //validar cpf
+  function validarCPF(cpf) {
+    //var cpf = document.getElementById ("cpf").value;
+    var cpf = event.target.value;
+    var ok = 1;
+    var add;
+    if (cpf != "") {
+       cpf = cpf.replace(/[^\d]+/g, '');
+       if (cpf.length != 11 ||
+          cpf == "00000000000" ||
+          cpf == "11111111111" ||
+          cpf == "22222222222" ||
+          cpf == "33333333333" ||
+          cpf == "44444444444" ||
+          cpf == "55555555555" ||
+          cpf == "66666666666" ||
+          cpf == "77777777777" ||
+          cpf == "88888888888" ||
+          cpf == "99999999999")
+              ok = 0;
+       if (ok == 1) {
+          add = 0;
+          for (i = 0; i < 9; i++)
+             add += parseInt(cpf.charAt(i)) * (10 - i);
+             rev = 11 - (add % 11);
+             if (rev == 10 || rev == 11)
+                rev = 0;
+             if (rev != parseInt(cpf.charAt(9)))
+                ok = 0;
+             if (ok == 1) {
+                add = 0;
+                for (i = 0; i < 10; i++)
+                   add += parseInt(cpf.charAt(i)) * (11 - i);
+                rev = 11 - (add % 11);
+                if (rev == 10 || rev == 11)
+                   rev = 0;
+                if (rev != parseInt(cpf.charAt(10)))
+                   ok = 0;
+             }
+         }
+         if (ok == 0) {
+            alert("CPF inválido!");
+            //event.target.focus();
+            return false
+         }
+         else return true
+     }
+ }
+    </script>
+    
+       <script src="js/javascriptVoluntario.js"></script>
+
+    
+  </body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+
+    <title>Seja um Voluntário</title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+    <link href="img/Icone_CrecheJunqueira.png" rel="icon">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+     <!-- Google Web Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+     
+  </head>
+
+  <!-- <body style="overflow: auto"> -->
+    <!-- <div class="container">
+      <header style=" font-family: 'Lobster Two', cursive;">Cadastro de Voluntário</header>
+      <div class="progress-bar">
+        <div class="step">
+          <p>Nome</p>
+          <div class="bullet">
+            <span>1</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        <div class="step">
+          <p>Endereço</p>
+          <div class="bullet">
+            <span>2</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        <div class="step">
+          <p>Contato</p>
+          <div class="bullet">
+            <span>3</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div>
+        <div class="step">
+          <p>Enviar</p>
+          <div class="bullet">
+            <span>4</span>
+          </div>
+          <div class="check fas fa-check"></div>
+        </div> -->
+        
+        <!-- 1 Etapa Formulario Voluntario -->
+      <!-- </div>
+      <div class="form-outer">
+        <form action="#"  id="formularioVoluntario">
+          <div class="page slide-page">
+            <div class="title">Informações básicas:</div>
+            <div class="field">
+              <div class="label">Nome <b style="color: red;">*</b></div> 
+              <input title="nome" name="nome" id="nome" type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Sobrenome <b style="color: red;">*</b></div>
+              <input title="sobrenome" id="sobrenome" type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Data de Nascimento <b style="color: red;">*</b></div>
+              <input title="nascimento" id="nascimento" type="date"/>
+            </div>  
+            <div class="field">
+                <div class="label" for="cpf">CPF <b style="color: red;">*</b></div> 
+                <input title="cpf" id="cpf" style="width: 50%;" type="text" oninput="mCpf(this)" maxlength="14" onblur="validarCPF(cpf.value)"/>
+                
+                <div class="label2">RG <b style="color: red;">*</b></div>
+                <input title="rg" id="rg" style="width: 50%;" type="text" oninput="mascaraRG(this)"/>
+            </div>             
+            <div class="field">
+              <div class="label">Gênero <b style="color: red;">*</b></div>
+              <select title="genero" id="genero">
+                <option selected value="0">--Selecione o Gênero--</option>
+                <option value="1">Masculino</option>
+                <option value="2">Feminino</option>
+                <option value="3">Outros</option>
+              </select>
+            </div>     
+            <div class="field">
+              <button type="button" class="firstNext next">Próximo</button>
+            </div>
+          </div> -->
+
+          <!-- 2 Etapa Formulario Voluntario -->
+        
+          <!-- <div class="page">
+            <div class="title">Endereço completo:</div>            
+            <div class="field">
+              <div class="label">CEP <b style="color: red;">*</b></div>
+              <input title="cep" input name="cep" type="text" id="cep" class="mascCEP" value="" size="10" maxlength="9"
+                      onblur="pesquisacep(this.value);"/>
+            </div>
+            <div class="field">         
+              <div class="label">Rua</div>              
+              <input title="rua" name="rua" type="text" id="rua" size="60" />
+              <div class="label2">Nº <b style="color: red;">*</b></div>
+              <input title="numero" id="numero" style="width:25%;" type="text">              
+            </div>
+            <div class="field">
+              <div class="label">Complemento</div>
+              <input title="complemento" id="complemento" type="text">
+            </div>
+            <div class="field">
+              <div class="label">Bairro</div>
+              <input title="bairro" name="bairro" type="text" id="bairro" size="40" />
+            </div>
+            <div class="field">  
+              <div class="label">Cidade</div>
+              <input title="cidade" name="cidade" type="text" id="cidade" size="60" />
+              <div class="label2">UF</div>
+              <input title="uf" style="width: 25%;" name="uf" type="text" id="uf" size="2" />
+            </div>
+            <div class="field btns">
+              <button type="button" class="prev-1 prev">Anterior</button>
+              <button type="button" class="next-1 next">Próximo</button>
+            </div>
+          </div> -->
+        
+          <!-- 3 Etapa Formulario Voluntario -->
+          <!-- <div class="page">
+            <div class="title">Contato</div>
+            <div class="field">
+              <div class="label">E-mail <b style="color: red;">*</b></div>
+              <input title="email" id="email"  type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Número de telefone <b style="color: red;">*</b></div>
+              <input title="telefone" id="telefone" type="text" maxlength="15" onkeyup="handlePhone(event)"/>
+            </div>
+            <div class="field">
+              <div class="label">Preferência de contato <b style="color: red;">*</b></div>
+              <select title="contVoluntario" id="contVoluntario">      
+                <option value="">-Selecione uma Opção-</option>          
+                <option>WhatsApp</option>  
+                <option>E-mail</option>
+                <option>Ligação</option>            
+              </select>
+            </div>                 
+            <div class="field">
+              <div class="label">Disponibilidade <b style="color: red;">*</b></div>
+              <select title="disponibilidade" id="disponibilidade"> 
+                <option value="">--Selecione uma Opção--</option>             
+                <option>Presencial</option>  
+                <option>Hibrido (Parte on-line/Parte presencial)</option>
+                <option>Remoto (On-line)</option>            
+              </select>
+            </div>    
+            <div class="field">
+              <div class="label">Qual periodo você possui disponibilidade? <b style="color: red;">*</b></div>
+              <select title="periodo" id="periodo"> 
+                <option value="">--Selecione uma Opção--</option>             
+                <option>Manhã</option>  
+                <option>Tarde</option>
+                <option>Noite</option>            
+              </select>
+            </div>    
+            <div class="field btns">
+              <button type="button" class="prev-2 prev">Anterior</button>
+              <button type="button" class="next-2 next">Próximo</button>
+            </div>
+          </div> -->
+
+          <!--<div class="page">
+            <div class="title">Detalhes de login:</div>
+            <div class="field">
+              <div class="label">Nome do usuário</div>
+              <input type="text" required>
+            </div>
+            <div class="field">
+              <div class="label">Senha</div>
+              <input type="password" id="password" required>
+            </div>
+            <div class="field">
+              <div class="label">Confirme a senha</div>
+              <input type="password" id="confirm_password" required>
+            </div>
+            <div class="field btns">
+              <button class="prev-3 prev">Anterior</button>
+              <button class="submit" id="btn2">Enviar</button>
+            </div>
+          </div>-->
+
+          <!-- <div class="page">
+            <img class="imagem-menu"src="img/Logo_CrecheJunqueira.png" alt="Logotipo da Creche Junqueira" width="250px">                   
+            
+            <div class="label">
+              <i><br><br>Você torna o mundo um lugar    
+                melhor <br>com essa contribuição.    
+                <br><br>    
+              </i> 
+              <br><br>    
+                     
+              <div class="field btns">
+              <button type="button" class="prev-3 prev">Anterior</button>
+              <button type="submit" class="submit" id="btn2">Enviar</button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+       <script src="js/javascriptVoluntario.js"></script>
+  </body> -->
+
+  <body style="overflow: auto">
+    <div class="container">
+      <header style=" font-family: 'Lobster Two', cursive;">Cadastro de Voluntário</header>
+      <div class="form-outer">
+        <form action="#"  id="formularioVoluntario">
+          <div class="page slide-page">
+            <div class="title">Informações:</div>
+            <div class="field">
+              <div class="label">Nome Completo: <b style="color: red;">*</b></div> 
+              <input title="nome" name="nome" id="voluntarioNome" type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Data de Nascimento <b style="color: red;">*</b></div>
+              <input title="nascimento" id="voluntarioNascimento" type="date"/>
+            </div>  
+            <div class="field">
+                <div class="label" for="cpf">CPF <b style="color: red;">*</b></div> 
+                <input title="cpf" id="voluntarioCPf" style="width: 50%;" type="text" oninput="mCpf(this)" maxlength="14" onblur="validarCPF(cpf.value)"/>
+                
+                <div class="label2">RG <b style="color: red;">*</b></div>
+                <input title="rg" id="voluntarioRg" style="width: 50%;" type="text" oninput="mascaraRG(this)"/>
+            </div>             
+            <div class="field">
+              <div class="label">Gênero <b style="color: red;">*</b></div>
+              <select title="genero" id="voluntarioGenero">
+                <option selected value="0">--Selecione o Gênero--</option>
+                <option value="1">Masculino</option>
+                <option value="2">Feminino</option>
+                <option value="3">Outros</option>
+              </select>
+            </div>
+          </div>
+          <div class="page">          
+            <div class="field">
+              <div class="label">CEP <b style="color: red;">*</b></div>
+              <input title="cep" input name="cep" type="text" id="voluntarioCep" class="mascCEP" value="" size="10" maxlength="9"
+                      onblur="pesquisacep(this.value);"/>
+            </div>
+            <div class="field">         
+              <div class="label">Rua</div>              
+              <input title="rua" name="rua" type="text" id="voluntarioRua" size="60" />
+              <div class="label2">Nº <b style="color: red;">*</b></div>
+              <input title="numero" id="voluntarioNumero" style="width:25%;" type="text">              
+            </div>
+            <div class="field">
+              <div class="label">Complemento</div>
+              <input title="complemento" id="voluntarioComplemento" type="text">
+            </div>
+            <div class="field">
+              <div class="label">Bairro</div>
+              <input title="bairro" name="bairro" type="text" id="voluntarioBairro" size="40" />
+            </div>
+            <div class="field">  
+              <div class="label">Cidade</div>
+              <input title="cidade" name="cidade" type="text" id="voluntarioCidade" size="60" />
+              <div class="label2">UF</div>
+              <input title="uf" style="width: 25%;" name="uf" type="text" id="uf" size="2" />
+            </div>
+          </div>
+          <div class="page">
+            <div class="field">
+              <div class="label">E-mail<b style="color: red;">*</b></div>
+              <input title="email" id="voluntarioEmail"  type="text"/>
+            </div>
+            <div class="field">
+              <div class="label">Telefone<b style="color: red;">*</b></div>
+              <input title="telefone" id="voluntarioTelefone" type="text" maxlength="15" onkeyup="handlePhone(event)"/>
+            </div>
+            <div class="field">
+              <div class="label">Preferência de contato <b style="color: red;">*</b></div>
+              <select title="contVoluntario" id="voluntarioContVoluntario">      
+                <option value="">-Selecione uma Opção-</option>          
+                <option>WhatsApp</option>  
+                <option>E-mail</option>
+                <option>Ligação</option>            
+              </select>
+            </div>                 
+            <div class="field">
+              <div class="label">Disponibilidade <b style="color: red;">*</b></div>
+              <select title="disponibilidade" id="voluntarioDisponibilidade"> 
+                <option value="">--Selecione uma Opção--</option>             
+                <option>Presencial</option>  
+                <option>Hibrido</option>
+                <option>Remoto</option>            
+              </select>
+            </div>    
+            <div class="field">
+              <div class="label">Qual periodo você possui disponibilidade? <b style="color: red;">*</b></div>
+              <select title="periodo" id="voluntarioPeriodo"> 
+                <option value="">--Selecione uma Opção--</option>             
+                <option>Manhã</option>  
+                <option>Tarde</option>
+                <option>Noite</option>            
+              </select>
+            </div>
+            <div class="field">
+              <div class="label">Senha <b style="color: red;">*</b></div>
+              <input title="senha" id="voluntarioSenha" name="senha" type="password" maxlength="8"/>
+            </div>    
+          </div>
+          <div>
+            <button type="submit" class="submit" id="btnCadastrar">Enviar</button>
+          </div>  
+        </form>
+        <script src="js/javascriptVoluntario.js"></script>
+      </div>
+    </div>
+  </body>
+</html>

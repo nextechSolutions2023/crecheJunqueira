@@ -1,0 +1,86 @@
+<script src="/js/voluntarios/deletar.js"></script>
+<div class="container">
+    <h1 style="text-align: center;">Deseja deletar o voluntário abaixo?</h1>
+    <div>
+        <% if (typeof msg != "undefined") { %>             
+            <span  ><%= msg %></span>
+        <% } %>
+    </div>
+    <div>
+        <div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioId" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="voluntarioId" name="voluntarioId" disabled value="<%= voluntario.voluntarioId %>">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioNome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="voluntarioNome" name="voluntarioNome" disabled value="<%= voluntario.voluntarioNome %>">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="nascimento" class="form-label">Data de Nascimento</label>
+                    <input type="text" class="form-control" id="voluntarioNascimento" name="nascimento" disabled value="<%= voluntario.nascimento %>"/>
+                </div>
+            </div>
+            <div >
+                <div class="form-group">
+                    <label for="cpf" class="form-label">CPF</label> 
+                    <input type="text" class="form-control" id="voluntarioCpf" style="width: 50%;" disabled value="<%= voluntario.cpf %>"/>
+                </div>
+            </div>   
+            <div >
+                <div class="form-group">
+                    <label for="genero" class="form-label">Gênero</label>
+                    <select class="form-control" id="voluntarioGenero" disabled value="<%= voluntario.genero %>">
+                        <!-- <option selected value="0">--Selecione o Gênero--</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                        <option value="3">Outros</option> -->
+                    </select>
+                </div>
+            </div>         
+            <div >
+                <div class="form-group">
+                    <label for="email" class="form-label">E-mail</div>
+                    <input id="voluntarioEmail" type="text" class="form-control" name="email" disabled value="<%= voluntario.email %>"/>
+                </div>
+            </div>
+            <div >
+                <div class="form-group">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input id="voluntarioTelefone" type="text" class="form-control" name="telefone" disabled value="<%= voluntario.telefone %>"/>
+                </div>
+            </div>
+            <div >
+                <div class="form-group">
+                    <label for="contVoluntario" class="form-label">Preferência de contato</label>
+                    <select  id="voluntarioContVoluntario" type="text" class="form-control" name="contVoluntario" disabled value="<%= voluntario.contVoluntario %>">      
+                        <!-- <option value="">-Selecione uma Opção-</option>          
+                        <option>WhatsApp</option>  
+                        <option>E-mail</option>
+                        <option>Ligação</option>             -->
+                    </select>
+                </div>
+            </div>     
+            <div >
+                <div class="form-group">
+                    <label for="disponibilidade" class="form-label">Disponibilidade</label>
+                    <select type="text" id="voluntarioDisponibilidade" class="form-label" name="disponibilidade" disabled value="<%= voluntario.disponibilidade %>"> 
+                        <!-- <option value="">--Selecione uma Opção--</option>             
+                        <option>Presencial</option>  
+                        <option>Hibrido</option>
+                        <option>Remoto</option>             -->
+                    </select>
+                </div>
+            </div>  
+            </br>
+            <div>
+                <button class="btn btn-danger" id="btnDeletar" type="button">Sim, deletar</button>
+                <a class="btn btn-secondary" href="/voluntarios">Voltar</a>
+            </div>
+        </div>
+    </div>

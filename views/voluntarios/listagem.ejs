@@ -1,0 +1,44 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    })
+</script>
+
+<h1 style="text-align: center;">Voluntários Cadastrados</h1>
+<a class="btn btn-primary" href="voluntarios/cadastrar">Novo Voluntário</a>
+
+<hr>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Data Nascimento</th>
+                <th>CPF</th>
+                <th>Genero</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Preferência de Contato</th>
+                <th>Disponibilidade</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < lista.length; i++)  { %>
+                    <tr>
+                        <td><%= lista[i].voluntarioId %></td>
+                        <td><%= lista[i].voluntarioNome %></td>
+                        <td><%= lista[i].voluntarioDataNascimento %></td>
+                        <td><%= lista[i].voluntarioCPF %></td>
+                        <td><%= lista[i].voluntarioGenero %></td>
+                        <td><%= lista[i].voluntarioEmail %></td>
+                        <td><%= lista[i].voluntarioTelefone %></td>
+                        <td><%= lista[i].voluntarioPreferenciaContato %></td>
+                        <td><%= lista[i].voluntarioDisponibilidade %></td>
+                        <td>
+                            <a href="/voluntarios/alterar/<%= lista[i].voluntarioId %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <a href="/voluntarios/deletar/<%= lista[i].voluntarioId %>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>

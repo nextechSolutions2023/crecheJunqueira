@@ -1,0 +1,140 @@
+<script src="/js/voluntarios/alterar.js"></script>
+<div class="container">
+    <h1 style="text-align: center;">Alteração do Cadastro de Voluntário</h1>
+    <div>
+        <% if (typeof msg != "undefined") { %>             
+            <span  ><%= msg %></span>
+        <% } %>
+    </div>
+    <div>
+        <div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioId" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="voluntarioId" name="voluntarioId" disabled value="<%= voluntario.voluntarioId %>">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Nome Completo: </label> 
+                    <input title="nome" name="nome" id="voluntarioNome" type="text"/>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Data de Nascimento </label>
+                    <input title="nascimento" id="voluntarioNascimento" type="date"/>
+                </div> 
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label" for="cpf">CPF </label> 
+                    <input title="cpf" id="voluntarioCpf" style="width: 50%;" type="text" oninput="mCpf(this)" maxlength="14" onblur="validarCPF(cpf.value)"/>
+                    
+                    <label class="label2">RG </label>
+                    <input title="rg" id="voluntarioRg" style="width: 50%;" type="text" oninput="mascaraRG(this)"/>
+                </div> 
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Gênero </label>
+                    <select title="genero" id="voluntarioGenero">
+                        <option selected value="0">--Selecione o Gênero--</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                        <option value="3">Outros</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">CEP </label>
+                    <input title="cep" input name="cep" type="text" id="voluntarioCep" class="mascCEP" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);"/>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">         
+                    <label class="label">Rua</label>              
+                    <input title="rua" name="rua" type="text" id="voluntarioRua" size="60" />
+                    <label class="label2">Nº </label>
+                    <input title="numero" id="voluntarioNumero" style="width:25%;" type="text">              
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Complemento</label>
+                    <input title="complemento" id="voluntarioComplemento" type="text">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Bairro</label>
+                    <input title="bairro" name="bairro" type="text" id="voluntarioBairro" size="40" />
+                </div>
+            </div>
+            <div>
+                <div class="form-group">  
+                    <label class="label">Cidade</label>
+                    <input title="cidade" name="cidade" type="text" id="voluntarioCidade" size="60" />
+                    <label class="label2">UF</label>
+                    <input title="uf" style="width: 25%;" name="uf" type="text" id="voluntarioUf" size="2" />
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">E-mail</label>
+                    <input title="email" id="voluntarioEmail"  type="text"/>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Telefone</label>
+                    <input title="telefone" id="voluntarioTelefone" type="text" maxlength="15" onkeyup="handlePhone(event)"/>
+                </div>
+            </div>
+            <div>
+                 <div class="form-group">
+                    <label class="label">Preferência de contato </label>
+                    <select title="contVoluntario" id="voluntarioContVoluntario">      
+                        <option value="">-Selecione uma Opção-</option>          
+                        <option>WhatsApp</option>  
+                        <option>E-mail</option>
+                        <option>Ligação</option>            
+                    </select>
+                </div>   
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Disponibilidade </label>
+                    <select title="disponibilidade" id="voluntarioDisponibilidade"> 
+                        <option value="">--Selecione uma Opção--</option>             
+                        <option>Presencial</option>  
+                        <option>Hibrido</option>
+                        <option>Remoto</option>            
+                    </select>
+                </div>  
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Qual periodo você possui disponibilidade? </label>
+                    <select title="periodo" id="voluntarioPeriodo"> 
+                        <option value="">--Selecione uma Opção--</option>             
+                        <option>Manhã</option>  
+                        <option>Tarde</option>
+                        <option>Noite</option>            
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label class="label">Senha </label>
+                    <input title="senha" id="voluntarioSenha" name="senha" type="password" maxlength="8"/>
+                </div>  
+            </div>
+            <div>
+                <button class="btn btn-success" id="btnAlterar" type="button">Confirmar Alteração</button>
+                <a class="btn btn-secondary" href="/voluntarios">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
