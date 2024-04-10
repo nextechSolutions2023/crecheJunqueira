@@ -1,5 +1,8 @@
 const express = require('express');
 const VoluntarioController = require('../controllers/voluntarioController');
+const PessoaModel = require("../models/pessoaModel");
+const EnderecoModel = require("../models/enderecoModel");
+
 let ctrl = new VoluntarioController();
 
 let router = express.Router();

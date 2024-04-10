@@ -1,86 +1,147 @@
-<script src="/js/voluntarios/deletar.js"></script>
-<div class="container">
-    <h1 style="text-align: center;">Deseja deletar o voluntário abaixo?</h1>
-    <div>
-        <% if (typeof msg != "undefined") { %>             
-            <span  ><%= msg %></span>
-        <% } %>
-    </div>
-    <div>
-        <div>
-            <div>
-                <div class="form-group">
-                    <label for="voluntarioId" class="form-label">ID</label>
-                    <input type="text" class="form-control" id="voluntarioId" name="voluntarioId" disabled value="<%= voluntario.voluntarioId %>">
-                </div>
-            </div>
-            <div>
-                <div class="form-group">
-                    <label for="voluntarioNome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="voluntarioNome" name="voluntarioNome" disabled value="<%= voluntario.voluntarioNome %>">
-                </div>
-            </div>
-            <div>
-                <div class="form-group">
-                    <label for="nascimento" class="form-label">Data de Nascimento</label>
-                    <input type="text" class="form-control" id="voluntarioNascimento" name="nascimento" disabled value="<%= voluntario.nascimento %>"/>
-                </div>
-            </div>
-            <div >
-                <div class="form-group">
-                    <label for="cpf" class="form-label">CPF</label> 
-                    <input type="text" class="form-control" id="voluntarioCpf" style="width: 50%;" disabled value="<%= voluntario.cpf %>"/>
-                </div>
-            </div>   
-            <div >
-                <div class="form-group">
-                    <label for="genero" class="form-label">Gênero</label>
-                    <select class="form-control" id="voluntarioGenero" disabled value="<%= voluntario.genero %>">
-                        <!-- <option selected value="0">--Selecione o Gênero--</option>
-                        <option value="1">Masculino</option>
-                        <option value="2">Feminino</option>
-                        <option value="3">Outros</option> -->
-                    </select>
-                </div>
-            </div>         
-            <div >
-                <div class="form-group">
-                    <label for="email" class="form-label">E-mail</div>
-                    <input id="voluntarioEmail" type="text" class="form-control" name="email" disabled value="<%= voluntario.email %>"/>
-                </div>
-            </div>
-            <div >
-                <div class="form-group">
-                    <label for="telefone" class="form-label">Telefone</label>
-                    <input id="voluntarioTelefone" type="text" class="form-control" name="telefone" disabled value="<%= voluntario.telefone %>"/>
-                </div>
-            </div>
-            <div >
-                <div class="form-group">
-                    <label for="contVoluntario" class="form-label">Preferência de contato</label>
-                    <select  id="voluntarioContVoluntario" type="text" class="form-control" name="contVoluntario" disabled value="<%= voluntario.contVoluntario %>">      
-                        <!-- <option value="">-Selecione uma Opção-</option>          
-                        <option>WhatsApp</option>  
-                        <option>E-mail</option>
-                        <option>Ligação</option>             -->
-                    </select>
-                </div>
-            </div>     
-            <div >
-                <div class="form-group">
-                    <label for="disponibilidade" class="form-label">Disponibilidade</label>
-                    <select type="text" id="voluntarioDisponibilidade" class="form-label" name="disponibilidade" disabled value="<%= voluntario.disponibilidade %>"> 
-                        <!-- <option value="">--Selecione uma Opção--</option>             
-                        <option>Presencial</option>  
-                        <option>Hibrido</option>
-                        <option>Remoto</option>             -->
-                    </select>
-                </div>
-            </div>  
-            </br>
-            <div>
-                <button class="btn btn-danger" id="btnDeletar" type="button">Sim, deletar</button>
-                <a class="btn btn-secondary" href="/voluntarios">Voltar</a>
-            </div>
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+
+    <title></title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+    <link href="img/Icone_CrecheJunqueira.png" rel="icon">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/voluntarios/alterar.js"></script>
+
+     <!-- Google Web Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+
+     <style>
+
+        body {
+          font-family: 'Roboto', sans-serif;
+          background-color:#dab958;
+          background-size: cover;
+          background-position: center;
+          color: white;
+        }
+    
+        header {
+          font-family: 'Lobster Two', cursive;
+          font-size: 26px;
+          margin-bottom: 20px;
+          text-align: center;
+        }
+    
+        form {
+          background-color: green;
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: rgba(0, 0, 0, 0.5);
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    
+        .form-column {
+          flex: 0 0 calc(50% - 20px);
+          margin-right: 20px;
+        }
+    
+        .form-group {
+          margin-bottom: 20px;
+        }
+    
+        input[type="text"],
+        select {
+          width: 100%;
+          padding: 5px;
+          border-radius: 5px;
+          border: none;
+          background-color: rgba(255, 255, 255, 0.5);
+          color: black;
+        }
+    
+        .submit {
+          background-color: #FFA500; /* laranja */
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          float:right;
+        }
+    
+        .submit:hover {
+          background-color: green; /* tom mais escuro de laranja */
+        }
+    
+        .required {
+          color: red;
+        }
+      </style>
+    </head>
+    <body>
+      <header >Deseja deletar o Voluntário?</header>
+      <form>
+        <div class="form-column">
+          <div class="form-group">
+            <label for="nome" >Nome Completo <b class="required">*</b></label>
+            <input type="text" disabled id="nome" value="<%= voluntario.nome %>">
+          </div>
+          <div class="form-group">
+            <label for="cpf" >CPF</label>
+            <input type="text" disabled value="<%= voluntario.cpf %>" id="cpf">
+          </div>
+          <div class="form-group">
+            <label for="rua" >Rua</label>
+            <input type="text" id="rua" disabled value="<%= endereco.logradouro %>">
+          </div>
+          <div class="form-group">
+            <label for="numero">Número <b class="required">*</b></label>
+            <input type="text" id="numero" disabled value="<%= endereco.numero %>">
+          </div>
+          <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" class="mascCEP" disabled value="<%= endereco.cep %>">
+          </div>
         </div>
-    </div>
+        <div class="form-column">
+          <div class="form-group">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" disabled value="<%= endereco.complemento %>">
+          </div>
+          <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" disabled value="<%= endereco.bairro %>">
+          </div>
+          <div class="form-group">
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" disabled value="<%= endereco.cidade %>">
+          </div>
+          <div class="form-group">
+            <label for="uf">UF</label>
+            <input type="text" id="uf" size="2" disabled value="<%= endereco.uf %>">
+          </div>
+            <input type="hidden" id="codigo"   value="<%= voluntario.codigo %>">
+            <input type="hidden" id="codigoEndereco"  value="<%= endereco.codigo %>">
+          <div class="form-group">  
+            <label for="disponibilidade">Disponibilidade <b class="required">*</b></label>
+            <select id="disponibilidade" required>
+              <option value="">--Selecione uma Opção--</option> 
+              <option>Presencial</option>
+              <option>Híbrido</option>
+              <option>Remoto</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="submit" id="btnDeletar">Confirmar</button>
+      </form>
+    </body>
+    <script src="js/deletar.js"></script>
+  </html>

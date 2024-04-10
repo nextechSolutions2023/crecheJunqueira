@@ -5,7 +5,7 @@
 
     <title>Seja um Voluntário</title>
 
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="/css/estilo.css">
     <link href="img/Icone_CrecheJunqueira.png" rel="icon">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,7 +17,6 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
      
-  </head>
 
   <!-- <body style="overflow: auto"> -->
     <!-- <div class="container">
@@ -101,8 +100,8 @@
                       onblur="pesquisacep(this.value);"/>
             </div>
             <div class="field">         
-              <div class="label">Rua</div>              
-              <input title="rua" name="rua" type="text" id="rua" size="60" />
+              <div class="label">logradouro</div>              
+              <input title="logradouro" name="logradouro" type="text" id="logradouro" size="60" />
               <div class="label2">Nº <b style="color: red;">*</b></div>
               <input title="numero" id="numero" style="width:25%;" type="text">              
             </div>
@@ -211,112 +210,131 @@
        <script src="js/javascriptVoluntario.js"></script>
   </body> -->
 
-  <body style="overflow: auto">
-    <div class="container">
-      <header style=" font-family: 'Lobster Two', cursive;">Cadastro de Voluntário</header>
-      <div class="form-outer">
-        <form action="#"  id="formularioVoluntario">
-          <div class="page slide-page">
-            <div class="title">Informações:</div>
-            <div class="field">
-              <div class="label">Nome Completo: <b style="color: red;">*</b></div> 
-              <input title="nome" name="nome" id="voluntarioNome" type="text"/>
-            </div>
-            <div class="field">
-              <div class="label">Data de Nascimento <b style="color: red;">*</b></div>
-              <input title="nascimento" id="voluntarioNascimento" type="date"/>
-            </div>  
-            <div class="field">
-                <div class="label" for="cpf">CPF <b style="color: red;">*</b></div> 
-                <input title="cpf" id="voluntarioCPf" style="width: 50%;" type="text" oninput="mCpf(this)" maxlength="14" onblur="validarCPF(cpf.value)"/>
-                
-                <div class="label2">RG <b style="color: red;">*</b></div>
-                <input title="rg" id="voluntarioRg" style="width: 50%;" type="text" oninput="mascaraRG(this)"/>
-            </div>             
-            <div class="field">
-              <div class="label">Gênero <b style="color: red;">*</b></div>
-              <select title="genero" id="voluntarioGenero">
-                <option selected value="0">--Selecione o Gênero--</option>
-                <option value="1">Masculino</option>
-                <option value="2">Feminino</option>
-                <option value="3">Outros</option>
-              </select>
-            </div>
-          </div>
-          <div class="page">          
-            <div class="field">
-              <div class="label">CEP <b style="color: red;">*</b></div>
-              <input title="cep" input name="cep" type="text" id="voluntarioCep" class="mascCEP" value="" size="10" maxlength="9"
-                      onblur="pesquisacep(this.value);"/>
-            </div>
-            <div class="field">         
-              <div class="label">Rua</div>              
-              <input title="rua" name="rua" type="text" id="voluntarioRua" size="60" />
-              <div class="label2">Nº <b style="color: red;">*</b></div>
-              <input title="numero" id="voluntarioNumero" style="width:25%;" type="text">              
-            </div>
-            <div class="field">
-              <div class="label">Complemento</div>
-              <input title="complemento" id="voluntarioComplemento" type="text">
-            </div>
-            <div class="field">
-              <div class="label">Bairro</div>
-              <input title="bairro" name="bairro" type="text" id="voluntarioBairro" size="40" />
-            </div>
-            <div class="field">  
-              <div class="label">Cidade</div>
-              <input title="cidade" name="cidade" type="text" id="voluntarioCidade" size="60" />
-              <div class="label2">UF</div>
-              <input title="uf" style="width: 25%;" name="uf" type="text" id="uf" size="2" />
-            </div>
-          </div>
-          <div class="page">
-            <div class="field">
-              <div class="label">E-mail<b style="color: red;">*</b></div>
-              <input title="email" id="voluntarioEmail"  type="text"/>
-            </div>
-            <div class="field">
-              <div class="label">Telefone<b style="color: red;">*</b></div>
-              <input title="telefone" id="voluntarioTelefone" type="text" maxlength="15" onkeyup="handlePhone(event)"/>
-            </div>
-            <div class="field">
-              <div class="label">Preferência de contato <b style="color: red;">*</b></div>
-              <select title="contVoluntario" id="voluntarioContVoluntario">      
-                <option value="">-Selecione uma Opção-</option>          
-                <option>WhatsApp</option>  
-                <option>E-mail</option>
-                <option>Ligação</option>            
-              </select>
-            </div>                 
-            <div class="field">
-              <div class="label">Disponibilidade <b style="color: red;">*</b></div>
-              <select title="disponibilidade" id="voluntarioDisponibilidade"> 
-                <option value="">--Selecione uma Opção--</option>             
-                <option>Presencial</option>  
-                <option>Hibrido</option>
-                <option>Remoto</option>            
-              </select>
-            </div>    
-            <div class="field">
-              <div class="label">Qual periodo você possui disponibilidade? <b style="color: red;">*</b></div>
-              <select title="periodo" id="voluntarioPeriodo"> 
-                <option value="">--Selecione uma Opção--</option>             
-                <option>Manhã</option>  
-                <option>Tarde</option>
-                <option>Noite</option>            
-              </select>
-            </div>
-            <div class="field">
-              <div class="label">Senha <b style="color: red;">*</b></div>
-              <input title="senha" id="voluntarioSenha" name="senha" type="password" maxlength="8"/>
-            </div>    
-          </div>
-          <div>
-            <button type="submit" class="submit" id="btnCadastrar">Enviar</button>
-          </div>  
-        </form>
-        <script src="js/javascriptVoluntario.js"></script>
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color:#dab958;
+        background-size: cover;
+        background-position: center;
+        color: white;
+      }
+  
+      header {
+        font-family: 'Lobster Two', cursive;
+        font-size: 26px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+  
+      form {
+        background-color: green;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+  
+      .form-column {
+        flex: 0 0 calc(50% - 20px);
+        margin-right: 20px;
+      }
+  
+      .form-group {
+        margin-bottom: 20px;
+      }
+  
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.5);
+        color: black;
+      }
+  
+      .submit {
+        background-color: #FFA500; /* laranja */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        float:right;
+      }
+  
+      .submit:hover {
+        background-color: green; /* tom mais escuro de laranja */
+      }
+  
+      .required {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header >Cadastro de Voluntário</header>
+    <form>
+      <div class="form-column">
+        <div class="form-group">
+          <label for="nome">Nome Completo <b class="required">*</b></label>
+          <input type="text" id="nome" required value="maria">
+        </div>
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" maxlength="14" oninput="mCpf(this)" value="42184775827">
+        </div>
+        <div class="form-group">
+          <label for="logradouro">logradouro</label>
+          <input type="text" id="logradouro" value="logradourobela">
+        </div>
+        <div class="form-group">
+          <label for="numero">Número <b class="required">*</b></label>
+          <input type="text" id="numero" required value="123">
+        </div>
+        <div class="form-group">
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" class="mascCEP" maxlength="9" onblur="pesquisacep(this.value);" value="19030440">
+        </div>
       </div>
-    </div>
+      <div class="form-column">
+        <div class="form-group">
+          <label for="complemento">Complemento</label>
+          <input type="text" id="complemento" value="apartamento">
+        </div>
+        <div class="form-group">
+          <label for="bairro">Bairro</label>
+          <input type="text" id="bairro" value="furquim">
+        </div>
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" value="bauru">
+        </div>
+        <div class="form-group">
+          <label for="uf">UF</label>
+          <input type="text" id="uf" size="2" value="sp">
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone <b class="required">*</b></label>
+          <input type="text" id="telefone" maxlength="15" onkeyup="handlePhone(event)" required value="18991474783">
+        </div>
+        <div class="form-group">  
+          <label for="disponibilidade">Disponibilidade <b class="required">*</b></label>
+          <select id="disponibilidade" required>
+            <option value="">--Selecione uma Opção--</option> 
+            <option value="Presencial" selected>Presencial</option>
+            <option value="Hibrido">Híbrido</option>
+            <option value="Remoto">Remoto</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="submit" id="btnCadastrar">Enviar</button>
+    </form>
   </body>
+  <script src="/js/voluntario/cadastrar.js"></script>
 </html>
