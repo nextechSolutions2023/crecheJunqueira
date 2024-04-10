@@ -17,62 +17,65 @@ let current = 1;
 nextBtnFirst.addEventListener("click", function(){
 
   // Nome
-  var nomeVoluntario = document.getElementById("nome").value;
+  var nome = document.getElementById("nome").value;
 
-  if(nomeVoluntario.length < 5){
+  if(nome.length < 50){
     alert("Nome Inválido");
     return;
   }
 
-  // Sobrenome
-  var sobrenomeVoluntario = document.getElementById("sobrenome").value;
+  // // Sobrenome
+  // var sobrenomeVoluntario = document.getElementById("sobrenome").value;
 
-  if(sobrenomeVoluntario.length < 5){
-    alert("Sobrenome Inválido");
-    return;
-  }
+  // if(sobrenomeVoluntario.length < 5){
+  //   alert("Sobrenome Inválido");
+  //   return;
+  // }
 
   // Data de Nascimento 
-  var dataNascimento = document.getElementById("nascimento").value;
+  // var dataNascimento = document.getElementById("nascimento").value;
 
-  if(!dataNascimento){
-    alert("Insira uma Data de Nascimento");
-    return;
-  }
+  // if(!dataNascimento){
+  //   alert("Insira uma Data de Nascimento");
+  //   return;
+  // }
   
   //rg
-  var rg = document.getElementById("rg").value;
+  // var rg = document.getElementById("rg").value;
 
-  if(rg.length < 10)
-  {
-    alert("RG inválido");
-    return;
-  }
+  // if(rg.length < 10)
+  // {
+  //   alert("RG inválido");
+  //   return;
+  // }
 
   // cpf
   var cpf = document.getElementById("cpf").value;
 
-  if(cpf.length !==14 )
+  if(cpf.length !== 14 )
   {
     alert ("CPF inválido");
     return;
   }
   
-
-
-  // Gênero
-  var genero = document.getElementById("genero").value;
+  // // Gênero
+  // var genero = document.getElementById("genero").value;
  
-  if(genero == ''){
-      alert('Escolha um Gênero!');
-      return;
-  }
+  // if(genero == ''){
+  //     alert('Escolha um Gênero!');
+  //     return;
+  // }
   
-  slidePage.style.marginLeft = "-25%";
-  bullet[current - 1].classList.add("active");
-  progressCheck[current - 1].classList.add("active");
-  progressText[current - 1].classList.add("active");
-  current += 1;
+
+
+
+
+
+  // slidePage.style.marginLeft = "-25%";
+  // bullet[current - 1].classList.add("active");
+  // progressCheck[current - 1].classList.add("active");
+  // progressText[current - 1].classList.add("active");
+  // current += 1;
   
 });
 

@@ -3,45 +3,95 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
     function limparValidacao() {
-        document.getElementById("voluntarioNome").style["border-color"] = "#ced4da";
-        document.getElementById("voluntarioEmail").style["border-color"] = "#ced4da";
-        document.getElementById("voluntarioSenha").style["border-color"] = "#ced4da";
-        document.getElementById("voluntarioPerfil").style["border-color"] = "#ced4da";
+        document.getElementById("nome").style["border-color"] = "#ced4da";
+        document.getElementById("cpf").style["border-color"] = "#ced4da";
+        document.getElementById("logradouro").style["border-color"] = "#ced4da";
+        document.getElementById("numero").style["border-color"] = "#ced4da";
+        document.getElementById("cep").style["border-color"] = "#ced4da";
+        document.getElementById("complemento").style["border-color"] = "#ced4da";
+        document.getElementById("bairro").style["border-color"] = "#ced4da";
+        document.getElementById("cidade").style["border-color"] = "#ced4da";
+        document.getElementById("uf").style["border-color"] = "#ced4da";
+        document.getElementById("telefone").style["border-color"] = "#ced4da";
+        document.getElementById("disponibilidade").style["border-color"] = "#ced4da";
     }
 
     function cadastrar() {
         limparValidacao();
-        let nome = document.querySelector("#voluntarioNome").value;
-        let email = document.querySelector("#voluntarioEmail").value;
-        let senha = document.querySelector("#voluntarioSenha").value;
-        let perfil = document.querySelector("#voluntarioPerfil").value;
-        let ativo = document.querySelector("#voluntarioAtivo").checked;
+        let nome = document.querySelector("#nome").value;
+        let cpf = document.querySelector("#cpf").value;
+        let logradouro = document.querySelector("#logradouro").value;
+        let numero = document.querySelector("#numero").value;
+        let cep = document.querySelector("#cep").value;
+        let complemento = document.querySelector("#complemento").value;
+        let bairro = document.querySelector("#bairro").value;
+        let cidade = document.querySelector("#cidade").value;
+        let uf = document.querySelector("#uf").value;
+        let telefone = document.querySelector("#telefone").value;
+        let disponibilidade = document.querySelector("#disponibilidade").value;
+        
 
         let listaErros = [];
-        if(nome == "") {
-            listaErros.push("voluntarioNome");
+        if(nome == "" || nome.length < 5) {
+            listaErros.push("nome");
         }
-        if(email == "") {
-            listaErros.push("voluntarioEmail");
+        if(!validarCPF(cpf)) {
+            listaErros.push("cpf");
         }
-        if(senha == "") {
-            listaErros.push("voluntarioSenha");
+        if(logradouro == "") {
+            listaErros.push("logradouro");
         }
-        if(perfil == 0) {
-            listaErros.push("voluntarioPerfil");
+        if(numero == "") {
+            listaErros.push("numero");
+        }
+
+        if(cep == "" || !validarCEP(cep)) {
+            listaErros.push("cep");
+        }
+
+        if(complemento == "") {
+            listaErros.push("complemento");
+        }
+
+        if(bairro == "") {
+            listaErros.push("bairro");
+        }
+
+        if(cidade == "") {
+            listaErros.push("cidade");
+        }
+
+        if(uf == "") {
+            listaErros.push("uf");
+        }
+
+        if(telefone == "") {
+            listaErros.push("telefone");
+        }
+
+        if(disponibilidade == "") {
+            listaErros.push("disponibilidade");
         }
 
         if(listaErros.length == 0) {
 
-            // let obj = {
-            //     nome: nome,
-            //     email: email,
-            //     senha: senha,
-            //     ativo: ativo,
-            //     perfil: perfil,
-            // }
+            let obj = {
+                nome: nome,
+                cpf: cpf,
+                logradouro: logradouro,
+                numero: numero,
+                cep,
+                complemento: complemento,
+                bairro: bairro,
+                cidade: cidade,
+                uf: uf,
+                telefone: telefone,
+                disponibilidade: disponibilidade,
+                creche_codigo: 0,
+                habilidadecodigo:1
+            }
 
-            fetch("/voluntarios/cadastrar", {
+            fetch("/voluntario/cadastrar", {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {
@@ -54,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/voluntarios";
+                    window.location.href="/voluntario";
                 }   
                 else {
                     alert(r.msg);
@@ -65,9 +115,51 @@ document.addEventListener("DOMContentLoaded", function() {
             for(let i = 0; i < listaErros.length; i++) {
                 let campos = document.getElementById(listaErros[i]);
                 campos.style["border-color"] = "red";
+                alert(listaErros[i]);
             }
             alert("Preencha corretamente os campos indicados!");
         }
+    }
+
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g,'');    
+        if(cpf == '') return false; 
+        // Elimina CPFs invalidos conhecidos    
+        if (cpf.length != 11 || 
+            cpf == "00000000000" || 
+            cpf == "11111111111" || 
+            cpf == "22222222222" || 
+            cpf == "33333333333" || 
+            cpf == "44444444444" || 
+            cpf == "55555555555" || 
+            cpf == "66666666666" || 
+            cpf == "77777777777" || 
+            cpf == "88888888888" || 
+            cpf == "99999999999")
+                return false;       
+        // Valida 1o digito 
+        let add = 0;    
+        for (let i=0; i < 9; i ++)      
+            add += parseInt(cpf.charAt(i)) * (10 - i);  
+        let rev = 11 - (add % 11);  
+        if (rev == 10 || rev == 11)     
+            rev = 0;    
+        if (rev != parseInt(cpf.charAt(9)))     
+            return false;       
+        // Valida 2o digito 
+        add = 0;    
+        for (let i = 0; i < 10; i ++)        
+            add += parseInt(cpf.charAt(i)) * (11 - i);  
+        rev = 11 - (add % 11);  
+        if (rev == 10 || rev == 11) 
+            rev = 0;    
+        if (rev != parseInt(cpf.charAt(10)))
+            return false;       
+        return true;  
+    }
+
+    function validarCEP(cep) {
+        return /^[0-9]{5}-?[0-9]{3}$/.test(cep);
     }
 
 })

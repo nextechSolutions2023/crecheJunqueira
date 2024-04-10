@@ -1,4 +1,6 @@
 const VoluntarioModel = require("../models/voluntarioModel");
+const EnderecoModel = require("../models/enderecoModel");
+const PessoaModel = require("../models/pessoaModel");
 
 class VoluntarioController{
 
@@ -16,18 +18,16 @@ class VoluntarioController{
     async cadastrar(req, resp){
         let msg = "";
         let cor = "";
-        if(req.body.voluntarioNome != "" && req.body.voluntarioNascimento != "" && req.body.voluntarioCpf != "" &&
-        req.body.voluntarioRg != "" && req.body.voluntarioGenero != "" && req.body.voluntarioCep != "" && req.body.voluntarioRua != "" && req.body.voluntarioNumero != "" && req.body.voluntarioComplemento != "" && req.body.voluntarioBairro != "" 
-        && req.body.voluntarioCidade != "" && req.body.voluntarioUf != "" && req.body.voluntarioEmail != "" && req.body.voluntarioTelefone != "" && req.body.voluntarioContVoluntario != "" && req.body.voluntarioDisponibilidade != "" 
-        && req.body.voluntarioPeriodo != "" && req.body.voluntarioSenha != '0') {
+        if(req.body.disponibilidade != "" && req.body.cpf != "" &&
+        req.body.nome != "" ) {
 
-            let voluntario = new VoluntarioModel(0, req.body.voluntarioNome ,req.body.voluntarioNascimento ,req.body.voluntarioCpf ,req.body.voluntarioRg , req.body.voluntarioGenero , req.body.voluntarioCep , 
-                req.body.voluntarioRua , req.body.voluntarioNumero , req.body.voluntarioComplemento , req.body.voluntarioBairro ,req.body.voluntarioCidade ,req.body.voluntarioUf,req.body.voluntarioEmail ,req.body.voluntarioTelefone ,
-                req.body.voluntarioContVoluntario ,req.body.voluntarioDisponibilidade,req.body.voluntarioPeriodo,req.body.voluntarioSenha);
+            let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, 0,req.body.disponibilidade, req.body.habilidadecodigo, req.body.creche_codigo );
+            let endereco = new EnderecoModel(0,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf,req.body.cpf);
 
             let result = await voluntario.cadastrar();
+            let resultEndereco = await endereco.cadastrar();
 
-            if(result) {
+            if(result && resultEndereco) {
                 resp.send({
                     ok: true,
                     msg: "Voluntário cadastrado com sucesso!"
@@ -52,25 +52,24 @@ class VoluntarioController{
     //alterar
     async alterarView(req, res) {
         let voluntarioModel = new VoluntarioModel();
-        let voluntario = await voluntarioModel.obter(req.params.id) 
-        res.render('voluntario/alterar', {voluntario:voluntario});
+        let voluntario = await voluntarioModel.obter(req.params.codigo) ;
+        let enderecoModel = new EnderecoModel();
+        let endereco = await enderecoModel.obterPorCpf(voluntario.getcpf()) ;
+        res.render('voluntario/alterar', {voluntario:voluntario, endereco: endereco});
     }
 
     async alterar(req, resp){
         let msg = "";
         let cor = "";
-        if(req.body.voluntarioNome != "" && req.body.voluntarioNascimento != "" && req.body.voluntarioCpf != "" &&
-        req.body.voluntarioRg != "" && req.body.voluntarioGenero != "" && req.body.voluntarioCep != "" && req.body.voluntarioRua != "" && req.body.voluntarioNumero != "" && req.body.voluntarioComplemento != "" && req.body.voluntarioBairro != "" 
-        && req.body.voluntarioCidade != "" && req.body.voluntarioUf != "" && req.body.voluntarioEmail != "" && req.body.voluntarioTelefone != "" && req.body.voluntarioContVoluntario != "" && req.body.voluntarioDisponibilidade != "" 
-        && req.body.voluntarioPeriodo != "" && req.body.voluntarioSenha != '0') {
+        if(req.body.disponibilidade != "" && req.body.habilidadecodigo != "" && req.body.cpf != "" &&
+        req.body.nome != "" && req.body.crechecodigo != "") {
 
-            let voluntario = new VoluntarioModel(req.body.voluntarioNome ,req.body.voluntarioNascimento ,req.body.voluntarioCpf ,req.body.voluntarioRg , req.body.voluntarioGenero , req.body.voluntarioCep , 
-                req.body.voluntarioRua , req.body.voluntarioNumero , req.body.voluntarioComplemento , req.body.voluntarioBairro ,req.body.voluntarioCidade ,req.body.voluntarioUf,req.body.voluntarioEmail ,req.body.voluntarioTelefone ,
-                req.body.voluntarioContVoluntario ,req.body.voluntarioDisponibilidade,req.body.voluntarioPeriodo,req.body.voluntarioSenha);
-
+            let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, req.body.codigo, req.body.disponibilidade, req.body.habilidadecodigo, req.body.crechecodigo );
+            let endereco = new EnderecoModel(req.body.codigoEndereco,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf);
             let result = await voluntario.alterar();
+            let resultEndereco = await endereco.alterar();
 
-            if(result) {
+            if(result && resultEndereco) {
                 resp.send({
                     ok: true,
                     msg: "Voluntário alterado com sucesso!"
@@ -95,21 +94,23 @@ class VoluntarioController{
     //deletar
     async deletarView(req, res) {
         let voluntarioModel = new VoluntarioModel();
-        let voluntario = await voluntarioModel.obter(req.params.id) 
-        res.render('voluntario/deletar', {voluntario:voluntario});
+        let voluntario = await voluntarioModel.obter(req.params.codigo);
+        let enderecoModel = new EnderecoModel();
+        let endereco = await enderecoModel.obterPorCpf(voluntario.getcpf()) ;
+        res.render('voluntario/deletar', {voluntario:voluntario, endereco: endereco});
     }
 
     async deletar(req, resp){
         let msg = "";
         let cor = "";
         
-        let voluntario = new VoluntarioModel(req.body.voluntarioNome ,req.body.voluntarioNascimento ,req.body.voluntarioCpf ,req.body.voluntarioRg , req.body.voluntarioGenero , req.body.voluntarioCep , 
-            req.body.voluntarioRua , req.body.voluntarioNumero , req.body.voluntarioComplemento , req.body.voluntarioBairro ,req.body.voluntarioCidade ,req.body.voluntarioUf,req.body.voluntarioEmail ,req.body.voluntarioTelefone ,
-            req.body.voluntarioContVoluntario ,req.body.voluntarioDisponibilidade,req.body.voluntarioPeriodo,req.body.voluntarioSenha);
+        let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, req.body.codigo, req.body.disponibilidade, req.body.habilidadecodigo, req.body.crechecodigo );
+        let endereco = new EnderecoModel(req.body.codigoEndereco,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf);
+        let resultEndereco = await endereco.deletar();
 
         let result = await voluntario.deletar();
 
-        if(result) {
+        if(result && resultEndereco) {
             resp.send({
                 ok: true,
                 msg: "Voluntário deletado com sucesso!"

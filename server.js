@@ -15,9 +15,9 @@ app.use(express.static("public"))
 // app.use(expressEjsLayout);
 
 app.use("/",  homeRoute);
-app.use("/voluntarios", voluntarioRoute);
+app.use("/voluntario", voluntarioRoute);
 app.use("/login", loginRoute);
 
-app.listen(3000, function() {
+app.listen(4000, function() {
     console.log("servidor web iniciado")
 })
