@@ -1,9 +1,10 @@
 const express = require('express');
-const VoluntarioController = require('../controllers/voluntarioController');
+const DoadoresController = require('../controllers/doadoresController');
 const PessoaModel = require("../models/pessoaModel");
 const EnderecoModel = require("../models/enderecoModel");
 
-let ctrl = new VoluntarioController();
+
+let ctrl = new DoadoresController();
 
 let router = express.Router();
 router.get('/',ctrl.listagemView);

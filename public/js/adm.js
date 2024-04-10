@@ -1,6 +1,3 @@
-//  ***FUNCOES PARA VALIDAR A TELA AREA RESTRITA****
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     // Função para validar o formulário

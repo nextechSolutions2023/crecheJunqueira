@@ -212,7 +212,7 @@
 
   </head>
   <body>
-    <header >Cadastro de Voluntário</header>
+    <header >Cadastro de Doador</header>
     <form>
       <div class="form-column">
         <div class="form-group">
@@ -255,15 +255,15 @@
         </div>
         <div class="form-group">
           <label for="telefone">Telefone <b class="required">*</b></label>
-          <input type="text" id="telefone" maxlength="15" onkeyup="handlePhone(event)" required >
+          <input type="text" id="telefone" maxlength="15"  required >
         </div>
         <div class="form-group">  
-          <label for="disponibilidade">Disponibilidade <b class="required">*</b></label>
-          <select id="disponibilidade" required>
+          <label for="tipo_doacao">Tipo de Doação <b class="required">*</b></label>
+          <select id="tipo_doacao" required>
             <option value="">--Selecione uma Opção--</option> 
-            <option value="Presencial">Presencial</option>
-            <option value="Hibrido">Híbrido</option>
-            <option value="Remoto">Remoto</option>
+            <option value="Alimentos">Alimentos</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Outros">Outros</option>
           </select>
         </div>
       </div>
@@ -271,5 +271,5 @@
 
     </form>
   </body>
-  <script src="/js/voluntario/cadastrar.js"></script>
+  <script src="/js/doador/cadastrar.js"></script>
 </html>

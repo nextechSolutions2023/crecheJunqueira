@@ -8,14 +8,14 @@ class PessoaModel {
     #nome;
     #crechecodigo;
 
-    setcpf(cpf) {this.#cpf = cpf};
-    getcpf(){return this.#cpf};
+    set cpf(cpf) {this.#cpf = cpf};
+    get cpf(){return this.#cpf};
 
-    setnome(nome) {this.#nome = nome};
-    getnome(){return this.#nome};
+    set nome(nome) {this.#nome = nome};
+    get nome(){return this.#nome};
 
-    setcrechecodigo(crechecodigo) {this.#crechecodigo = crechecodigo};
-    getcrechecodigo(){return this.#crechecodigo};
+    set crechecodigo(crechecodigo) {this.#crechecodigo = crechecodigo};
+    get crechecodigo(){return this.#crechecodigo};
 
     constructor(cpf, nome, crechecodigo) {
 
@@ -50,7 +50,6 @@ class PessoaModel {
 
     async alterarPessoa(){
         let sql = "update tb_pessoa set nome = ? where cpf = ?";
-
         let valores = [this.#nome, this.#cpf];
 
         let result = await banco.ExecutaComandoNonQuery(sql, valores);

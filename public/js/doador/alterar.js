@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("bairro").style["border-color"] = "#ced4da";
         document.getElementById("cidade").style["border-color"] = "#ced4da";
         document.getElementById("uf").style["border-color"] = "#ced4da";
-        document.getElementById("disponibilidade").style["border-color"] = "#ced4da";
+        document.getElementById("tipo_doacao").style["border-color"] = "#ced4da";
     
     }
 
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let bairro = document.querySelector("#bairro").value;
         let cidade = document.querySelector("#cidade").value;
         let uf = document.querySelector("#uf").value;
-        let disponibilidade = document.querySelector("#disponibilidade").value;
+        let tipo_doacao = document.querySelector("#tipo_doacao").value;
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
 
@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
 
-        if(disponibilidade == "") {
-            listaErros.push("disponibilidade");
+        if(tipo_doacao == "") {
+            listaErros.push("tipo_doacao");
         }
 
 
@@ -83,14 +83,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 bairro: bairro,
                 cidade: cidade,
                 uf: uf,
-                disponibilidade: disponibilidade,
+                tipo_doacao: tipo_doacao,
                 codigo: codigo,
                 codigoEndereco: codigoEndereco,
-                creche_codigo: 0,
-                habilidadecodigo:1
+                creche_codigo: 0
             }
 
-            fetch("/voluntario/alterar", {
+            fetch("/doadores/alterar", {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {
@@ -105,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/voluntario";
+                    window.location.href="/doadores";
                 }   
                 else {
                     alert(r.msg);

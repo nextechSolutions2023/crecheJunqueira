@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let bairro = document.querySelector("#bairro").value;
         let cidade = document.querySelector("#cidade").value;
         let uf = document.querySelector("#uf").value;
-        let disponibilidade = document.querySelector("#disponibilidade").value;
+        let tipo_doacao = document.querySelector("#tipo_doacao").value;
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
         
@@ -26,14 +26,13 @@ document.addEventListener("DOMContentLoaded", function(){
             bairro: bairro,
             cidade: cidade,
             uf: uf,
-            disponibilidade: disponibilidade,
+            tipo_doacao: tipo_doacao,
             codigo: codigo,
             codigoEndereco: codigoEndereco,
-            creche_codigo: 0,
-            habilidadecodigo:1
+            creche_codigo: 0
         }
 
-        fetch("/voluntario/deletar", {
+        fetch("/doadores/deletar", {
             method: 'POST',
             body: JSON.stringify(obj),
             headers: {
@@ -46,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(r=> {
             if(r.ok) {
                 alert(r.msg);
-                window.location.href="/voluntario";
+                window.location.href="/doadores";
             }   
             else {
                 alert(r.msg);

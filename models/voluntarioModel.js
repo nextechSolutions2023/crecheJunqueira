@@ -9,14 +9,14 @@ class voluntarioModel extends PessoaModel{
     #disponibilidade;
     #habilidadecodigo;
 
-    setcodigo(codigo) { this.#codigo = codigo};
-    getcodigo() { return this.#codigo;}
+    set codigo(codigo) { this.#codigo = codigo};
+    get codigo() { return this.#codigo;}
 
-    setdisponibilidade(disponibilidade) { this.#disponibilidade = disponibilidade}
-    getdisponibilidade() { return this.#disponibilidade;}
+    set disponibilidade(disponibilidade) { this.#disponibilidade = disponibilidade}
+    get disponibilidade() { return this.#disponibilidade;}
 
-    sethabilidadecodigo(habilidadecodigo) { this.#habilidadecodigo = habilidadecodigo}
-    gethabilidadecodigo() { return this.#habilidadecodigo;}
+    set habilidadecodigo(habilidadecodigo) { this.#habilidadecodigo = habilidadecodigo}
+    get habilidadecodigo() { return this.#habilidadecodigo;}
 
     constructor(cpf, nome, codigo, disponibilidade ,habilidadecodigo, crechecodigo) {
 
@@ -32,9 +32,11 @@ class voluntarioModel extends PessoaModel{
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
+        
 
         for(let i = 0; i < rows.length; i++) {
-            lista.push(new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"] ));
+            let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"] );
+            lista.push(voluntario);
         }
         return lista;
     }
@@ -42,7 +44,7 @@ class voluntarioModel extends PessoaModel{
     async cadastrar() {
         await super.cadastrarPessoa();
         let sql = "insert into tb_voluntarios (disponibilidade, pessoa_cpf, habilidade_codigo) values (?,?,?)";
-        let valores = [this.#disponibilidade, this.getcpf(), this.#habilidadecodigo];
+        let valores = [this.#disponibilidade, this.cpf, this.#habilidadecodigo];
 
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
@@ -50,11 +52,10 @@ class voluntarioModel extends PessoaModel{
     }
 
     async obter(codigo){
-        let sql = "select * from tb_voluntarios where codigo = " + codigo;
+        let sql = "select * from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf where v.codigo = " + codigo;
 
         let rows = await banco.ExecutaComando(sql);
-        let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"]);
-        
+        let voluntario = new voluntarioModel(rows[0]["pessoa_cpf"], rows[0]["nome"], rows[0]["codigo"], rows[0]["disponibilidade"], rows[0]["habilidade_codigo"], rows[0]["creche_codigo"]);
         return voluntario;
     }
 

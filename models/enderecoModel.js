@@ -14,32 +14,32 @@ class EnderecoModel{
     #uf;
     #pessoacpf;
 
-    setcodigo(codigo) {this.#codigo = codigo};
-    getcodigo(){this.#codigo};
+    set codigo(codigo) {this.#codigo = codigo};
+    get codigo(){return this.#codigo};
 
-    setlogradouro(logradouro) {this.#logradouro = logradouro };
-    getlogradouro(){this.#logradouro};
+    set logradouro(logradouro) {this.#logradouro = logradouro };
+    get logradouro(){ return this.#logradouro};
 
-    setnumero(numero) {this.#numero = numero };
-    getnumero(){this.#numero};
+    set numero(numero) {this.#numero = numero };
+    get numero(){return this.#numero};
 
-    setcomplemento(complemento) {this.#complemento = complemento };
-    getcomplemento(){this.#complemento};
+    set complemento(complemento) {this.#complemento = complemento };
+    get complemento(){return this.#complemento};
 
-    setbairro(bairro) {this.#bairro = bairro };
-    getbairro(){this.#bairro};
+    set bairro(bairro) {this.#bairro = bairro };
+    get bairro(){return this.#bairro};
 
-    setcidade(cidade) {this.#cidade = cidade};
-    getcidade(){this.#cidade};
+    set cidade(cidade) {this.#cidade = cidade};
+    get cidade(){return this.#cidade};
 
-    setcep(cep) {this.#cep = cep };
-    getcep(){this.#cep};
+    set cep(cep) {this.#cep = cep };
+    get cep(){return this.#cep};
 
-    setuf(uf) {this.#uf = uf};
-    getuf(){this.#uf};
+    set uf(uf) {this.#uf = uf};
+    get uf(){return this.#uf};
 
-    setpessoacpf() {this.#pessoacpf = pessoacpf};
-    get(){this.#pessoacpf};
+    set pessoacpf(pessoacpf) {this.#pessoacpf = pessoacpf};
+    get pessoacpf(){return this.#pessoacpf};
 
     constructor(codigo, logradouro, numero, complemento, bairro, cidade, cep, uf, pessoacpf) {
 
@@ -76,9 +76,8 @@ class EnderecoModel{
 
     async obterPorCpf(cpf){
         let sql = "select * from tb_endereco where pessoa_cpf = " + cpf;
-
         let rows = await banco.ExecutaComando(sql);
-        let endereco = new EnderecoModel(rows[i]["codigo"], rows[i]["logradouro"], rows[i]["numero"], rows[i]["complemento"], rows[i]["bairro"], rows[i]["cidade"], rows[i]["cep"], rows[i][uf], rows[i][pessoa_cpf]);
+        let endereco = new EnderecoModel(rows[0]["codigo"], rows[0]["logradouro"], rows[0]["numero"], rows[0]["complemento"], rows[0]["bairro"], rows[0]["cidade"], rows[0]["cep"], rows[0]["uf"], rows[0]["pessoa_cpf"]);
         
         return endereco;
     }
