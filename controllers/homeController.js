@@ -8,8 +8,14 @@ class HomeController{
         res.render('contato');
     }
 
-    loginView(){
-        res.render('login');
+    recursosView(req, res){
+        res.render('recursos');
+    }
+
+
+
+    sobrenosView(req,res){
+        res.render('sobre_nos');
     }
 
 }

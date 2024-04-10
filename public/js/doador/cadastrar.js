@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById("btnAlterar").addEventListener("click", alterar);
+    document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("bairro").style["border-color"] = "#ced4da";
         document.getElementById("cidade").style["border-color"] = "#ced4da";
         document.getElementById("uf").style["border-color"] = "#ced4da";
-        document.getElementById("disponibilidade").style["border-color"] = "#ced4da";
-    
+        document.getElementById("telefone").style["border-color"] = "#ced4da";
+        document.getElementById("tipo_doacao").style["border-color"] = "#ced4da";
     }
 
-    function alterar() {
+    function cadastrar() {
         limparValidacao();
         let nome = document.querySelector("#nome").value;
         let cpf = document.querySelector("#cpf").value;
@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function(){
         let bairro = document.querySelector("#bairro").value;
         let cidade = document.querySelector("#cidade").value;
         let uf = document.querySelector("#uf").value;
-        let disponibilidade = document.querySelector("#disponibilidade").value;
-        let codigo = document.querySelector("#codigo").value;
-        let codigoEndereco = document.querySelector("#codigoEndereco").value;
+        let telefone = document.querySelector("#telefone").value;
+        let tipo_doacao = document.querySelector("#tipo_doacao").value;
+        
 
-         let listaErros = [];
+        let listaErros = [];
         if(nome == "" || nome.length < 5) {
             listaErros.push("nome");
         }
@@ -65,47 +65,46 @@ document.addEventListener("DOMContentLoaded", function(){
             listaErros.push("uf");
         }
 
-
-        if(disponibilidade == "") {
-            listaErros.push("disponibilidade");
+        if(telefone == "") {
+            listaErros.push("telefone");
         }
 
+        if(tipo_doacao == "") {
+            listaErros.push("tipo_doacao");
+        }
 
         if(listaErros.length == 0) {
-            
+
             let obj = {
                 nome: nome,
                 cpf: cpf,
                 logradouro: logradouro,
                 numero: numero,
-                cep,
+                cep:cep,
                 complemento: complemento,
                 bairro: bairro,
                 cidade: cidade,
                 uf: uf,
-                disponibilidade: disponibilidade,
-                codigo: codigo,
-                codigoEndereco: codigoEndereco,
-                creche_codigo: 0,
-                habilidadecodigo:1
+                telefone: telefone,
+                tipo_doacao: tipo_doacao,
+                creche_codigo: 0
+            
             }
 
-            fetch("/voluntario/alterar", {
+            fetch("/doadores/cadastrar", {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {
                     "Content-Type": "application/json",
                 }
             })
-
             .then(r=> {
                 return r.json();
             })
-
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/voluntario";
+                    window.location.href="/doadores";
                 }   
                 else {
                     alert(r.msg);
@@ -116,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
             for(let i = 0; i < listaErros.length; i++) {
                 let campos = document.getElementById(listaErros[i]);
                 campos.style["border-color"] = "red";
+                alert(listaErros[i]);
             }
             alert("Preencha corretamente os campos indicados!");
         }
@@ -161,4 +161,5 @@ document.addEventListener("DOMContentLoaded", function(){
     function validarCEP(cep) {
         return /^[0-9]{5}-?[0-9]{3}$/.test(cep);
     }
+
 })

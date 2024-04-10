@@ -1,9 +1,7 @@
 const express = require('express');
-const VoluntarioController = require('../controllers/voluntarioController');
-const PessoaModel = require("../models/pessoaModel");
-const EnderecoModel = require("../models/enderecoModel");
+const AtividadesController = require('../controllers/atividadeController');
 
-let ctrl = new VoluntarioController();
+let ctrl = new AtividadesController();
 
 let router = express.Router();
 router.get('/',ctrl.listagemView);

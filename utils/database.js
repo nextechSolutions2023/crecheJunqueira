@@ -20,6 +20,9 @@ class Database {
         var cnn = this.#conexao;
         return new Promise(function(res, rej) {
             cnn.query(sql, valores, function (error, results, fields) {
+                console.log('ExecutaComando: ' + sql);
+                console.log('valores: ' + valores);
+                console.log('------' );
                 if (error) 
                     rej(error);
                 else 
@@ -32,6 +35,10 @@ class Database {
         var cnn = this.#conexao;
         return new Promise(function(res, rej) {
             cnn.query(sql, valores, function (error, results, fields) {
+                console.log('ExecutaComandoNonQuery: ' + sql);
+                console.log('valores: ' + valores);
+                console.log('------' );
+
                 if (error) 
                     rej(error);
                 else 

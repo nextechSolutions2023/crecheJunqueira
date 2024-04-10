@@ -3,6 +3,9 @@ const express = require('express')
 let homeRoute = require("./routes/homeRoute");
 let voluntarioRoute = require("./routes/voluntarioRoute");
 let loginRoute = require("./routes/loginRoute");
+let doadoresRoute = require("./routes/doadoresRoute");
+let atividadeRoute = require("./routes/atividadeRoute");
+
 const app = express();
 
 app.set("views", "./views");
@@ -16,8 +19,11 @@ app.use(express.static("public"))
 
 app.use("/",  homeRoute);
 app.use("/voluntario", voluntarioRoute);
+app.use("/doadores", doadoresRoute);
+app.use("/atividades", atividadeRoute);
+
 app.use("/login", loginRoute);
 
-app.listen(4000, function() {
+app.listen(7000, function() {
     console.log("servidor web iniciado")
 })

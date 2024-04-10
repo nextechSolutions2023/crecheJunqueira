@@ -1,17 +1,17 @@
-const VoluntarioModel = require("../models/voluntarioModel");
+const DoadorModel = require("../models/doadorModel");
 const EnderecoModel = require("../models/enderecoModel");
 const PessoaModel = require("../models/pessoaModel");
 
-class VoluntarioController{
+class DoadorController{
 
     async listagemView(req, resp){
-        let voluntario = new VoluntarioModel();
-        let listaVoluntarios = await voluntario.listar();
-        resp.render("voluntarios/listagem", { lista: listaVoluntarios });
+        let doador = new DoadorModel();
+        let listaDoadores = await doador.listar();
+        resp.render("doadores/listagem", { lista: listaDoadores });
     }
 
     cadastrarView(req, resp){
-        resp.render("voluntarios/cadastrar");
+        resp.render("doadores/cadastrar");
     }
 
     //cadastrar
@@ -21,22 +21,22 @@ class VoluntarioController{
         if(req.body.disponibilidade != "" && req.body.cpf != "" &&
         req.body.nome != "" ) {
 
-            let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, 0,req.body.disponibilidade, req.body.habilidadecodigo, req.body.creche_codigo );
+            let doador = new DoadorModel(req.body.cpf, req.body.nome, 0,req.body.tipo_doacao, req.body.creche_codigo );
             let endereco = new EnderecoModel(0,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf,req.body.cpf);
 
-            let result = await voluntario.cadastrar();
+            let result = await doador.cadastrar();
             let resultEndereco = await endereco.cadastrar();
 
             if(result && resultEndereco) {
                 resp.send({
                     ok: true,
-                    msg: "Voluntário cadastrado com sucesso!"
+                    msg: "Doador cadastrado com sucesso!"
                 });
             }   
             else{
                 resp.send({
                     ok: false,
-                    msg: "Erro ao cadastrar voluntário!"
+                    msg: "Erro ao cadastrar doador!"
                 });
             }
         }
@@ -51,11 +51,11 @@ class VoluntarioController{
 
     //alterar
     async alterarView(req, res) {
-        let voluntarioModel = new VoluntarioModel();
-        let voluntario = await voluntarioModel.obter(req.params.codigo) ;
+        let doadorModel = new DoadorModel();
+        let doador = await doadorModel.obter(req.params.codigo) ;
         let enderecoModel = new EnderecoModel();
-        let endereco = await enderecoModel.obterPorCpf(voluntario.cpf) ;
-        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco});
+        let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
+        res.render('doadores/alterar', {doador:doador, endereco: endereco});
     }
 
     async alterar(req, resp){
@@ -63,21 +63,21 @@ class VoluntarioController{
 
         if(req.body.disponibilidade != "" && req.body.cpf != "" &&
         req.body.nome != "" ) {
-            let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, req.body.codigo, req.body.disponibilidade, req.body.habilidadecodigo, req.body.crechecodigo );
+            let doador = new DoadorModel(req.body.cpf, req.body.nome, req.body.codigo,req.body.tipo_doacao, req.body.creche_codigo );
             let endereco = new EnderecoModel(req.body.codigoEndereco,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf);
-            let result = await voluntario.alterar();
+            let result = await doador.alterar();
             let resultEndereco = await endereco.alterar();
 
             if(result && resultEndereco) {
                 resp.send({
                     ok: true,
-                    msg: "Voluntário alterado com sucesso!"
+                    msg: "Doador alterado com sucesso!"
                 });
             }   
             else{
                 resp.send({
                     ok: false,
-                    msg: "Erro ao alterar cadastro de voluntário!"
+                    msg: "Erro ao alterar cadastro de doador!"
                 });
             }
         }
@@ -92,32 +92,32 @@ class VoluntarioController{
 
     //deletar
     async deletarView(req, res) {
-        let voluntarioModel = new VoluntarioModel();
-        let voluntario = await voluntarioModel.obter(req.params.codigo);
+        let doadorModel = new DoadorModel();
+        let doador = await doadorModel.obter(req.params.codigo);
         let enderecoModel = new EnderecoModel();
-        let endereco = await enderecoModel.obterPorCpf(voluntario.cpf) ;
-        res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco});
+        let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
+        res.render('doadores/deletar', {doador:doador, endereco: endereco});
     }
 
     async deletar(req, resp){
-        let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, req.body.codigo, req.body.disponibilidade, req.body.habilidadecodigo, req.body.crechecodigo );
+        let doador = new DoadorModel(req.body.cpf, req.body.nome, req.body.codigo,req.body.tipo_doacao, req.body.creche_codigo );
         let endereco = new EnderecoModel(req.body.codigoEndereco,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf);
         let resultEndereco = await endereco.deletar();
-        let result = await voluntario.deletar();
+        let result = await doador.deletar();
 
         if(result && resultEndereco) {
             resp.send({
                 ok: true,
-                msg: "Voluntário deletado com sucesso!"
+                msg: "Doador deletado com sucesso!"
             });
         }   
         else{
             resp.send({
                 ok: false,
-                msg: "Erro ao deletar voluntário!"
+                msg: "Erro ao deletar doador!"
             });
         }
     }
 }
 
-module.exports = VoluntarioController;
+module.exports = DoadorController;
