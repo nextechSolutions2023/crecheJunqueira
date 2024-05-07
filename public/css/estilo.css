@@ -12,19 +12,18 @@
 
 header {
   font-family: 'Lobster Two', cursive;
-  font-size: 24px;
-  margin-bottom: 20px;
-  margin-top: 15px;
-  text-align: center;
+  font-size: 30px;
+  text-align: left;
+  margin: 100px 0px 30px 335px;
 }
 
 form {
   display: flex;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width:1000px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(7, 6, 6, 0.5);
+  background-color: rgb(102 101 161 / 50%);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -37,13 +36,15 @@ table{
 }
 
 td, th{
-  border:1px solid #FE5D37;
+  /* border:1px solid #FE5D37; */
+  border: 1px solid rgb(102 101 161 / 50%);
   text-align: left;
   padding: 8px;
 }
 
 th{
-  background-color: #FFA500;
+  /* background-color: #FFA500; */
+  background-color: rgb(102 101 161 / 50%);
   text-align: center;
 }
 
@@ -77,10 +78,12 @@ select {
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
   color: black;
+  font-size: 18px;
 }
 
 .btn{
-  background-color: #FFA500; /* laranja */
+  /* background-color: #FFA500;  */
+  background-color: rgb(206, 131, 206);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -88,10 +91,11 @@ select {
   cursor: pointer;
   transition: background-color 0.3s ease;
   float:right;
+  font-size: 20px;
 }
 
 .btn:hover {
-  background-color: green; /* tom mais escuro de laranja */
+  background-color: green; 
 }
 
 /* .btn-lis{
@@ -172,4 +176,51 @@ body{
 ::selection{
   color: #fff;
   background: #FE5D37;
+}
+
+img{
+  margin: 2px 10px 0px 752px;
+}
+
+.form-login{
+  display: block;
+  /* flex-wrap: wrap; */
+  max-width:500px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: rgb(102 101 161 / 50%);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  height: 190px;
+}
+
+.header-login{
+  font-size: 45px;
+  margin: 100px 0px 30px 772px;
+}
+
+.input-senha{
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  font-size: 18px;
+}
+
+.cadastrar{
+  margin: 5px 0px 0px 840px
+}
+
+.btnAlterar{
+  background-color: rgb(206, 131, 206);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  float:right;
+  font-size: 20px;
 }

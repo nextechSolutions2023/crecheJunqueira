@@ -18,22 +18,25 @@
         <br>
       <!--<header style=" font-family: 'Lobster Two', cursive;">Acesso</header>-->
       <div class="form-outer">
-        <form action="adm">
+        <header class="header-login">Login</header>
+        <form class="form-login" action="adm">
           <div class="page">
-            <div class="title" >LOGIN ADM:</div>
-            <br>
             <div class="field">
-                <div class="label">Nome <b style="color: red;">*</b></div>
+                <div class="label">E-mail</div>
                 <input title="nome" id="nome"  type="text"/>
             </div>
+            <br>
             <div class="field">
-              <div class="label">Senha <b style="color: red;">*</b></div>
-              <input title="senha" id="senha" type="password"/>
+              <div class="label">Senha</div>
+              <input class="input-senha" title="senha" id="senha" type="password"/>
             </div>
+            <br>
             <div class="field">
-                <button type="button" class="submit" id="btnAdm">ACESSAR</button>
+                <button type="button" class="submit btn" id="btnAdm">ACESSAR</button>
             </div>
-          </div>          
+          </div>  
+        </form> 
+      </div>       
     </div>
     <script src="/js/admLogin.js"></script>
   </body>

@@ -263,4 +263,21 @@ botao.addEventListener('click', function() {
     document.getElementById("anoCartao").value = ""; 
     document.getElementById("numeroCartao").value = "";
     document.getElementById("cvcCartao").value = "";
+
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const links = document.querySelectorAll('.nav-item.nav-link');
+        
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove a classe 'active' de todos os links
+                links.forEach(l => l.classList.remove('active'));
+                
+                // Adiciona a classe 'active' apenas ao link clicado
+                link.classList.add('active');
+            });
+        });
+    });
+
+
 });

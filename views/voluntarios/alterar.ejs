@@ -29,20 +29,21 @@
           </div>
           <div class="form-group">
             <label for="cpf" >CPF</label>
-            <input type="text" value="<%= voluntario.cpf %>" id="cpf" maxlength="14" oninput="mCpf(this)">
+            <input type="text" id="cpf" value="<%= voluntario.cpf %>" maxlength="14" onkeyup="validarCPF(this.value); impedirLetras(this);" placeholder="999.999.999-27" >
           </div>
           <div class="form-group">
-            <label for="rua">Rua</label>
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" value="<%= endereco.cep %>" class="mascCEP" onblur="preencherCidadeUFEBairroComCEP(this)">
+          </div>
+          <div class="form-group">
+            <label for="rua">Logradouro</label>
             <input type="text" id="logradouro" value="<%= endereco.logradouro %>">
           </div>
           <div class="form-group">
             <label for="numero">Número <b class="required">*</b></label>
             <input type="text" id="numero" required value="<%= endereco.numero %>">
           </div>
-          <div class="form-group">
-            <label for="cep">CEP</label>
-            <input type="text" id="cep" class="mascCEP" maxlength="9" value="<%= endereco.cep %>" onblur="pesquisacep(this.value);">
-          </div>
+          
             <input type="hidden" id="codigo"   value="<%= voluntario.codigo %>">
             <input type="hidden" id="codigoEndereco"  value="<%= endereco.codigo %>">
         </div>
@@ -62,6 +63,10 @@
           <div class="form-group">
             <label for="uf">UF</label>
             <input type="text" id="uf" size="2" value="<%= endereco.uf %>">
+          </div>
+          <div class="form-group">
+            <label for="telefone">Celular <b class="required">*</b></label>
+            <input type="text" id="celular" value="<%= voluntario.celular %>" onkeyup="validarCelular(this)" required placeholder="(99) 99999 - 9999">
           </div>
           <div class="form-group">  
             <label for="disponibilidade">Disponibilidade <b class="required">*</b></label>

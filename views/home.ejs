@@ -22,8 +22,9 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.css">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
+    
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -32,6 +33,10 @@
 
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 
 </head>
 
@@ -60,7 +65,7 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="#" class="nav-item nav-link active">Início</a>
+                    <a href="/" class="nav-item nav-link ">Início</a>
                     <a href="sobre_nos" class="nav-item nav-link ">Sobre</a>
                     <a href="doacao" class="nav-item nav-link ">Doação</a>
                     <a href="contato" class="nav-item nav-link ">Contato</a>
@@ -81,7 +86,7 @@
 
        <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative">
+            <div class="owl-carousel-item position-absolute">
                 <img class="img-fluid" src="img/carousel-1.jpg" alt="Criança lendo">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
                     <div class="container">
@@ -634,7 +639,7 @@
                         <p>Descubra o impacto real da Creche Junqueira através das vozes que fazem a diferença. Confira o que mães, voluntários e apoiadores têm a dizer.</p>
                     </div>
                     <div class="owl-carousel testimonial-carousel wow fadeInUp">
-                        <div class="testimonial-item bg-light rounded p-5" >
+                        <div class="testimonial-item bg-light rounded p-5 active" >
                             <p class="fs-5">"É uma ótima creche, todos que fazem parte estão de parabéns! Lutamos e conseguimos os nossos sonhos, que continuem sendo sonhos para as crianças. Muito feliz!"</p>
                             <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
                                 <img title="img" class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 90px; height: 90px;">
@@ -645,6 +650,7 @@
                                 <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex"></i>
                             </div>
                         </div>
+                        <br>
                         <div class="testimonial-item bg-light rounded p-5">
                             <p class="fs-5">"Creche Junqueira é muito mais que uma instituição educacional. Para nossa família, representa um lar acolhedor, onde nossos filhos recebem amor, aprendizado e cuidados."</p>
                             <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
@@ -656,6 +662,7 @@
                                 <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex"></i>
                             </div>
                         </div>
+                        <br>
                         <div class="testimonial-item bg-light rounded p-5">
                             <p class="fs-5">"Ser voluntário é uma experiência enriquecedora. Ver o brilho nos olhos das crianças e o empenho da equipe em oferecer uma educação de qualidade é inspirador."</p>
                             <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
@@ -667,6 +674,7 @@
                                 <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex"></i>
                             </div>
                         </div>
+                        <br>
                         <div class="testimonial-item bg-light rounded p-5">
                             <p class="fs-5">"Trabalhar na Creche Junqueira é um verdadeiro privilégio. Aqui, não apenas ensinamos, mas também aprendemos com cada criança. É gratificante fazer parte dessa jornada educacional."</p>
                             <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
@@ -678,6 +686,7 @@
                                 <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex"></i>
                             </div>
                         </div>
+                        <br>
                         <div class="testimonial-item bg-light rounded p-5">
                             <p class="fs-5">"A Creche representa para mim um farol de esperança e oportunidade para a nossa comunidade. Sou doador e testemunho de perto a transformação que essa instituição proporciona."</p>
                             <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
@@ -689,6 +698,7 @@
                                 <i class="fa fa-quote-right fa-3x text-primary ms-auto d-none d-sm-flex"></i>
                             </div>
                         </div>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -757,7 +767,7 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Creche Junqueira</a>, Todos os direitos reservados. 
+                            &copy; <a class="border-bottom" href="/">Creche Junqueira</a>, Todos os direitos reservados. 
 							
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
 							<br>Equipe PIII - ADS UNOESTE <a class="border-bottom" href="nextechsolutions">NexTech Solutions</a>
@@ -765,7 +775,7 @@
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="#">Página Inicial</a>
+                                <a href="/">Página Inicial</a>
                                 <!--<a href="">Cookies</a>
                                 <a href="">Ajuda</a>
                                 <a href="">Central de Ajuda</a>-->
@@ -790,7 +800,8 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap.min.css"></script>
 </body>
 
 </html>

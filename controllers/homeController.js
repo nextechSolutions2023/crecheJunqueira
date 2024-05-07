@@ -5,17 +5,16 @@ class HomeController{
     }
 
     contatoView(req,res){
-        res.render('contato');
+        res.render('contato',  {layout:false});
     }
 
     recursosView(req, res){
-        res.render('recursos');
+        // res.render('recursos', {layout:false});
+        res.render('administrativo/dashboard', {layout:false});
     }
 
-
-
     sobrenosView(req,res){
-        res.render('sobre_nos');
+        res.render('sobre_nos', {layout:false});
     }
 
 }

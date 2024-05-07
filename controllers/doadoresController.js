@@ -7,7 +7,7 @@ class DoadorController{
     async listagemView(req, resp){
         let doador = new DoadorModel();
         let listaDoadores = await doador.listar();
-        resp.render("doadores/listagem", { lista: listaDoadores });
+        resp.render("doadores/listagem", { lista: listaDoadores ,layout:false});
     }
 
     cadastrarView(req, resp){
