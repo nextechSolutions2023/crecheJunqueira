@@ -1,10 +1,12 @@
-const express = require('express')
-// const expressEjsLayout = require('express-ejs-layouts');
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+
 let homeRoute = require("./routes/homeRoute");
 let voluntarioRoute = require("./routes/voluntarioRoute");
 let loginRoute = require("./routes/loginRoute");
 let doadoresRoute = require("./routes/doadoresRoute");
 let atividadeRoute = require("./routes/atividadeRoute");
+
 
 const app = express();
 
@@ -14,11 +16,11 @@ app.set("home", "./home");
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(express.static("public"))
-// app.use(expressEjsLayout);
+app.use(express.static("public"));
+app.use(expressLayouts);
 
 app.use("/",  homeRoute);
-app.use("/voluntario", voluntarioRoute);
+app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
 

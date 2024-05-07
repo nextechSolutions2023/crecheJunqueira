@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(){
             habilidadecodigo:1
         }
 
-        fetch("/voluntario/deletar", {
+        fetch("/voluntarios/deletar", {
             method: 'POST',
             body: JSON.stringify(obj),
             headers: {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(r=> {
             if(r.ok) {
                 alert(r.msg);
-                window.location.href="/voluntario";
+                window.location.href="/voluntarios";
             }   
             else {
                 alert(r.msg);

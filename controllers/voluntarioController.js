@@ -7,11 +7,12 @@ class VoluntarioController{
     async listagemView(req, resp){
         let voluntario = new VoluntarioModel();
         let listaVoluntarios = await voluntario.listar();
-        resp.render("voluntarios/listagem", { lista: listaVoluntarios });
+        console.log(listaVoluntarios);
+        resp.render("voluntarios/listagem", { lista: listaVoluntarios , layout:false});
     }
 
     cadastrarView(req, resp){
-        resp.render("voluntarios/cadastrar");
+        resp.render("voluntarios/cadastrar", {layout:false});
     }
 
     //cadastrar
@@ -55,7 +56,7 @@ class VoluntarioController{
         let voluntario = await voluntarioModel.obter(req.params.codigo) ;
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(voluntario.cpf) ;
-        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco});
+        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, layout:false});
     }
 
     async alterar(req, resp){
@@ -96,7 +97,7 @@ class VoluntarioController{
         let voluntario = await voluntarioModel.obter(req.params.codigo);
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(voluntario.cpf) ;
-        res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco});
+        res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco, layout:false});
     }
 
     async deletar(req, resp){
