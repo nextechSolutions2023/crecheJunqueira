@@ -9,7 +9,6 @@ class HomeController{
     }
 
     recursosView(req, res){
-        // res.render('recursos', {layout:false});
         res.render('administrativo/dashboard', {layout:false});
     }
 
