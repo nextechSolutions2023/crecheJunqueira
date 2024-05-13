@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    //-----------------validacao CPF-----------------------
+    ///-----------------validacao CPF-----------------------
     function validarCPF(cpf) {
         // Remove caracteres especiais
         cpf = cpf.replace(/[^0-9]/g, '');
@@ -182,6 +182,11 @@ document.addEventListener("DOMContentLoaded", function(){
         }
             cpf.value = valorFormatado;
     }
+
+    function limparPontosTracosCPF(cpf){
+        return cpf.replace(/[.-]/g, '');
+    }
+
     
     // Exemplo de uso
     const cpf = document.getElementById("cpf");
@@ -192,30 +197,21 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 
     //--------------------validacao numero de celular----------------------
-    const celularInput = document.getElementById("celular");
+    const celular = document.getElementById("celular");
+    
+    celular.addEventListener("keyup", function() {
 
-    celularInput.addEventListener("keypress", function(event) {
-        const teclaPermitida = /^[0-9]$/; // Expressão regular para permitir apenas números
-        const teclaPressionada = event.key;
+        celular.value = phoneMask(celular.value)
+    })
 
-        if (!teclaPermitida.test(teclaPressionada)) {
-            event.preventDefault(); // Impede a inserção de caracteres não numéricos
-        }
-    });
-
-    function validarCelular(celular) {
-        // Remove caracteres especiais e espaços em branco
-        celular = celular.replace(/[^0-9]/g, '');
-
-        // Valida o formato do número de celular
-        const regex = /^(?:[2-8]|9[1-9])[0-9]{3}[0-9]{4}$/; // Formato aceito: XXXX-XXXX
-        if (!regex.test(celular)) {
-            return false;
-        }
-
-        return true;
+    function phoneMask (value) {
+    if (!value) return ""
+    value = value.replace(/\D/g,'')
+    value = value.replace(/(\d{2})(\d)/,"($1) $2")
+    value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+    return value
     }
-
+    
     //------------------validacao do cep------------------
     function preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput) {
         cepInput.addEventListener("blur", function(event) {
@@ -250,7 +246,5 @@ document.addEventListener("DOMContentLoaded", function(){
     const bairroInput = document.getElementById("bairro");
     
     preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput);
-    
-
-    
+      
 })
