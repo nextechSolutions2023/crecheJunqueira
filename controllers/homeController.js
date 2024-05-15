@@ -16,6 +16,10 @@ class HomeController{
         res.render('sobre_nos', {layout:false});
     }
 
+    transparenciaView(req, res){
+        res.render('transparencia', {layout:false});
+    }
+
 }
 
 module.exports = HomeController;

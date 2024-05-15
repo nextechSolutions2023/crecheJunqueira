@@ -6,6 +6,9 @@ let voluntarioRoute = require("./routes/voluntarioRoute");
 let loginRoute = require("./routes/loginRoute");
 let doadoresRoute = require("./routes/doadoresRoute");
 let atividadeRoute = require("./routes/atividadeRoute");
+let vitrineRouter = require('./routes/vitrineRoute');
+
+
 
 
 const app = express();
@@ -23,8 +26,12 @@ app.use("/",  homeRoute);
 app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
+app.use("/vitrine", vitrineRouter);
 
 app.use("/login", loginRoute);
+
+global.CAMINHO_IMG_BROWSER = "/img/produtos/"
+global.RAIZ_PROJETO = __dirname;
 
 app.listen(7000, function() {
     console.log("servidor web iniciado")
