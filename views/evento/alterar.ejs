@@ -1,0 +1,64 @@
+<script src="/js/evento/cadastrar.js"></script>
+
+<div class="content" style="height: 100vh;">
+  <div class="row">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">Alterar Evento</h5>
+          </div>
+          <div class="card-body" style="box-sizing:initial;">
+            <form>
+              <div class="row">
+                <div class="col-md-3 pr-1">
+                  <div class="form-group">
+                    <input type="hidden" id="inputCodigo" value="<%= eventoAlter.eventoCodigo %>">
+                    <label for="inputRef">Ref<b class="required">*</b></label>
+                    <input type="text" value="<%= eventoAlter.eventoRef %>" class="form-control" placeholder="Ref" id="inputRef">
+                  </div>
+                </div>
+                <div class="col-md-9 pl-1">
+                  <div class="form-group">
+                    <label for="inputNome">Nome<b class="required">*</b></label>
+                    <input type="text" value="<%= eventoAlter.eventoNome %>" class="form-control" placeholder="Nome do evento" id="inputNome">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="inputDescricao">Descrição<b class="required">*</b></label>
+                    <input type="text" value="<%= eventoAlter.eventoDescricao %>" class="form-control textarea" placeholder="Descrição do evento aqui" id="inputDescricao"></input>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 pr-1">
+                  <div class="form-group">
+                    <label for="inputImagem">Imagem do produto</label><br>
+                    <input class="form-control" type="file" id="inputImagem" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 pr-1">
+                  <div>
+                    <img id="previaImagem" width="200px" src="<%= eventoAlter.imagem %>" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button  class="btn btn-primary btn-round" id="btnAlterar">Alterar</button>
+                  <a href="/evento" class="btn btn-default btn-round">Voltar</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

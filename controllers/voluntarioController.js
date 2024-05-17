@@ -8,12 +8,12 @@ class VoluntarioController{
         let voluntario = new VoluntarioModel();
         let listaVoluntarios = await voluntario.listar();
         console.log(listaVoluntarios);
-        resp.render("voluntarios/listagem", { lista: listaVoluntarios , layout:false});
+        resp.render("voluntarios/listagem", {lista: listaVoluntarios, layout:"layoutAdmin"});
 
     }
 
     cadastrarView(req, resp){
-        resp.render("voluntarios/cadastrar", {layout:false});
+        resp.render("voluntarios/cadastrar", {layout:"layoutAdmin"});
     }
 
     //cadastrar

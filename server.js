@@ -6,6 +6,7 @@ let voluntarioRoute = require("./routes/voluntarioRoute");
 let loginRoute = require("./routes/loginRoute");
 let doadoresRoute = require("./routes/doadoresRoute");
 let atividadeRoute = require("./routes/atividadeRoute");
+let eventoRoute = require("./routes/eventoRoute");
 
 
 const app = express();
@@ -17,14 +18,27 @@ app.set("home", "./home");
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static("public"));
+
+//configuração da nossa página de layout pública
+app.set('layout', './layout');
 app.use(expressLayouts);
 
 app.use("/",  homeRoute);
 app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
+app.use("/evento", eventoRoute);
 
 app.use("/login", loginRoute);
+
+//implementando pagina 404
+app.get("*", function(req, res) {
+    res.status(404).render("404");
+});
+
+global.CAMINHO_IMG_EVENTO_BROWSER = "/img/eventos/"
+//global.CAMINHO_IMG_VITRINE_BROWSER = "/img/vitrine/"
+global.RAIZ_PROJETO = __dirname;
 
 app.listen(7000, function() {
     console.log("servidor web iniciado")
