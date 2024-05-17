@@ -7,11 +7,11 @@ class DoadorController{
     async listagemView(req, resp){
         let doador = new DoadorModel();
         let listaDoadores = await doador.listar();
-        resp.render("doadores/listagem", { lista: listaDoadores ,layout:false});
+        resp.render("doadores/listagem", { lista: listaDoadores , layout:false});
     }
 
     cadastrarView(req, resp){
-        resp.render("doadores/cadastrar");
+        resp.render("doadores/cadastrar", {layout:false});
     }
 
     //cadastrar
@@ -55,7 +55,7 @@ class DoadorController{
         let doador = await doadorModel.obter(req.params.codigo) ;
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
-        res.render('doadores/alterar', {doador:doador, endereco: endereco});
+        res.render('doadores/alterar', {doador:doador, endereco: endereco, layout:false});
     }
 
     async alterar(req, resp){
@@ -96,7 +96,7 @@ class DoadorController{
         let doador = await doadorModel.obter(req.params.codigo);
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
-        res.render('doadores/deletar', {doador:doador, endereco: endereco});
+        res.render('doadores/deletar', {doador:doador, endereco: endereco, layout:false});
     }
 
     async deletar(req, resp){

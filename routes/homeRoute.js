@@ -8,7 +8,7 @@ router.get("/contato", ctrl.contatoView);
 router.get("/sobre_nos", ctrl.sobrenosView);
 router.get("/doacao", ctrl.doacaoView);
 router.get("/nextechsolutions", ctrl.integrantesView);
-
+router.get("/transparencia", ctrl.transparenciaView);
 
 // router.get("/recursos", ctrl.recursosView);
 router.get("/dashboard", ctrl.recursosView);

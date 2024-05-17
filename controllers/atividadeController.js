@@ -9,7 +9,7 @@ class AtividadeController{
     }
 
     cadastrarView(req, resp){
-        resp.render("atividades/cadastrar");
+        resp.render("atividades/cadastrar", {layout:false});
     }
 
     //cadastrar
@@ -49,7 +49,7 @@ class AtividadeController{
     async alterarView(req, res) {
         let atividadeModel = new AtividadeModel();
         let atividade = await atividadeModel.obter(req.params.codigo) ;
-        res.render('atividades/alterar', {atividade:atividade});
+        res.render('atividades/alterar', {atividade:atividade, layout:false});
     }
 
     async alterar(req, resp){
@@ -85,7 +85,7 @@ class AtividadeController{
     async deletarView(req, res) {
         let atividadeModel = new AtividadeModel();
         let atividade = await atividadeModel.obter(req.params.codigo);
-        res.render('atividades/deletar', {atividade:atividade});
+        res.render('atividades/deletar', {atividade:atividade, layout:false});
     }
 
     async deletar(req, resp){

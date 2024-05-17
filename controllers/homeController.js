@@ -24,7 +24,9 @@ class HomeController{
         resp.render("home/nextechsolutions", {layout:false});
     }
 
-
+    transparenciaView(req, res){
+        res.render('transparencia', {layout:false});
+    }
 }
 
 module.exports = HomeController;

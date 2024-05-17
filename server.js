@@ -7,7 +7,7 @@ let loginRoute = require("./routes/loginRoute");
 let doadoresRoute = require("./routes/doadoresRoute");
 let atividadeRoute = require("./routes/atividadeRoute");
 let eventoRoute = require("./routes/eventoRoute");
-
+let vitrineRouter = require('./routes/vitrineRoute');
 
 const app = express();
 
@@ -28,7 +28,6 @@ app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
 app.use("/evento", eventoRoute);
-
 app.use("/login", loginRoute);
 
 //implementando pagina 404
@@ -38,6 +37,10 @@ app.get("*", function(req, res) {
 
 global.CAMINHO_IMG_EVENTO_BROWSER = "/img/eventos/"
 //global.CAMINHO_IMG_VITRINE_BROWSER = "/img/vitrine/"
+app.use("/vitrine", vitrineRouter);
+app.use("/login", loginRoute);
+
+global.CAMINHO_IMG_BROWSER = "/img/produtos/"
 global.RAIZ_PROJETO = __dirname;
 
 app.listen(7000, function() {

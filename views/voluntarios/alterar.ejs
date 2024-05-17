@@ -234,7 +234,7 @@
                       <div class="col-md-4 pl-1">
                         <div class="form-group">
                           <label for="telefone">Celular <b class="required">*</b></label>
-                          <input class="form-control" type="text" id="celular" value="<%= voluntario.celular %>" onkeyup="validarCelular(this)" required placeholder="(99) 99999 - 9999">
+                          <input class="form-control" type="text" id="celular" maxlength="15" placeholder="(XX) X XXXX-XXXX" value="<%= voluntario.celular %>"  required>
                         </div>
                       </div>
                       
