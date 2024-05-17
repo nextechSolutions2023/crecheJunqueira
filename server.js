@@ -5,6 +5,7 @@ let voluntarioRoute = require("./routes/voluntarioRoute");
 let loginRoute = require("./routes/loginRoute");
 let doadoresRoute = require("./routes/doadoresRoute");
 let atividadeRoute = require("./routes/atividadeRoute");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.set("home", "./home");
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static("public"))
 // app.use(expressEjsLayout);
 
