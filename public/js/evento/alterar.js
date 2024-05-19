@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     var btnGravar = document.getElementById("btnAlterar");
-
     btnGravar.addEventListener("click", alterarEvento);
 
     var inputImagem = document.getElementById("inputImagem");
-
     inputImagem.addEventListener("change", exibirPreviaImagem);
 })
 
@@ -32,18 +30,11 @@ function alterarEvento() {
     var inputNome = document.getElementById("inputNome");
     var inputDescricao = document.getElementById("inputDescricao");
     var arquivos = document.getElementById("inputImagem").files;
+    var inputData = document.getElementById("inputData");
+    var inputLocal = document.getElementById("inputLocal");
     
-    //if de validação básica
-    if(inputRef.value != "" && inputNome.value != "" && inputDescricao.value != '' ){
-
-        /*var data = {
-            codigo: inputCodigo.value,
-            ref: inputRef.value,
-            nome: inputNome.value,
-            dataHoracodigoade: inputDataHora.value,
-            marca: selMarca.value,
-            categoria: selCategoria.value
-        }*/
+    //validação básica
+    if(inputRef.value != "" && inputNome.value != "" && inputDescricao.value != '' && inputData.value != '' && inputLocal.value != '' ){
 
         let formData = new FormData();
 
@@ -52,6 +43,8 @@ function alterarEvento() {
         formData.append("nome", inputNome.value);
         formData.append("descricao", inputDescricao.value);
         formData.append("imagem", arquivos[0]);
+        formData.append("data", inputData.value);
+        formData.append("local", inputLocal.value);
 
         fetch('/evento/alterar', {
             method: "POST",
@@ -63,6 +56,7 @@ function alterarEvento() {
         .then(r=> {
             if(r.ok) {
                 alert("Evento alterado!");
+                window.location.href="/evento";
             }
             else{
                 alert("Erro ao alterar evento");

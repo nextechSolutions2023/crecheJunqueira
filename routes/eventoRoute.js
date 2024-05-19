@@ -25,9 +25,12 @@ let ctrl = new EventoController
 eventoRouter.get('/', ctrl.listarView);
 eventoRouter.get('/cadastrar', ctrl.cadastroView);
 eventoRouter.post("/cadastrar", upload.single("imagem"), ctrl.cadastrarEvento);
-eventoRouter.post("/excluir",  ctrl.excluirEvento);
-eventoRouter.get("/alterar/:id", ctrl.alterarView);
+eventoRouter.get("/excluir/:codigo",  ctrl.excluirView);
+eventoRouter.post("/excluir",  ctrl.excluir);
+eventoRouter.get("/alterar/:codigo", ctrl.alterarView);
 eventoRouter.post("/alterar", upload.single("imagem"), ctrl.alterarEvento);
 eventoRouter.get("/obter/:evento", ctrl.obter)
+eventoRouter.post("/aprovar",  ctrl.aprovar);
+eventoRouter.post("/reprovar",  ctrl.reprovar);
 
 module.exports = eventoRouter;

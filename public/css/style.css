@@ -666,6 +666,68 @@ body {
 }
 
 
+/*caixa evento*/
+.events .events-item {
+    width: 100%;
+    height: 100%;
+    border-radius: 30%;
+    position: relative
+}
+
+.events .events-item .events-inner .events-rate {
+    position: absolute;
+    width: 120px;
+    top: -20px;
+    left: 50%;
+    margin-left: -60px;
+    border-radius: 10%/50%;
+}
+
+.events .events-item .events-inner .events-img .event-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: .5s;
+    z-index: 1;
+    opacity: 0
+}
+
+.events .events-item .events-inner .events-img:hover .event-overlay {
+    opacity: 1
+}
+
+.events .events-item .events-img::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    background: rgba(77,101,249,.7);
+    border-radius: 10px;
+    transition: .5s
+}
+
+.events .events-item:hover .events-img::after {
+    height: 100%;
+    opacity: 1
+}
+
+.events .events-item .events-text a.h4,.events .events-item .events-img img {
+    transition: .5s
+}
+
+.events .events-item:hover .events-text a.h4 {
+    color: var(--bs-primary)!important
+}
+
+.events .events-item:hover .events-img img {
+    transform: scale(1.3)
+}
+
+
 
 
 
