@@ -1,13 +1,12 @@
 const EventoModel = require("../models/eventoModel");
-//const EnderecoModel = require("../models/enderecoModel");
-//const PessoaModel = require("../models/pessoaModel");
+
 const fs = require("fs");
 
 class EventoController {
 
     async listarView(req, res) {
-        let prod = new EventoModel();
-        let lista = await prod.listarEventos();
+        let even = new EventoModel();
+        let lista = await even.listarEventosAdmin();
         res.render('evento/listar', {lista: lista, layout:"layoutAdmin"});
     }
 
@@ -23,13 +22,40 @@ class EventoController {
 
         res.send({ok: ok});
     }
+
+    //excluir
+    async excluirView(req, res) {
+        console.log(req.params.codigo)
+        let eventoModel = new EventoModel();
+        let evento = await eventoModel.buscarEvento(req.params.codigo);
+        res.render('evento/excluir', {eventoExcluir: evento, layout:"layoutAdmin"});
+    }
+
+    async excluir(req, resp){
+        
+        let evento = new EventoModel(req.body.codigo);      
+        let result = await evento.excluir();
+
+        if(result ) {
+            resp.send({
+                ok: true,
+                msg: "Evento deletado com sucesso!"
+            });
+        }   
+        else{
+            resp.send({
+                ok: false,
+                msg: "Erro ao deletar evento!"
+            });
+        }
+    }
+
+
     async cadastrarEvento(req, res){
         var ok = true;
         if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
             let arquivo = req.file != null ? req.file.filename : null;
-            let evento = new EventoModel(0, req.body.descricao, req.body.ref, req.body.nome, arquivo);
-                //alterei aqui let evento = new EventoModel(0, req.body.ref, 
-                //req.body.nome, req.body.descricao, "", "", arquivo);
+            let evento = new EventoModel(0, req.body.ref, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
             ok = await evento.gravar();
         }
         else{
@@ -41,15 +67,11 @@ class EventoController {
 
     async alterarView(req, res){
         let evento = new EventoModel();
-        //let marca = new MarcaModel();
         
-        //let categoria = new CategoriaModel();
         if(req.params.codigo != undefined && req.params.codigo != ""){
             evento = await evento.buscarEvento(req.params.codigo);
         }
 
-        //let listaMarca = await marca.listarMarcas();
-        //let listaCategoria = await categoria.listarCategorias();
         res.render("evento/alterar", {eventoAlter: evento, layout:"layoutAdmin"});
     }
 
@@ -76,9 +98,8 @@ class EventoController {
                 }
             }
 
-            let evento = new EventoModel(req.body.codigo, req.body.descricao, req.body.ref, req.body.nome, imagem )
-            //alterei
-            //let evento = new EventoModel(req.body.codigo, req.body.ref, req.body.nome, req.body.descricao, "", "", imagem);
+            let evento = new EventoModel(req.body.codigo, req.body.ref, req.body.nome, req.body.descricao, imagem, req.body.data, req.body.status, req.body.local)
+           
             ok = await evento.gravar();
         }
         else{
@@ -98,6 +119,70 @@ class EventoController {
         evento = await evento.buscarEvento(codigo);
 
         res.send({eventoEncontrado: evento});
+    }
+
+    
+
+    //aprovar
+    async aprovar(req, resp){
+        
+        let eventoModel = new EventoModel();
+        let evento = await eventoModel.buscarEvento(req.body.codigo);
+        
+        let dataEvento = new Date(evento.eventoData);
+        let dataHoje = new Date();
+        if (dataEvento <= dataHoje) {
+            return resp.send({
+                ok: false,
+                msg: "Data do evento é anterior a data atual!"
+            });
+        }
+
+        let result = await evento.aprovar();
+
+        if(result) {
+            resp.send({
+                ok: true,
+                msg: "Evento aprovado com sucesso!"
+            });
+        }   
+        else{
+            resp.send({
+                ok: false,
+                msg: "Erro ao aprovar evento!"
+            });
+        }
+    }
+
+    
+    async reprovar(req, resp){
+        
+        let eventoModel = new EventoModel();
+        let evento = await eventoModel.buscarEvento(req.body.codigo);
+        
+        let dataEvento = new Date(evento.eventoData);
+        let dataHoje = new Date();
+        if (dataEvento <= dataHoje) {
+            return resp.send({
+                ok: false,
+                msg: "Erro ao reprovar evento. A data é anterior a data atual!"
+            });
+        }
+
+        let result = await evento.reprovar();
+
+        if(result) {
+            resp.send({
+                ok: true,
+                msg: "Evento reprovado com sucesso!"
+            });
+        }   
+        else{
+            resp.send({
+                ok: false,
+                msg: "Erro ao reprovar evento!"
+            });
+        }
     }
 }
 

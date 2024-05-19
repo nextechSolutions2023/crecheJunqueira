@@ -1,4 +1,4 @@
-<script src="/js/evento/cadastrar.js"></script>
+
 
 <div class="content" style="height: 100vh;">
   <div class="row">
@@ -25,6 +25,22 @@
                   </div>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-md-3 pr-1">
+                  <div class="form-group">
+                    <label for="inputData">Data<b class="required">*</b></label>
+                    <input type="datetime-local" value="<%= eventoAlter.eventoData.toISOString().substring(0, 16) %>" class="form-control" id="inputData">
+                  </div>
+                </div>
+                <div class="col-md-9 pl-1">
+                  <div class="form-group">
+                    <label for="inputLocal">Local<b class="required">*</b></label>
+                    <input type="text"value="<%= eventoAlter.eventoLocal %>" class="form-control" placeholder="Local do evento" id="inputLocal">
+                  </div>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
@@ -50,8 +66,8 @@
               </div>
               <div class="row">
                 <div class="update ml-auto mr-auto">
+                  <a href="/evento" class="btn btn-secondary btn-round">Voltar</a>
                   <button  class="btn btn-primary btn-round" id="btnAlterar">Alterar</button>
-                  <a href="/evento" class="btn btn-default btn-round">Voltar</a>
                 </div>
               </div>
             </form>
@@ -62,3 +78,4 @@
   </div>
 </div>
 
+<script src="/js/evento/alterar.js"></script>
