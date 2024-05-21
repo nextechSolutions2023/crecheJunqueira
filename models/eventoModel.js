@@ -36,7 +36,7 @@ class EventoModel {
 
     async excluir(){
         let sql = "delete from tb_evento where codigo = ?"
-        let valores = [this.#eventoCodigo];//ver se é pra mnudar aqui [this.#eventoRef]
+        let valores = [this.#eventoCodigo];
 
         var result = await conexao.ExecutaComandoNonQuery(sql, valores);
 
@@ -178,6 +178,7 @@ class EventoModel {
             "eventoData": this.#eventoData,
             "eventoLocal": this.#eventoLocal,
             "eventoStatus": this.#eventoStatus,
+            "possuiImagem": this.#possuiImagem,
 
         }
     }
