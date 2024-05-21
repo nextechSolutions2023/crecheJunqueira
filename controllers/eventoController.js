@@ -1,5 +1,4 @@
 const EventoModel = require("../models/eventoModel");
-
 const fs = require("fs");
 
 class EventoController {
@@ -10,50 +9,68 @@ class EventoController {
         res.render('evento/listar', {lista: lista, layout:"layoutAdmin"});
     }
 
-    async excluirEvento(req, res){
-        var ok = true;
-        if(req.body.ref != "") {
-            let evento = new EventoModel();
-            ok = await evento.excluir(req.body.ref);
-        }
-        else{
-            ok = false;
-        }
+    //
+    // async excluirEvento(req, res){
+    //     var ok = true;
+    //     if(req.body.ref != "") {
+    //         let evento = new EventoModel();
+    //         ok = await evento.excluir(req.body.ref);
+    //     }
+    //     else{
+    //         ok = false;
+    //     }
 
-        res.send({ok: ok});
-    }
+    //     res.send({ok: ok});
+    // }
 
     //excluir
+    // async excluirView(req, res) {
+    //     let eventoModel = new EventoModel();
+    //     let evento = await eventoModel.buscarEvento(req.params.codigo);
+    //     res.render('evento/excluir', {eventoExcluir: evento, layout:"layoutAdmin"});
+    // }
     async excluirView(req, res) {
-        console.log(req.params.codigo)
         let eventoModel = new EventoModel();
         let evento = await eventoModel.buscarEvento(req.params.codigo);
         res.render('evento/excluir', {eventoExcluir: evento, layout:"layoutAdmin"});
     }
 
     async excluir(req, resp){
+        let eventoModel = 
+        new EventoModel();
+        let evento = await eventoModel.buscarEvento(req.body.codigo); 
         
-        let evento = new EventoModel(req.body.codigo);      
-        let result = await evento.excluir();
+        //excluir imagem
+        if (evento.possuiImagem && evento.imagem !== "/img/sem-foto.png") {
+            fs.unlinkSync(global.RAIZ_PROJETO + "/public" + evento.imagem);
+        }
 
-        if(result ) {
-            resp.send({
+        let result = await evento.excluir();
+        if(result) {
+            return resp.send({
                 ok: true,
                 msg: "Evento deletado com sucesso!"
             });
         }   
         else{
-            resp.send({
+            return resp.send({
                 ok: false,
                 msg: "Erro ao deletar evento!"
             });
         }
     }
 
-
     async cadastrarEvento(req, res){
         var ok = true;
-        if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
+        // if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
+        //     let arquivo = req.file != null ? req.file.filename : null;
+        //     let evento = new EventoModel(0, req.body.ref, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
+        //     ok = await evento.gravar();
+        // }
+        // else{
+        //     ok = false;
+        // }
+        if(req.body.ref != "" && req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
             let arquivo = req.file != null ? req.file.filename : null;
             let evento = new EventoModel(0, req.body.ref, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
             ok = await evento.gravar();
@@ -77,8 +94,8 @@ class EventoController {
 
     async alterarEvento(req, res) {
         var ok = true;
-        if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
-
+        // if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
+        if(req.body.ref != "" && req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
             let eventoOld = new EventoModel();
             eventoOld = await eventoOld.buscarEvento(req.body.codigo);
             //apagar a imagem do evento se tiver uma nova imagem na alteração e se o antigo tiver imagem
@@ -120,8 +137,6 @@ class EventoController {
 
         res.send({eventoEncontrado: evento});
     }
-
-    
 
     //aprovar
     async aprovar(req, resp){
