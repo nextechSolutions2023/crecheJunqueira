@@ -1,8 +1,7 @@
 class LoginController {
 
     loginView(req,res){
-        res.render('adm', {layout:false});
-        // res.render('dashboard', {layout:false});
+        res.render('login/login', {layout:false});
     }
 
     // Login(req, res){

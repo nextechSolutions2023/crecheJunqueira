@@ -234,8 +234,8 @@
 
                       <div class="col-md-4 pl-1">
                         <div class="form-group">
-                          <label for="telefone">Celular <b class="required">*</b></label>
-                          <input class="form-control" type="text" id="celular" maxlength="15" placeholder="(XX) X XXXX-XXXX" value="<%= doador.celular %>"  required>
+                          <label for="telefone">Telefone <b class="required">*</b></label>
+                          <input class="form-control" type="text" id="telefone" maxlength="15" placeholder="(XX) X XXXX-XXXX" value="<%= telefone[0] == null ? "" : telefone[0].numeroTel %>"  required>
                         </div>
                       </div>
                       
@@ -247,9 +247,9 @@
                         <label for="tipo_doacao">Tipo de Doação <b class="required">*</b></label>
                         <select class="form-control" id="tipo_doacao" required>
                           <option value="">Selecione uma Opção</option> 
-                          <option value="Alimentos">Alimentos</option>
-                          <option value="Dinheiro">Dinheiro</option>
-                          <option value="Outros">Outros</option>
+                          <option value="Alimentos" <% if(doador.tipo_doacao === 'Alimentos') {%>selected<%} %>>Alimentos</option>
+                          <option value="dinheiro" <% if(doador.tipo_doacao === 'Dinheiro') {%>selected<%} %>>Dinheiro</option>
+                          <option value="Outros" <% if(doador.tipo_doacao === 'Outros') {%>selected<%} %>>Outros</option>
                         </select>
                       </div>
                     </div>
@@ -257,7 +257,7 @@
                   
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <button type="button" class="btn btn-primary btn-round submit" id="btnAlterar">Salvar Edição</button>
+                      <button type="button" class="btn btn-primary btn-round" id="btnAlterar">Salvar Edição</button>
                     </div>
                   </div>
                 </form>

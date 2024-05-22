@@ -1,6 +1,8 @@
 const DoadorModel = require("../models/doadorModel");
 const EnderecoModel = require("../models/enderecoModel");
 const PessoaModel = require("../models/pessoaModel");
+const TelefoneModel = require("../models/telefoneModel");
+
 
 class DoadorController{
 
@@ -18,16 +20,18 @@ class DoadorController{
     async cadastrar(req, resp){
         let msg = "";
         let cor = "";
-        if(req.body.disponibilidade != "" && req.body.cpf != "" &&
-        req.body.nome != "" ) {
+        if(req.body.cpf != "" && req.body.nome != "" &&
+        req.body.tipo_doacao != "" ) {
 
             let doador = new DoadorModel(req.body.cpf, req.body.nome, 0,req.body.tipo_doacao, req.body.creche_codigo );
             let endereco = new EnderecoModel(0,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf,req.body.cpf);
+            let telefone = new TelefoneModel(0, req.body.telefone, req.body.cpf);
 
             let result = await doador.cadastrar();
             let resultEndereco = await endereco.cadastrar();
+            let resultTel = await telefone.cadastrar();
 
-            if(result && resultEndereco) {
+            if(result && resultEndereco && resultTel) {
                 resp.send({
                     ok: true,
                     msg: "Doador cadastrado com sucesso!"
@@ -55,20 +59,26 @@ class DoadorController{
         let doador = await doadorModel.obter(req.params.codigo) ;
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
-        res.render('doadores/alterar', {doador:doador, endereco: endereco, layout:false});
+        let telefoneModel = new TelefoneModel();
+        let telefone = await telefoneModel.obterPorCpf(doador.cpf);
+        res.render('doadores/alterar', {doador:doador, endereco: endereco, telefone:telefone, layout:false});
     }
 
     async alterar(req, resp){
 
 
-        if(req.body.disponibilidade != "" && req.body.cpf != "" &&
-        req.body.nome != "" ) {
+        if(req.body.cpf != "" && req.body.nome != "" &&
+        req.body.tipo_doacao != "" )  {
             let doador = new DoadorModel(req.body.cpf, req.body.nome, req.body.codigo,req.body.tipo_doacao, req.body.creche_codigo );
             let endereco = new EnderecoModel(req.body.codigoEndereco,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf);
+            let telefone = new TelefoneModel(req.body.codigoTelefone, req.body.telefone, req.body.cpf);
+
             let result = await doador.alterar();
             let resultEndereco = await endereco.alterar();
+            let resultTel = await telefone.alterar();
 
-            if(result && resultEndereco) {
+
+            if(result && resultEndereco && resultTel) {
                 resp.send({
                     ok: true,
                     msg: "Doador alterado com sucesso!"
@@ -96,16 +106,22 @@ class DoadorController{
         let doador = await doadorModel.obter(req.params.codigo);
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
-        res.render('doadores/deletar', {doador:doador, endereco: endereco, layout:false});
+        let telefoneModel = new TelefoneModel();
+        let telefone = await telefoneModel.obterPorCpf(voluntario.cpf) ;
+        res.render('doadores/deletar', {doador:doador, endereco: endereco, telefone:telefone,layout:false});
     }
 
     async deletar(req, resp){
         let doador = new DoadorModel(req.body.cpf, req.body.nome, req.body.codigo,req.body.tipo_doacao, req.body.creche_codigo );
         let endereco = new EnderecoModel(req.body.codigoEndereco,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf);
+        let telefone = new TelefoneModel(req.body.codigoTelefone, req.body.telefone, req.body.cpf);
+
         let resultEndereco = await endereco.deletar();
         let result = await doador.deletar();
+        let resultTel = await telefone.deletar();
 
-        if(result && resultEndereco) {
+
+        if(result && resultEndereco && resultTel) {
             resp.send({
                 ok: true,
                 msg: "Doador deletado com sucesso!"

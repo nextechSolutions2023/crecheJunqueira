@@ -34,25 +34,25 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                 <li class="active ">
-                    <a href="dashboard">
+                    <a href="/dashboard">
                     <i class="nc-icon nc-bank"></i>
                     <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="voluntarios/">
+                    <a href="/voluntarios/">
                     <i class="nc-icon nc-satisfied"></i>
                     <p>voluntários</p>
                     </a>
                 </li>
                 <li>
-                    <a href="doadores/">
+                    <a href="/doadores/">
                     <i class="nc-icon nc-circle-10"></i>
                     <p>Doadores</p>
                     </a>
                 </li>
                 <li>
-                    <a href="atividades/">
+                    <a href="/atividades/">
                     <i class="nc-icon nc-calendar-60"></i>
                     <p>Atividades</p>
                     </a>
@@ -197,6 +197,8 @@
 
                     <input type="hidden" id="codigo"   value="<%= voluntario.codigo %>">
                     <input type="hidden" id="codigoEndereco"  value="<%= endereco.codigo %>">
+                    <input type="hidden" id="telefone" value="<%= telefone.codigo %>">
+
 
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
@@ -233,22 +235,34 @@
 
                       <div class="col-md-4 pl-1">
                         <div class="form-group">
-                          <label for="telefone">Celular <b class="required">*</b></label>
-                          <input disabled class="form-control" type="text" id="celular" value="<%= voluntario.celular %>" onkeyup="validarCelular(this)" required placeholder="(99) 99999 - 9999">
+                          <label for="telefone">Telefone <b class="required">*</b></label>
+                          <input disabled class="form-control" type="text" id="telefone" value="<%= telefone[0] == null ? "" : telefone[0].numeroTel %>"  onkeyup="validarTelefone(this)" required placeholder="(99) 99999 - 9999">
                         </div>
                       </div>
                       
                     </div>
+                    
+                  <div class="col-md-14 pl-1">
+                    <div class="form-group">
+                        <label for="habilidade">Habilidade<b class="required" style="color:red">*</b></label>
+                        <select disabled class="form-control"  id="habilidade" required>
+                            <option></option>
+                            <% for(let i = 0; i < habilidades.length; i++){ %>
+                              <option value="<%= habilidades[i].codigo %>" <% if (voluntario.habilidadecodigo === habilidades[i].codigo) { %>selected<% } %>><%= habilidades[i].descricao %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
                   
                   <div class="row">
                     <div class="col-md-8 px-1 pl-3">
                       <div class="form-group">
                         <label for="disponibilidade">Disponibilidade <b class="required">*</b></label>
-                        <select class="form-control" id="disponibilidade" required>
+                        <select disabled class="form-control" id="disponibilidade" required>
                           <option value="">Selecione uma Opção</option> 
-                          <option>Presencial</option>
-                          <option>Híbrido</option>
-                          <option>Remoto</option>
+                          <option <% if (voluntario.disponibilidade === 'Presencial') { %>selected<% } %>>Presencial</option>
+                          <option <% if (voluntario.disponibilidade === 'Hibrido') { %>selected<% } %>>Hibrido</option>
+                          <option <% if (voluntario.disponibilidade === 'Remoto') { %>selected<% } %>>Remoto</option>
                         </select>
                       </div>
                     </div>
@@ -257,7 +271,7 @@
                   
                   <div class="row">
                     <div class="update ml-auto mr-auto">
-                      <button type="button" class="btn btn-primary btn-round submit" id="btnDeletar">Confirmar Exclusão</button>
+                      <button type="button" class="btn btn-primary btn-round " id="btnDeletar">Confirmar Exclusão</button>
                     </div>
                   </div>
                 </form>

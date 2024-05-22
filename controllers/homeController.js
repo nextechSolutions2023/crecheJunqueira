@@ -9,6 +9,10 @@ class HomeController{
         res.render('home/contato');
     }
 
+    DoacaoView(req,res){
+        res.render('doacao',  {layout:false});
+    }
+
     recursosView(req, res){
         res.render('administrativo/dashboard', {layout:"layoutAdmin"});
     }

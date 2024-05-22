@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("cidade").style["border-color"] = "#ced4da";
         document.getElementById("uf").style["border-color"] = "#ced4da";
         document.getElementById("tipo_doacao").style["border-color"] = "#ced4da";
+        document.getElementById("telefone").style["border-color"] = "#ced4da";
+
     
     }
 
@@ -30,6 +32,10 @@ document.addEventListener("DOMContentLoaded", function(){
         let tipo_doacao = document.querySelector("#tipo_doacao").value;
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
+        let telefone = document.querySelector("#telefone").value;
+
+        cpf = limparPontosTracosCPF(cpf);
+
 
          let listaErros = [];
         if(nome == "" || nome.length < 5) {
@@ -70,6 +76,10 @@ document.addEventListener("DOMContentLoaded", function(){
             listaErros.push("tipo_doacao");
         }
 
+        if(telefone == "") {
+            listaErros.push("telefone");
+        }
+
 
         if(listaErros.length == 0) {
             
@@ -78,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 cpf: cpf,
                 logradouro: logradouro,
                 numero: numero,
-                cep,
+                cep: cep,
                 complemento: complemento,
                 bairro: bairro,
                 cidade: cidade,
@@ -86,7 +96,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 tipo_doacao: tipo_doacao,
                 codigo: codigo,
                 codigoEndereco: codigoEndereco,
-                creche_codigo: 0
+                creche_codigo: 0,
+                telefone: telefone
             }
 
             fetch("/doadores/alterar", {
@@ -104,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/doadores";
+                    window.location.href="/doadores/";
                 }   
                 else {
                     alert(r.msg);
@@ -191,16 +202,16 @@ document.addEventListener("DOMContentLoaded", function(){
     const cpf = document.getElementById("cpf");
     
     cpf.addEventListener("keyup", function() {
-        validarCPF(cpf.value);
         impedirLetras(cpf);
+        validarCPF(cpf.value);
     })
 
-    //--------------------validacao numero de celular----------------------
-    const celular = document.getElementById("celular");
+    //--------------------validacao numero de telefone----------------------
+    const telefone = document.getElementById("telefone");
     
-    celular.addEventListener("keyup", function() {
+    telefone.addEventListener("keyup", function() {
 
-        celular.value = phoneMask(celular.value)
+        telefone.value = phoneMask(telefone.value)
     })
 
     function phoneMask (value) {
@@ -238,12 +249,13 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     }
       
-    // Exemplo de uso
+   
     const cepInput = document.getElementById("cep");
     const cidadeInput = document.getElementById("cidade");
     const ufInput = document.getElementById("uf");
     const bairroInput = document.getElementById("bairro");
+    const logradouro = document.getElementById("logradouro");
     
-    preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput);
+    preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput, logradouro);
       
 })

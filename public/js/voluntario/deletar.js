@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function(){
         let disponibilidade = document.querySelector("#disponibilidade").value;
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
+        let habilidadecodigo = document.querySelector("#habilidade").value; 
+        let telefone = document.querySelector("#telefone").value; 
+
+
         
         let obj = {
             nome: nome,
@@ -26,14 +30,15 @@ document.addEventListener("DOMContentLoaded", function(){
             bairro: bairro,
             cidade: cidade,
             uf: uf,
+            telefone: telefone,
             disponibilidade: disponibilidade,
             codigo: codigo,
             codigoEndereco: codigoEndereco,
             creche_codigo: 0,
-            habilidadecodigo:1
+            habilidadecodigo: habilidadecodigo
         }
 
-        fetch("/voluntarios/deletar", {
+        fetch("/voluntario/deletar", {
             method: 'POST',
             body: JSON.stringify(obj),
             headers: {

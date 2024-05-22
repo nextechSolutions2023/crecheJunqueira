@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("bairro").style["border-color"] = "#ced4da";
         document.getElementById("cidade").style["border-color"] = "#ced4da";
         document.getElementById("uf").style["border-color"] = "#ced4da";
-        document.getElementById("celular").style["border-color"] = "#ced4da";
+        document.getElementById("telefone").style["border-color"] = "#ced4da";
         document.getElementById("disponibilidade").style["border-color"] = "#ced4da";
+        // document.getElementById("habilidadecodigo").style["border-color"] = "#ced4da";
+
     }
 
     function cadastrar() {
@@ -27,8 +29,10 @@ document.addEventListener("DOMContentLoaded", function() {
         let bairro = document.querySelector("#bairro").value;
         let cidade = document.querySelector("#cidade").value;
         let uf = document.querySelector("#uf").value;
-        let celular = document.querySelector("#celular").value;
+        let telefone = document.querySelector("#telefone").value;
         let disponibilidade = document.querySelector("#disponibilidade").value;
+        let habilidadecodigo = document.querySelector("#habilidade").value; 
+
         
         cpf = limparPontosTracosCPF(cpf);
 
@@ -66,12 +70,16 @@ document.addEventListener("DOMContentLoaded", function() {
             listaErros.push("uf");
         }
 
-        if(celular == "") {
-            listaErros.push("celular");
+        if(telefone == "") {
+            listaErros.push("telefone");
         }
 
         if(disponibilidade == "") {
             listaErros.push("disponibilidade");
+        }
+
+        if(habilidadecodigo == "") {
+            listaerros.push("habilidade");
         }
 
         if(listaErros.length == 0) {
@@ -86,12 +94,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 bairro: bairro,
                 cidade: cidade,
                 uf: uf,
-                celular: celular,
+                telefone: telefone,
                 disponibilidade: disponibilidade,
                 creche_codigo: 0,
-                habilidadecodigo:1
+                habilidadecodigo: habilidadecodigo
             }
-
             fetch("/voluntarios/cadastrar", {
                 method: 'POST',
                 body: JSON.stringify(obj),
@@ -105,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/voluntarios";
+                    window.location.href="/voluntarios/";
                 }   
                 else {
                     alert(r.msg);
@@ -193,16 +200,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const cpf = document.getElementById("cpf");
     
     cpf.addEventListener("keyup", function() {
-        validarCPF(cpf.value);
         impedirLetras(cpf);
+        validarCPF(cpf.value);
     })
 
-    //--------------------validacao numero de celular----------------------
-    const celular = document.getElementById("celular");
+    //--------------------validacao numero de telefone----------------------
+    const telefone = document.getElementById("telefone");
     
-    celular.addEventListener("keyup", function() {
+    telefone.addEventListener("keyup", function() {
 
-        celular.value = phoneMask(celular.value)
+        telefone.value = phoneMask(telefone.value)
     })
 
     function phoneMask (value) {
@@ -240,12 +247,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
       
-    // Exemplo de uso
+   
     const cepInput = document.getElementById("cep");
     const cidadeInput = document.getElementById("cidade");
     const ufInput = document.getElementById("uf");
     const bairroInput = document.getElementById("bairro");
+    const logradouro = document.getElementById("logradouro");
     
-    preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput);
+    
+    preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput, logradouro);
       
 })
