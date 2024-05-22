@@ -33,6 +33,9 @@ app.use("/atividades", atividadeRoute);
 app.use("/evento", eventoRoute);
 app.use("/login", loginRoute);
 app.use("/patrimonio", patrimonioRoute);
+app.use("/produtos", produtoRoute);
+app.use("/vendas", vendasRoute);
+app.use("/vitrine", vitrineRouter);
 
 //implementando pagina 404
 app.get("*", function(req, res) {
