@@ -8,14 +8,15 @@ class VoluntarioController{
     async listagemView(req, resp){
         let voluntario = new VoluntarioModel();
         let listaVoluntarios = await voluntario.listar();
-        resp.render("voluntarios/listagem", { lista: listaVoluntarios , layout:false});
+        console.log(listaVoluntarios);
+        resp.render("voluntarios/listagem", {lista: listaVoluntarios, layout:"layoutAdmin"});
 
     }
 
     async cadastrarView(req, resp){
         let habilidade = new HabilidadeModel();
         let listaHabilidades = await habilidade.listar();
-        resp.render("voluntarios/cadastrar", { habilidades: listaHabilidades,layout:false});
+        resp.render("voluntarios/cadastrar", { habilidades: listaHabilidades,layout:"layoutAdmin"});
     }
 
     //cadastrar

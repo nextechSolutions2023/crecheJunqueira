@@ -40,7 +40,7 @@ class voluntarioModel extends PessoaModel{
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
         
-
+        
         for(let i = 0; i < rows.length; i++) {
             console.log(rows[i]);
             let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"] );
