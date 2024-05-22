@@ -231,8 +231,8 @@
 
                         <div class="col-md-4 pl-1">
                           <div class="form-group">
-                            <label for="telefone">Celular <b class="required">*</b></label>
-                            <input disabled class="form-control" type="text" id="celular" value="<%= doador.celular %>" onkeyup="validarCelular(this)" required placeholder="(99) 99999 - 9999">
+                            <label for="telefone">Telefone <b class="required">*</b></label>
+                            <input disabled class="form-control" type="text" id="telefone" value="<%= telefone[0] == null ? "" : telefone[0].numeroTel %>" onkeyup="validarTelefone(this)" required placeholder="(99) 99999 - 9999">
                           </div>
                         </div>
                         
@@ -242,18 +242,18 @@
                       <div class="col-md-8 px-1 pl-3">
                         <div class="form-group">
                           <label for="tipo_doacao">Tipo de Doação <b class="required">*</b></label>
-                          <select class="form-control" id="tipo_doacao" required>
+                          <select disabled class="form-control" id="tipo_doacao" required>
                             <option value="">Selecione uma Opção</option> 
-                            <option value="Alimentos">Alimentos</option>
-                            <option value="Dinheiro">Dinheiro</option>
-                            <option value="Outros">Outros</option>
+                            <option value="Alimentos" <% if(doador.tipo_doacao === 'Alimentos') {%>selected<%} %>>Alimentos</option>
+                          <option value="dinheiro" <% if(doador.tipo_doacao === 'Dinheiro') {%>selected<%} %>>Dinheiro</option>
+                          <option value="Outros" <% if(doador.tipo_doacao === 'Outros') {%>selected<%} %>>Outros</option>
                           </select>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="update ml-auto mr-auto">
-                        <button type="button" class="btn btn-primary btn-round submit" id="btnDeletar">Confirmar Exclusão</button>
+                        <button type="button" class="btn btn-primary btn-round " id="btnDeletar">Confirmar Exclusão</button>
                       </div>
                     </div>
                   </form>

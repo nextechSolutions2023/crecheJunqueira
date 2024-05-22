@@ -24,18 +24,27 @@ class voluntarioModel extends PessoaModel{
         this.#codigo = codigo;
         this.#disponibilidade = disponibilidade;
         this.#habilidadecodigo = habilidadecodigo;
+        this.telefone = null;
     }
+
+    #telefone;
+    set telefone(telefone) { this.#telefone = telefone}
+    get telefone() { return this.#telefone;}
 
     async listar() {
 
-        let sql = "select * from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf";
+        let sql = "select v.codigo, nome, v.pessoa_cpf, disponibilidade, habilidade_codigo, creche_codigo, t.numero " +
+                  "from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf " +
+                  "left join tb_telefone t on t.pessoa_cpf = v.pessoa_cpf";
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
         
 
         for(let i = 0; i < rows.length; i++) {
+            console.log(rows[i]);
             let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"] );
+            voluntario.telefone = rows[i]["numero"] || null;
             lista.push(voluntario);
         }
         return lista;

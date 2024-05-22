@@ -8,6 +8,10 @@ class HomeController{
         res.render('contato',  {layout:false});
     }
 
+    DoacaoView(req,res){
+        res.render('doacao',  {layout:false});
+    }
+
     recursosView(req, res){
         res.render('administrativo/dashboard', {layout:false});
     }

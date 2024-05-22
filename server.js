@@ -7,9 +7,8 @@ let loginRoute = require("./routes/loginRoute");
 let doadoresRoute = require("./routes/doadoresRoute");
 let atividadeRoute = require("./routes/atividadeRoute");
 let vitrineRouter = require('./routes/vitrineRoute');
-
-
-
+let produtoRoute = require('./routes/produtoRoute');
+let vendasRoute = require('./routes/VendasRoute');
 
 const app = express();
 
@@ -27,6 +26,8 @@ app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
 app.use("/vitrine", vitrineRouter);
+app.use('/produtos', produtoRoute);
+app.use("/vendas", vendasRoute);
 
 app.use("/login", loginRoute);
 

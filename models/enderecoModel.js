@@ -75,11 +75,18 @@ class EnderecoModel{
     }
 
     async obterPorCpf(cpf){
-        let sql = "select * from tb_endereco where pessoa_cpf = " + cpf;
-        let rows = await banco.ExecutaComando(sql);
-        let endereco = new EnderecoModel(rows[0]["codigo"], rows[0]["logradouro"], rows[0]["numero"], rows[0]["complemento"], rows[0]["bairro"], rows[0]["cidade"], rows[0]["cep"], rows[0]["uf"], rows[0]["pessoa_cpf"]);
+        let sql = "select * from tb_endereco where pessoa_cpf = ?";
+        let valores = [cpf];
+        let rows = await banco.ExecutaComando(sql, valores);
+
+        if(rows.length > 0){
+            let row = rows[0];
+            return new EnderecoModel(row["codigo"], row["logradouro"], row["numero"], 
+            row["complemento"], row["bairro"], row["cidade"], row["cep"], row["uf"], row["pessoa_cpf"]);
+        }
         
-        return endereco;
+        return null;
+        
     }
 
     async deletar(){

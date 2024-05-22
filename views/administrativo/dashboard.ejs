@@ -34,54 +34,54 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-            <li class="active ">
-                <a href="dashboard/">
-                <i class="nc-icon nc-bank"></i>
-                <p>Dashboard</p>
-                </a>
-            </li>
-            <li>
-                <a href="voluntarios/">
-                <i class="nc-icon nc-satisfied"></i>
-                <p>voluntários</p>
-                </a>
-            </li>
-            <li>
-                <a href="doadores/">
-                <i class="nc-icon nc-circle-10"></i>
-                <p>Doadores</p>
-                </a>
-            </li>
-            <li>
-                <a href="atividades/">
-                <i class="nc-icon nc-calendar-60"></i>
-                <p>Atividades</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                <i class="nc-icon nc-shop"></i>
-                <p>Patrimônio</p>
-                </a>
-            </li>
-            <!-- <li>
-                <a href="#">
-                <i class="nc-icon nc-bank"></i>
-                <p>Caixa</p>
-                </a>
-            </li>
-            <li>
-                <a href="./typography.html">
-                <i class="nc-icon nc-caps-small"></i>
-                <p>Typography</p>
-                </a>
-            </li>
-            <li class="active-pro">
-                <a href="./upgrade.html">
-                <i class="nc-icon nc-spaceship"></i>
-                <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
+                <li class="active ">
+                    <a href="dashboard/">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="voluntarios/">
+                    <i class="nc-icon nc-satisfied"></i>
+                    <p>voluntários</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="doadores/">
+                    <i class="nc-icon nc-circle-10"></i>
+                    <p>Doadores</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="atividades/">
+                    <i class="nc-icon nc-calendar-60"></i>
+                    <p>Atividades</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="produtos/">
+                    <i class="nc-icon nc-shop"></i>
+                    <p>Produtos</p>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="#">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>Caixa</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="./typography.html">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Typography</p>
+                    </a>
+                </li>
+                <li class="active-pro">
+                    <a href="./upgrade.html">
+                    <i class="nc-icon nc-spaceship"></i>
+                    <p>Upgrade to PRO</p>
+                    </a>
+                </li> -->
             </ul>
         </div>
         </div>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                            <p class="card-category">voluntários</p>
+                            <p class="card-category">Voluntários</p>
                             <p class="card-title">150<p>
                             </div>
                         </div>
@@ -173,8 +173,8 @@
                     <div class="card-footer ">
                         <hr>
                         <div class="stats">
-                        <i class="fa fa-refresh"></i>
-                         Ver mais
+                        <i class="nc-icon nc-satisfied"></i>
+                            <a href="/voluntarios" style="text-decoration: none;">Lista de Voluntários</a>
                         </div>
                     </div>
                     </div>
@@ -190,8 +190,8 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                            <p class="card-category">Caixa</p>
-                            <p class="card-title">R$ 1.345,00<p>
+                                <p class="card-category">Caixa</p>
+                                <p class="card-title">R$ 1.345,00<p>
                             </div>
                         </div>
                         </div>
@@ -200,7 +200,7 @@
                         <hr>
                         <div class="stats">
                         <i class="fa fa-calendar-o"></i>
-                        Extrato
+                            <a href="#" style="text-decoration: none;">Extratos</a>
                         </div>
                     </div>
                     </div>
@@ -211,13 +211,13 @@
                         <div class="row">
                         <div class="col-5 col-md-4">
                             <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-vector text-danger"></i>
+                            <i class="nc-icon nc-calendar-60 text-danger"></i>
                             </div>
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                            <p class="card-category">Atividades</p>
-                            <p class="card-title">23<p>
+                                <p class="card-category">Atividades</p>
+                                <p class="card-title">23<p>
                             </div>
                         </div>
                         </div>
@@ -226,7 +226,7 @@
                         <hr>
                         <div class="stats">
                         <i class="fa fa-clock-o"></i>
-                        Ver mais
+                            <a href="/atividades" style="text-decoration: none;">Lista de Atividades</a>
                         </div>
                     </div>
                     </div>
@@ -252,7 +252,7 @@
                         <hr>
                         <div class="stats">
                         <i class="fa fa-refresh"></i>
-                        Ver mais
+                            <a href="/doadores" style="text-decoration: none;">Lista de Doadores</a>
                         </div>
                     </div>
                     </div>
@@ -347,19 +347,23 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/js/dashboard/core/jquery.min.js"></script>
+    <script src="/js/dashboard/core/popper.min.js"></script>
+    <script src="/js/dashboard/core/bootstrap.min.js"></script>
+    <script src="/js/dashboard/plugins/perfect-scrollbar.jquery.min.js"></script>
+
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chart JS -->
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="/js/dashboard/plugins/chartjs.min.js"></script>
+
     <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="/js/dashboard/plugins/bootstrap-notify.js"></script>
+
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="../assets/demo/demo.js"></script>
+    <script src="/js/dashboard/dashboard.js"></script>
     <script>
         $(document).ready(function() {
         // Javascript method's body can be found in assets/assets-for-demo/js/demo.js

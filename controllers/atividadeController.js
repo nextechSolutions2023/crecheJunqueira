@@ -19,7 +19,7 @@ class AtividadeController{
         if(req.body.disponibilidade != "" && req.body.cpf != "" &&
         req.body.nome != "" ) {
 
-            let atividade = new AtividadeModel(0, req.body.descricao );
+            let atividade = new AtividadeModel(0,req.body.descricao);
 
             let result = await atividade.cadastrar();
 
@@ -56,7 +56,7 @@ class AtividadeController{
 
 
         if(req.body.descricao != "" ) {
-            let atividade = new AtividadeModel(req.body.codigo, req.body.descricao );
+            let atividade = new AtividadeModel(req.body.codigo,req.body.descricao );
             let result = await atividade.alterar();
 
             if(result) {
