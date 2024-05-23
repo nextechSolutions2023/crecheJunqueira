@@ -10,7 +10,7 @@ class HomeController{
     }
 
     DoacaoView(req,res){
-        res.render('doacao',  {layout:false});
+        res.render('home/doacao');
     }
 
     recursosView(req, res){
@@ -21,9 +21,9 @@ class HomeController{
         res.render('home/sobre_nos');
     }
 
-    doacaoView(req,res){
-        res.render("home/doacao");
-    }
+    // doacaoView(req,res){
+    //     res.render("home/doacao");
+    // }
 
     // eventoView(req,res){
     //     res.render('home/eventos', {lista: lista});

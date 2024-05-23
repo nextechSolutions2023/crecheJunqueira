@@ -64,13 +64,7 @@ class TelefoneModel{
         let sql = "SELECT * FROM tb_telefone WHERE pessoa_cpf = " + cpf;
         let rows = await banco.ExecutaComando(sql);
 
-        let telefones = [];
-        for (let i = 0; i < rows.length; i++) {
-            let telefone = new TelefoneModel(rows[i]["codigo"], rows[i]["numero"], rows[i]["pessoa_cpf"]);
-            telefones.push(telefone);
-        }
-
-        return telefones;
+        return new TelefoneModel(rows[0]["codigo"], rows[0]["numero"], rows[0]["pessoa_cpf"]);
     }
 
     async deletar() {

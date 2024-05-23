@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function(){
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
         let habilidadecodigo = document.querySelector("#habilidade").value; 
         let telefone = document.querySelector("#telefone").value; 
+        let codigoTelefone = document.querySelector("#codigoTelefone").value; 
+
 
 
         
@@ -35,10 +37,11 @@ document.addEventListener("DOMContentLoaded", function(){
             codigo: codigo,
             codigoEndereco: codigoEndereco,
             creche_codigo: 0,
-            habilidadecodigo: habilidadecodigo
+            habilidadecodigo: habilidadecodigo,
+            codigoTelefone
         }
 
-        fetch("/voluntario/deletar", {
+        fetch("/voluntarios/deletar", {
             method: 'POST',
             body: JSON.stringify(obj),
             headers: {

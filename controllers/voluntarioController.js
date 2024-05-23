@@ -116,6 +116,7 @@ class VoluntarioController{
 
         let telefoneModel = new TelefoneModel();
         let telefone = await telefoneModel.obterPorCpf(voluntario.cpf) ;
+        console.log(telefone);
         res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone: telefone,layout:false});
     }
 
@@ -123,10 +124,11 @@ class VoluntarioController{
         let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, req.body.codigo, req.body.disponibilidade, req.body.habilidadecodigo, req.body.crechecodigo );
         let endereco = new EnderecoModel(req.body.codigoEndereco, req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf, req.body.cpf);
         let telefone = new TelefoneModel(req.body.codigoTelefone, req.body.telefone, req.body.cpf);
-
+        
+        let resultTel = await telefone.deletar();
         let resultEndereco = await endereco.deletar();
         let result = await voluntario.deletar();
-        let resultTel = await telefone.deletar();
+       
 
         if(result && resultEndereco && resultTel) {
             resp.send({

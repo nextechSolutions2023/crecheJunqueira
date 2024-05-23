@@ -10,19 +10,11 @@ let auth = new AuthMiddleware()
 router.get("/", ctrl.homeView);
 router.get("/contato", ctrl.contatoView);
 router.get("/doacao", ctrl.DoacaoView);
-
 router.get("/sobre_nos", ctrl.sobrenosView);
-router.get("/doacao", ctrl.doacaoView);
+// router.get("/doacao", ctrl.doacaoView);
 router.get("/nextechsolutions", ctrl.integrantesView);
 router.get("/transparencia", ctrl.transparenciaView);
 router.get("/eventos", ctrl.listarEventosView);
-
-
-// router.get("/recursos", ctrl.recursosView);
-
-// router.get("/dashboard",auth.verificarUsuarioLogado, ctrl.recursosView);
 router.get("/dashboard", ctrl.recursosView);
-
-// router.get('/semlayout', ctrl.semLayoutView);
 
 module.exports = router;
