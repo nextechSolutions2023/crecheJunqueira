@@ -56,7 +56,7 @@ function alterarEvento() {
         .then(r=> {
             if(r.ok) {
                 alert("Evento alterado!");
-                window.location.href="/evento";
+                window.location.href="/evento/";
             }
             else{
                 alert("Erro ao alterar evento");

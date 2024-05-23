@@ -5,7 +5,7 @@ class AtividadeController{
     async listagemView(req, resp){
         let atividade = new AtividadeModel();
         let listaAtividades = await atividade.listar();
-        resp.render("atividades/listagem", { lista: listaAtividades,layout:false });//chamar o layout adim aqui
+        resp.render("atividades/listagem", { lista: listaAtividades,layout:false });
     }
 
     cadastrarView(req, resp){

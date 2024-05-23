@@ -37,7 +37,7 @@ function alterarEvento() {
         .then(r=> {
             if(r.ok) {
                 alert("Patrimonio alterado!");
-                window.location.href="/patrimonio";
+                window.location.href="/patrimonio/";
             }
             else{
                 alert("Erro ao alterar patrimonio");

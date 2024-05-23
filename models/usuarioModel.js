@@ -10,6 +10,7 @@ class UsuarioModel {
     #usuarioSenha;
     #usuarioAtivo;
     #perfilId;
+
     //implementar getter e setter
     get usuarioId() {
         return this.#usuarioId;
@@ -87,7 +88,7 @@ class UsuarioModel {
         let lista = [];
 
         for(let i = 0; i < rows.length; i++) {
-            lista.push(new UsuarioModel(row["usuarioId"], row["usuarioNome"], row["usuarioEmail"], row["usuarioSenha"], row["usuarioAtivo"], row["perfilId"]));
+            lista.push(new UsuarioModel(rows["usuarioId"], rows["usuarioNome"], rows["usuarioEmail"], rows["usuarioSenha"], rows["usuarioAtivo"], rows["perfilId"]));
         }
         return lista;
     }

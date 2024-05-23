@@ -27,7 +27,7 @@ function excluirPatrimonio() {
             })
             .then(r=> {
                 if(r.ok){
-                    window.location.reload();
+                    window.location.href="/patrimonio/";
                 }
                 else{
                     alert("Erro ao excluir patrimonio");
