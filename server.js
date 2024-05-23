@@ -30,7 +30,7 @@ app.use("/",  homeRoute);
 app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
-app.use("/evento", eventoRoute);
+app.use("/eventos", eventoRoute);
 app.use("/login", loginRoute);
 app.use("/patrimonio", patrimonioRoute);
 app.use("/produtos", produtoRoute);
@@ -43,12 +43,6 @@ app.get("*", function(req, res) {
 });
 
 global.CAMINHO_IMG_EVENTO_BROWSER = "/img/eventos/"
-//global.CAMINHO_IMG_VITRINE_BROWSER = "/img/vitrine/"
-app.use("/vitrine", vitrineRouter);
-app.use('/produtos', produtoRoute);
-app.use("/vendas", vendasRoute);
-app.use("/login", loginRoute);
-
 global.CAMINHO_IMG_BROWSER = "/img/produtos/"
 global.RAIZ_PROJETO = __dirname;
 
