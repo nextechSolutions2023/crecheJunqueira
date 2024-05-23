@@ -147,6 +147,10 @@ document.addEventListener("DOMContentLoaded", function(){
         if (cpf.length !== 11) {
           return false;
         }
+
+        if (/^(\d)\1+$/.test(cpf)) {
+            return false;
+        }
       
         // Cálculo do dígito verificador 1
         let soma = 0;

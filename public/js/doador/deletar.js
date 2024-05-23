@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function(){
         let tipo_doacao = document.querySelector("#tipo_doacao").value;
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
-        
+        let codigoTelefone = document.querySelector("#codigoTelefone").value;
+
         let obj = {
             nome: nome,
             cpf: cpf,
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
             tipo_doacao: tipo_doacao,
             codigo: codigo,
             codigoEndereco: codigoEndereco,
+            codigoTelefone,
             creche_codigo: 0
         }
 

@@ -204,6 +204,7 @@
 
                       <input type="hidden" id="codigo"   value="<%= doador.codigo %>">
                       <input type="hidden" id="codigoEndereco"  value="<%= endereco.codigo %>">
+                    <input type="hidden" id="codigoTelefone" value="<%= telefone.codigo %>">
 
                       <div class="col-md-4 pl-1">
                         <div class="form-group">
@@ -238,7 +239,7 @@
                         <div class="col-md-4 pl-1">
                           <div class="form-group">
                             <label for="telefone">Telefone <b class="required">*</b></label>
-                            <input disabled class="form-control" type="text" id="telefone" value="<%= telefone[0] == null ? "" : telefone[0].numeroTel %>" onkeyup="validarTelefone(this)" required placeholder="(99) 99999 - 9999">
+                            <input disabled class="form-control" type="text" id="telefone" value="<%= telefone == null ? "" : telefone.numeroTel %>" onkeyup="validarTelefone(this)" required placeholder="(99) 99999 - 9999">
                           </div>
                         </div>
                         

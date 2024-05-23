@@ -107,7 +107,7 @@ class DoadorController{
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(doador.cpf) ;
         let telefoneModel = new TelefoneModel();
-        let telefone = await telefoneModel.obterPorCpf(voluntario.cpf) ;
+        let telefone = await telefoneModel.obterPorCpf(doador.cpf) ;
         res.render('doadores/deletar', {doador:doador, endereco: endereco, telefone:telefone,layout:false});
     }
 
@@ -117,8 +117,8 @@ class DoadorController{
         let telefone = new TelefoneModel(req.body.codigoTelefone, req.body.telefone, req.body.cpf);
 
         let resultEndereco = await endereco.deletar();
-        let result = await doador.deletar();
         let resultTel = await telefone.deletar();
+        let result = await doador.deletar();
 
 
         if(result && resultEndereco && resultTel) {

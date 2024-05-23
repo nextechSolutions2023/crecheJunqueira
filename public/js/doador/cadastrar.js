@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let telefone = document.querySelector("#telefone").value;
         let tipo_doacao = document.querySelector("#tipo_doacao").value;
         
+        cpf= limparPontosTracosCPF(cpf);
 
         let listaErros = [];
         if(nome == "" || nome.length < 5) {
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             listaErros.push("numero");
         }
 
-        if(cep == "" || !validarCEP(cep)) {
+        if(cep == "") {
             listaErros.push("cep");
         }
 
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 cpf: cpf,
                 logradouro: logradouro,
                 numero: numero,
-                cep:cep,
+                cep,
                 complemento: complemento,
                 bairro: bairro,
                 cidade: cidade,
@@ -104,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/doadores";
+                    window.location.href="/doadores/";
                 }   
                 else {
                     alert(r.msg);
@@ -129,6 +130,10 @@ document.addEventListener("DOMContentLoaded", function() {
         // Verifica se o CPF tem o tamanho correto
         if (cpf.length !== 11) {
           return false;
+        }
+
+        if (/^(\d)\1+$/.test(cpf)) {
+            return false;
         }
       
         // Cálculo do dígito verificador 1
