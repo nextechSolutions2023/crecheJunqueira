@@ -39,7 +39,7 @@ app.use("/vitrine", vitrineRouter);
 app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
-app.use("/eventos", eventoRoute);
+app.use("/evento", eventoRoute);
 app.use("/login", loginRoute);
 app.use("/patrimonio", patrimonioRoute);
 app.use("/produtos", produtoRoute);

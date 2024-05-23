@@ -65,6 +65,7 @@ class TelefoneModel{
         let rows = await banco.ExecutaComando(sql);
 
         return new TelefoneModel(rows[0]["codigo"], rows[0]["numero"], rows[0]["pessoa_cpf"]);
+
     }
 
     async deletar() {

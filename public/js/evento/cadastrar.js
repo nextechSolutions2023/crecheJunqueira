@@ -64,7 +64,7 @@ function gravarEvento() {
         .then(r=> {
             if(r.ok) {
                 alert("Evento cadastrado!");
-                window.location.href="/evento";
+                window.location.href="/evento/";
             }
             else{
                 alert("Erro ao cadastrar evento");
