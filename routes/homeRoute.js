@@ -1,9 +1,11 @@
 const express = require('express');
 const HomeController = require('../controllers/homeController');
+const AuthMiddleware = require('../middlewares/authMiddleware');
 
 
 let router = express.Router();
 let ctrl = new HomeController();
+let auth = new AuthMiddleware()
 
 router.get("/", ctrl.homeView);
 router.get("/contato", ctrl.contatoView);

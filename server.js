@@ -1,5 +1,8 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const cookieParser = require("cookie-parser");
+
+const AuthMiddleware = require('./middlewares/authMiddleware');
 
 let homeRoute = require("./routes/homeRoute");
 let voluntarioRoute = require("./routes/voluntarioRoute");
@@ -12,12 +15,14 @@ let patrimonioRoute = require("./routes/patrimonioRoute");
 let produtoRoute = require('./routes/produtoRoute');
 let vendasRoute = require('./routes/VendasRoute');
 
+let auth = new AuthMiddleware();
 const app = express();
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
 app.set("home", "./home");
 
+app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static("public"));
@@ -27,6 +32,10 @@ app.set('layout', './layout');
 app.use(expressLayouts);
 
 app.use("/",  homeRoute);
+app.use("/login", loginRoute);
+app.use("/vitrine", vitrineRouter);
+
+// app.use(auth.verificarUsuarioLogado);
 app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
@@ -35,7 +44,7 @@ app.use("/login", loginRoute);
 app.use("/patrimonio", patrimonioRoute);
 app.use("/produtos", produtoRoute);
 app.use("/vendas", vendasRoute);
-app.use("/vitrine", vitrineRouter);
+
 
 //implementando pagina 404
 app.get("*", function(req, res) {
