@@ -116,7 +116,7 @@ class VoluntarioController{
 
         let telefoneModel = new TelefoneModel();
         let telefone = await telefoneModel.obterPorCpf(voluntario.cpf) ;
-        console.log(telefone);
+        
         res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone: telefone,layout:false});
     }
 

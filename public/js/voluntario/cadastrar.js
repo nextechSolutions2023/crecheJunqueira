@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if(habilidadecodigo == "") {
-            listaerros.push("habilidade");
+            listaErros.push("habilidade");
         }
 
         if(listaErros.length == 0) {
@@ -137,6 +137,10 @@ document.addEventListener("DOMContentLoaded", function() {
         // Verifica se o CPF tem o tamanho correto
         if (cpf.length !== 11) {
           return false;
+        }
+
+        if (/^(\d)\1+$/.test(cpf)) {
+            return false;
         }
       
         // Cálculo do dígito verificador 1

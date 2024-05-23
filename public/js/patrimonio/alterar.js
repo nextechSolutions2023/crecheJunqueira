@@ -13,7 +13,7 @@ function alterarEvento() {
     var inputQuant = document.getElementById("inputQuant");
 
     //validação básica
-    if(inputCod.value != "" && inputDesc.value != "" && inputQuant.value != '0'){
+    if(inputCod.value != "" && inputDesc.value != "" && inputQuant.value != '0' && inputQuant.value != ''){
 
         
         let obj = {

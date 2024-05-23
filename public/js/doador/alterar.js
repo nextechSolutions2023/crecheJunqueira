@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
             listaErros.push("numero");
         }
 
-        if(cep == "" || !validarCEP(cep)) {
+        if(cep == "") {
             listaErros.push("cep");
         }
 
@@ -139,6 +139,10 @@ document.addEventListener("DOMContentLoaded", function(){
         // Verifica se o CPF tem o tamanho correto
         if (cpf.length !== 11) {
           return false;
+        }
+
+        if (/^(\d)\1+$/.test(cpf)) {
+            return false;
         }
       
         // Cálculo do dígito verificador 1

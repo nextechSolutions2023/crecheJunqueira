@@ -62,7 +62,8 @@ class TelefoneModel{
 
     async obterPorCpf(cpf) {
         let sql = "SELECT * FROM tb_telefone WHERE pessoa_cpf = " + cpf;
-        let rows = await banco.ExecutaComando(sql);
+        let valores = [];
+        let rows = await banco.ExecutaComando(sql, valores);
 
         return new TelefoneModel(rows[0]["codigo"], rows[0]["numero"], rows[0]["pessoa_cpf"]);
 
