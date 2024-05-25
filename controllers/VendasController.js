@@ -6,6 +6,20 @@ const Database = require("../utils/database");
 
 class VendasController {
 
+    async listar(req, res) {
+        let vendasItem = new VendasProdutosModel();
+        let vendas = await vendasItem.listarVendas();
+        res.render('vendas/listar', { vendas: vendas, layout:"layoutAdmin"});
+    }
+
+    async filtrar(req, res) {
+        let termo = req.params.termo;
+        let filtro = req.params.filtro;
+        let vendasItem = new VendasProdutosModel();
+        var lista = await vendasItem.listarVendas(termo, filtro);
+
+        res.send(lista);
+    }
 
     async gravar(req, res) {
         console.log(req.body);

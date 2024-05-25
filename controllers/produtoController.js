@@ -6,7 +6,7 @@ class ProdutoController {
     async listarView(req, res) {
         let prod = new ProdutoModel();
         let lista = await prod.listarProdutos();
-        res.render('produto/listar', {lista: lista, layout:false});
+        res.render('produto/listar', {lista: lista, layout:"layoutAdmin"});
     }
 
     async excluirProduto(req, res){
@@ -54,7 +54,7 @@ class ProdutoController {
             produto = await produto.buscarProduto(req.params.codigo);
         }
 
-        res.render("produto/alterar", {produtoAlter: produto, layout:false});
+        res.render("produto/alterar", {produtoAlter: produto, layout:"layoutAdmin"});
     }
 
     async alterarProduto(req, res) {
@@ -96,7 +96,7 @@ class ProdutoController {
 
     async cadastroView(req, res) {
 
-        res.render('produto/cadastrar', {layout:false});
+        res.render('produto/cadastrar', {layout:"layoutAdmin"});
     }
 
     async obter(req, res) {
