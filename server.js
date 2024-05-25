@@ -13,7 +13,7 @@ let eventoRoute = require("./routes/eventoRoute");
 let vitrineRouter = require('./routes/vitrineRoute');
 let patrimonioRoute = require("./routes/patrimonioRoute");
 let produtoRoute = require('./routes/produtoRoute');
-let vendasRoute = require('./routes/VendasRoute');
+let vendasRouter = require('./routes/vendasRoute');
 
 let auth = new AuthMiddleware();
 const app = express();
@@ -43,7 +43,7 @@ app.use("/evento", eventoRoute);
 app.use("/login", loginRoute);
 app.use("/patrimonio", patrimonioRoute);
 app.use("/produtos", produtoRoute);
-app.use("/vendas", vendasRoute);
+app.use("/vendas", vendasRouter);
 
 
 //implementando pagina 404

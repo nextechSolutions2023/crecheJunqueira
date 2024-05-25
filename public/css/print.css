@@ -1,0 +1,69 @@
+/* Estilo para impressão */
+@media print {
+    
+    .sidebar,
+    .navbar,
+    #btnExportarExcel,
+    #btnExportarPdf,
+    #divFiltros {
+     display: none !important;
+    }
+
+    body {
+      background: white;
+    }
+  
+    /* Ocultar elementos desnecessários */
+    ul, li, .filtros, .btn {
+      display: none;
+    }
+  
+    /* Cabeçalho */
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
+  
+    .logo{
+      width: 150px;
+      height: auto;
+    }
+  
+    .titulo-venda {
+      font-size: 24pt;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  
+    /* Tabela ocupando 100% do width da folha */
+    table {
+      font-size: 12pt;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 10px;
+      height: auto;
+    }
+  
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+      vertical-align: top;
+    }
+  
+    th {
+      background-color: #ddd;
+      font-weight: bold;
+    }
+  
+    .card-body {
+      padding: 0;
+    }
+  
+    .footer {
+      display: none;
+    }
+}
+  

@@ -9,7 +9,7 @@ class VoluntarioController{
         let voluntario = new VoluntarioModel();
         let listaVoluntarios = await voluntario.listar();
         console.log(listaVoluntarios);
-        resp.render("voluntarios/listagem", {lista: listaVoluntarios, layout:false});
+        resp.render("voluntarios/listagem", {lista: listaVoluntarios, layout:"layoutAdmin"});
 
     }
 
@@ -70,7 +70,7 @@ class VoluntarioController{
         let telefoneModel = new TelefoneModel();
         let telefone = await telefoneModel.obterPorCpf(voluntario.cpf);
         
-        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone:telefone, layout:false});
+        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone:telefone, layout:"layoutAdmin"});
     }
 
     async alterar(req, resp) {
@@ -117,7 +117,7 @@ class VoluntarioController{
         let telefoneModel = new TelefoneModel();
         let telefone = await telefoneModel.obterPorCpf(voluntario.cpf) ;
         
-        res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone: telefone,layout:false});
+        res.render('voluntarios/deletar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone: telefone,layout:"layoutAdmin"});
     }
 
     async deletar(req, resp){
