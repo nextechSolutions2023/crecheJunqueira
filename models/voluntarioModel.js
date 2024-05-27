@@ -8,6 +8,7 @@ class voluntarioModel extends PessoaModel{
     #codigo;
     #disponibilidade;
     #habilidadecodigo;
+    #ativo_inativo;
 
     set codigo(codigo) { this.#codigo = codigo};
     get codigo() { return this.#codigo;}
@@ -18,12 +19,16 @@ class voluntarioModel extends PessoaModel{
     set habilidadecodigo(habilidadecodigo) { this.#habilidadecodigo = habilidadecodigo}
     get habilidadecodigo() { return this.#habilidadecodigo;}
 
-    constructor(cpf, nome, codigo, disponibilidade ,habilidadecodigo, crechecodigo) {
+    set ativo_inativo(ativo_inativo) { this.#ativo_inativo = ativo_inativo}
+    get ativo_inativo() { return this.#ativo_inativo;}
+
+    constructor(cpf, nome, codigo, disponibilidade ,habilidadecodigo, crechecodigo, ativo_inativo) {
 
         super (cpf, nome, crechecodigo);
         this.#codigo = codigo;
         this.#disponibilidade = disponibilidade;
         this.#habilidadecodigo = habilidadecodigo;
+        this.#ativo_inativo = ativo_inativo;
     }
 
     async listar() {
@@ -35,11 +40,31 @@ class voluntarioModel extends PessoaModel{
         
         
         for(let i = 0; i < rows.length; i++) {
-            let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"] );
+            let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"],
+             rows[i]["creche_codigo"], rows[i]["ativo_inativo"] );
             lista.push(voluntario);
         }
         return lista;
     }
+
+    async listarVoluntariosAtivos() {
+        let sql = "SELECT * FROM tb_voluntarios v JOIN tb_pessoa p ON p.cpf = v.pessoa_cpf WHERE v.ativo_inativo = 'Ativo'";
+        let rows = await banco.ExecutaComando(sql);
+        let lista = [];
+        for (let i = 0; i < rows.length; i++) {
+            let voluntario = new voluntarioModel(
+                rows[i]["pessoa_cpf"],
+                rows[i]["nome"],
+                rows[i]["codigo"],
+                rows[i]["disponibilidade"],
+                rows[i]["habilidade_codigo"],
+                rows[i]["creche_codigo"]
+            );
+            lista.push(voluntario);
+        }
+        return lista;
+    }
+    
 
     async cadastrar() {
         await super.cadastrarPessoa();
@@ -79,6 +104,23 @@ class voluntarioModel extends PessoaModel{
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
         await super.deletarPessoa();
 
+        return result;
+    }
+
+    // async atualizarStatusVoluntario(codigo){
+    //     let sql = "update tb_voluntarios set ativo_inativo = ? where codigo = " + codigo;
+
+    //     let valores = [this.#ativo_inativo, this.#codigo];
+
+    //     let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+    //     return result;
+    // }
+
+    async atualizarStatusVoluntario(codigo) {
+        let sql = "update tb_voluntarios set ativo_inativo = ? where codigo = ?";
+        let valores = ["Inativo", codigo]; 
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
         return result;
     }
 }

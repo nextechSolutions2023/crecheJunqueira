@@ -9,6 +9,7 @@ let atividadeRoute = require("./routes/atividadeRoute");
 let eventoRoute = require("./routes/eventoRoute");
 let vitrineRouter = require('./routes/vitrineRoute');
 let patrimonioRoute = require("./routes/patrimonioRoute");
+let saidaEventoRoute = require("./routes/saidaEventoRoute");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 app.use("/atividades", atividadeRoute);
 app.use("/evento", eventoRoute);
+app.use("/saidaEvento", saidaEventoRoute);
 app.use("/login", loginRoute);
 app.use("/patrimonio", patrimonioRoute);
 

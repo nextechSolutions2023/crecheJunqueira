@@ -57,7 +57,7 @@ class VoluntarioController{
         let voluntario = await voluntarioModel.obter(req.params.codigo) ;
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(voluntario.cpf) ;
-        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, layout:false});
+        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, layout:"layoutAdmin"});
     }
 
     async alterar(req, resp){
