@@ -69,7 +69,7 @@ function reprovarEvento() {
             .then(r=> {
                 if(r.ok){
                     alert(r.msg)
-                    window.location.reload();
+                    window.location.href="/evento/";
                 }
                 else{
                     alert(r.msg);

@@ -50,28 +50,21 @@
 
         <!-- MENU -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
-           <!-- <a href="index.html" class="navbar-brand">
-                <h1 class="m-0 text-primary"><i class="fa fa-book-reader me-3"></i></h1>
-            </a>-->
-
-           <img class="imagem-menu" src="img/Logo_CrecheJunqueira.png" alt="Logotipo da Creche Junqueira" width="150px"/>
-
-
+            <a href="/"><img class="imagem-menu" src="img/Logo_CrecheJunqueira.png" alt="Logotipo da Creche Junqueira" width="150px"/></a>
             <button title="button" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="/" class="nav-item nav-link">Início</a>
-                    <a href="sobre_nos" class="nav-item nav-link ">Sobre</a>
-                    <a href="doacao" class="nav-item nav-link ">Doação</a>
-                    <a href="contato" class="nav-item nav-link ">Contato</a>
-                    <a href="vitrine" class="nav-item nav-link ">Loja</a>
+                    <a href="sobre_nos" class="nav-item nav-link">Sobre</a>
+                    <a href="doacao" class="nav-item nav-link">Doação</a>
+                    <a href="contato" class="nav-item nav-link">Contato</a>
+                    <a href="vitrine" class="nav-item nav-link">Loja</a>
+                    <a href="eventos" class="nav-item nav-link">Eventos</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Transparência</a>
                         <div class="dropdown-menu flex-column rounded-0 rounded-bottom border-0 shadow-sm m-0">
-                            <a href="transparencia" class="dropdown-item w-100">Relatórios de Gestão Fiscal</a> 
+                            <a href="transparencia" class="dropdown-item w-100">Relatórios de Gestão Fiscal</a>
                         </div>
                     </div>
                     <a href="login" class="nav-item nav-link ms-lg-3">
@@ -79,9 +72,15 @@
                         Entrar
                     </a>
                 </div>
-                <a href="voluntarios/cadastrar" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Seja um voluntário<i class="fa fa-arrow-right ms-3"></i></a>
+                <div class="d-flex align-items-center">
+                    <a href="voluntarios/cadastrar" class="btn btn-primary rounded-pill px-3 me-3 d-none d-lg-block">Seja um voluntário<i class="fa fa-arrow-right ms-3"></i></a>
+                    <button data-bs-toggle="modal" data-bs-target="#modalCarrinho" class="btn btn-primary position-relative" type="button">
+                        <i class="bi-cart-fill me-1"></i>
+                        <span id="contadorCarrinho" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </div>
             </div>
-        </nav>       
+        </nav>     
 
        <!-- CARROSSEL DE FOTOS -->
 
@@ -216,6 +215,38 @@
             </div>
         </div>
         <!-- Footer End -->
+        <div class="modal fade" id="modalCarrinho" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><i class="bi-cart-fill me-1"></i> Carrinho</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped" id="tabelaCarrinho">
+                        <thead>
+                            <th></th>
+                            <th>Produto</th>
+                            <th>Valor</th>
+                            <th>Quantidade</th>
+                            <th>Valor Total</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="valorTotal" style="text-align: end;">
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-success" id="btnConfirmarPedido">Confirmar pedido</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
         <!-- VOLTE AO TOPO -->
@@ -232,6 +263,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="/js/vitrine/carrinho.js"></script>
+
 </body>
 
 </html>

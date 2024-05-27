@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("bairro").style["border-color"] = "#ced4da";
         document.getElementById("cidade").style["border-color"] = "#ced4da";
         document.getElementById("uf").style["border-color"] = "#ced4da";
+        document.getElementById("telefone").style["border-color"] = "#ced4da";
         document.getElementById("disponibilidade").style["border-color"] = "#ced4da";
-    
+        document.getElementById("habilidade").style["border-color"] = "#ced4da";
     }
 
     function alterar() {
@@ -27,9 +28,16 @@ document.addEventListener("DOMContentLoaded", function(){
         let bairro = document.querySelector("#bairro").value;
         let cidade = document.querySelector("#cidade").value;
         let uf = document.querySelector("#uf").value;
+        let telefone = document.querySelector("#telefone").value;
         let disponibilidade = document.querySelector("#disponibilidade").value;
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
+        let codigoTelefone = document.querySelector("#codigoTelefone").value;        
+        
+        let habilidadecodigo = document.querySelector("#habilidade").value; 
+         
+
+
 
          let listaErros = [];
         if(nome == "" || nome.length < 5) {
@@ -65,11 +73,18 @@ document.addEventListener("DOMContentLoaded", function(){
             listaErros.push("uf");
         }
 
+        if(telefone == "") {
+            listaErros.push("telefone");
+        }
 
         if(disponibilidade == "") {
             listaErros.push("disponibilidade");
         }
 
+        if(habilidadecodigo == "") {
+            listaErros.push("habilidade");
+        }
+        
 
         if(listaErros.length == 0) {
             
@@ -78,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 cpf: cpf,
                 logradouro: logradouro,
                 numero: numero,
-                cep,
+                cep:cep,
                 complemento: complemento,
                 bairro: bairro,
                 cidade: cidade,
@@ -87,7 +102,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 codigo: codigo,
                 codigoEndereco: codigoEndereco,
                 creche_codigo: 0,
-                habilidadecodigo:1
+                habilidadecodigo: habilidadecodigo,
+                codigoTelefone: codigoTelefone,
+                telefone
             }
 
             fetch("/voluntarios/alterar", {
@@ -129,6 +146,10 @@ document.addEventListener("DOMContentLoaded", function(){
         // Verifica se o CPF tem o tamanho correto
         if (cpf.length !== 11) {
           return false;
+        }
+
+        if (/^(\d)\1+$/.test(cpf)) {
+            return false;
         }
       
         // Cálculo do dígito verificador 1
@@ -196,20 +217,20 @@ document.addEventListener("DOMContentLoaded", function(){
         impedirLetras(cpf);
     })
 
-    //--------------------validacao numero de celular----------------------
-    const celular = document.getElementById("celular");
+    //--------------------validacao numero de telefone----------------------
+    const telefone = document.getElementById("telefone");
     
-    celular.addEventListener("keyup", function() {
+    telefone.addEventListener("keyup", function() {
 
-        celular.value = phoneMask(celular.value)
+        telefone.value = phoneMask(telefone.value)
     })
 
     function phoneMask (value) {
-    if (!value) return ""
-    value = value.replace(/\D/g,'')
-    value = value.replace(/(\d{2})(\d)/,"($1) $2")
-    value = value.replace(/(\d)(\d{4})$/,"$1-$2")
-    return value
+        if (!value) return ""
+            value = value.replace(/\D/g,'')
+            value = value.replace(/(\d{2})(\d)/,"($1) $2")
+            value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+            return value
     }
     
     //------------------validacao do cep------------------
@@ -244,7 +265,9 @@ document.addEventListener("DOMContentLoaded", function(){
     const cidadeInput = document.getElementById("cidade");
     const ufInput = document.getElementById("uf");
     const bairroInput = document.getElementById("bairro");
+    const logradouro = document.getElementById("logradouro");
     
-    preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput);
+    
+    preencherCidadeUFEBairroComCEP(cepInput, cidadeInput, ufInput, bairroInput, logradouro);
       
 })

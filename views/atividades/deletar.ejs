@@ -34,55 +34,67 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-            <li class="active ">
-                <a href="dashboard">
-                <i class="nc-icon nc-bank"></i>
-                <p>Dashboard</p>
-                </a>
-            </li>
-            <li>
-                <a href="doadors/">
-                <i class="nc-icon nc-satisfied"></i>
-                <p>voluntários</p>
-                </a>
-            </li>
-            <li>
-                <a href="doadores/">
-                <i class="nc-icon nc-circle-10"></i>
-                <p>Doadores</p>
-                </a>
-            </li>
-            <li>
-                <a href="atividades/">
-                <i class="nc-icon nc-calendar-60"></i>
-                <p>Atividades</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                <i class="nc-icon nc-shop"></i>
-                <p>Patrimônio</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                <i class="nc-icon nc-bank"></i>
-                <p>Caixa</p>
-                </a>
-            </li>
-            <!-- <li>
-                <a href="./typography.html">
-                <i class="nc-icon nc-caps-small"></i>
-                <p>Typography</p>
-                </a>
-            </li>
-            <li class="active-pro">
-                <a href="./upgrade.html">
-                <i class="nc-icon nc-spaceship"></i>
-                <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
-            </ul>
+                <li class="active ">
+                    <a href="/dashboard">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/voluntarios">
+                    <i class="nc-icon nc-satisfied"></i>
+                    <p>voluntários</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/doadores">
+                    <i class="nc-icon nc-circle-10"></i>
+                    <p>Doadores</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/atividades">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <p>Atividades</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/produtos">
+                    <i class="nc-icon nc-shop"></i>
+                    <p>Produtos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/patrimonio">
+                    <i class="nc-icon nc-calendar-60"></i>
+                    <p>Patrimônio</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/evento">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>Eventos</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Caixa</p>
+                    </a>
+                </li>
+                <li class="#">
+                    <a href="./upgrade.html">
+                    <i class="nc-icon nc-spaceship"></i>
+                        <p>Usuários</p>
+                    </a>
+                </li>
+                <li class="#">
+                    <a href="/vendas">
+                    <i class="nc-icon nc-spaceship"></i>
+                        <p>Vendas</p>
+                    </a>
+                </li>
+                </ul>
         </div>
         </div>
         <div class="main-panel">
@@ -163,18 +175,18 @@
                 <div class="row">
                     <div class="col-md-10 px-1 pl-3">
                     <div class="form-group">
-                        <label for="nome" >Descrição<b class="required">*</b></label>
+                        <label for="descricao" >Descrição<b class="required">*</b></label>
                         <input disabled class="form-control" type="text" id="descricao" value="<%= atividade.descricao %>" required>
                     </div>
                     </div>
-                    <input type="hidden" id="codigo"   value="<%= atividade.codigo %>"> 
+                    <input type="hidden" id="codigo" value="<%= atividade.codigo %>"> 
                 </div>
                 <br>
                 <br>
                 <div style="position: relative;">
                     <div style="position: absolute; bottom: 0; right: 0;">
                         <div class="update ml-auto mr-auto">
-                            <button type="button" class="btn btn-primary btn-round submit" id="btnDeletar">Confirmar Exclusão</button>
+                            <button type="button" class="btn btn-primary btn-round" id="btnDeletar">Confirmar Exclusão</button>
                         </div>
                     </div>
                 </div>

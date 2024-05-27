@@ -1,10 +1,9 @@
 
-document.getElementById("btnAdm").addEventListener("click", function() {
-    var nome = document.getElementById("nome").value;
+document.getElementById("btnLogin").addEventListener("click", function() {
+    var email = document.getElementById("email").value;
     var senha = document.getElementById("senha").value;
 
-    if (login(nome, senha)) {
-        // window.location.href = "recursos";
+    if (login(email, senha)) {
         window.location.href = "dashboard";
 
     } else {
@@ -12,8 +11,8 @@ document.getElementById("btnAdm").addEventListener("click", function() {
     }
 });
 
-function login(nome, senha) {
-    if (nome === "admin" && senha === "1234") {
+function login(email, senha) {
+    if (email === "admin" && senha === "1234") {
         return true;
     } else {
         return false;

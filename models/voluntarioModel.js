@@ -28,38 +28,24 @@ class voluntarioModel extends PessoaModel{
         this.#codigo = codigo;
         this.#disponibilidade = disponibilidade;
         this.#habilidadecodigo = habilidadecodigo;
-        this.#ativo_inativo = ativo_inativo;
     }
+
+    #telefone;
+    set telefone(telefone) { this.#telefone = telefone}
+    get telefone() { return this.#telefone;}
 
     async listar() {
 
-        let sql = "select * from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf";
+        let sql = "select v.codigo, nome, v.pessoa_cpf, disponibilidade, habilidade_codigo, creche_codigo, t.numero " +
+                  "from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf " +
+                  "left join tb_telefone t on t.pessoa_cpf = v.pessoa_cpf";
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
         
         
         for(let i = 0; i < rows.length; i++) {
-            let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"],
-             rows[i]["creche_codigo"], rows[i]["ativo_inativo"] );
-            lista.push(voluntario);
-        }
-        return lista;
-    }
-
-    async listarVoluntariosAtivos() {
-        let sql = "SELECT * FROM tb_voluntarios v JOIN tb_pessoa p ON p.cpf = v.pessoa_cpf WHERE v.ativo_inativo = 'Ativo'";
-        let rows = await banco.ExecutaComando(sql);
-        let lista = [];
-        for (let i = 0; i < rows.length; i++) {
-            let voluntario = new voluntarioModel(
-                rows[i]["pessoa_cpf"],
-                rows[i]["nome"],
-                rows[i]["codigo"],
-                rows[i]["disponibilidade"],
-                rows[i]["habilidade_codigo"],
-                rows[i]["creche_codigo"]
-            );
+            let voluntario = new voluntarioModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["disponibilidade"], rows[i]["habilidade_codigo"], rows[i]["creche_codigo"] );
             lista.push(voluntario);
         }
         return lista;

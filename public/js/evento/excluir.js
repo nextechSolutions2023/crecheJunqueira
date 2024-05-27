@@ -31,11 +31,6 @@ function excluirEvento() {
     //alert(inputCodigo.value);
     //if de validação básica
     if(inputCodigo.value != "" ){
-
-        //let formData = new FormData();
-
-        //formData.append("codigo", inputCodigo.value);
-        
         fetch('/evento/excluir', {
             method: "POST",
             body: JSON.stringify({codigo: inputCodigo.value}),
@@ -49,11 +44,11 @@ function excluirEvento() {
         })
         .then(r=> {
             if(r.ok) {
-                alert("Evento excluído!");
-                window.location.href="/evento";
+                alert(r.msg);
+                window.location.href="/evento/";
             }
             else{
-                alert("Erro ao excluir evento");
+                alert(r.msg);
             }
         })
         .catch(e => {
