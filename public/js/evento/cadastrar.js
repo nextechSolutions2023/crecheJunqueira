@@ -25,7 +25,6 @@ function exibirPreviaImagem() {
 
 function gravarEvento() {
 
-    var inputRef = document.getElementById("inputRef");
     var inputNome = document.getElementById("inputNome");
     var inputDescricao = document.getElementById("inputDescricao");
     var arquivos = document.getElementById("inputImagem").files;
@@ -43,11 +42,10 @@ function gravarEvento() {
         inputDataError.style.display = "none";
     }
 
-    if(inputRef.value != "" && inputNome.value != "" && inputDescricao.value != '' && inputData.value != '' && inputLocal.value != '' ){
+    if(inputNome.value != "" && inputDescricao.value != '' && inputData.value != '' && inputLocal.value != '' ){
         
         let formData = new FormData();
 
-        formData.append("ref", inputRef.value);
         formData.append("nome", inputNome.value);
         formData.append("descricao", inputDescricao.value);
         formData.append("imagem", arquivos[0]);
