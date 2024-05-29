@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css"  media="print" href="/administrativo/css/print.css">
+
+<script src="/js/evento/listar.js"></script>
+<script src="/js/evento/relatorio.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+<div class="content" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Relatório de Eventos</h4>
+                    <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+                </div>
+                <!-- <div>
+                    <a style="margin: 10px;" class="btn btn-primary new" href="/evento/relatorios">
+                        Relatório &nbsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fa fa-file-alt" viewBox="0 0 16 16">
+                            <path d="M4 1h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                            <path fill-rule="evenodd" d="M4.5 5a.5.5 0 0 1 .5.5v3.793l1.854-1.853a.5.5 0 0 1 .708.708l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5a.5.5 0 0 1 .708-.708L4 9.293V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </a>
+                </div> -->
+                <div style="margin-bottom: 15px; margin:10px" class="no-print">
+                    <button id="btnExportarExcel" class="btn btn-success" >Exportar para Excel</button>
+                    <button id="btnExportarPdf"  onclick="window.print()" class="btn btn-danger">Imprimir</button>
+                </div>
+                
+                <div style="margin-bottom: 15px; margin:10px" id="divFiltros">
+                    <label for="filtro" class="no-print">Filtro:</label>
+                    <div class="input-group">
+                        <input id="filtro" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control no-print" aria-label="Text input with dropdown button">
+                        <div class="input-group-append">
+                            <button id="btnEscolherFiltro" class="btn btn-primary dropdown-toggle no-print" type="button" data-toggle="dropdown" aria-expanded="false">Filtros</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item itemFiltro" data-valor="1" data-nome="Codigo Evento" href="#">Codigo do Evento</a>
+                                <a class="dropdown-item itemFiltro" data-valor="2" data-nome="Aprovado" href="#">Aprovado</a>
+                                <a class="dropdown-item itemFiltro" data-valor="3" data-nome="Reprovado" href="#">Reprovado</a>
+                                <a class="dropdown-item itemFiltro" data-valor="4" data-nome="Em Análise" href="#">Em Análise</a>
+                                <a class="dropdown-item itemFiltro" data-valor="5" data-nome="Encerrado" href="#">Encerrado</a>
+                                <a class="dropdown-item itemFiltro" data-valor="6" data-nome="Andamento" href="#">Andamento</a>
+                                <a class="dropdown-item itemFiltro" data-valor="7" data-nome="Todos" href="#">Todos</a>
+                                <a class="dropdown-item itemFiltro" data-valor="8" data-nome="Período" href="#">Período</a>
+                            </div>
+                            <button id="btnFiltrar" class="btn btn-primary no-print" type="button"><i class="nc-icon nc-zoom-split" style="margin-right:10px"></i>Buscar</button>
+                        </div>
+                    </div>
+                        <div class="row no-print" id="dateFilter" style="display: none;">
+                            <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                    <label for="startDate">Data Início</label>
+                                    <input type="date" id="startDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 pr-1">   
+                                <div class="form-group">
+                                    <label for="endDate">Data Fim</label>
+                                    <input type="date" id="endDate" class="form-control">
+                                </div>
+                            </div>   
+                        </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <table id="tabelaEventos" class="table">
+                        <thead class="text-primary">
+                            <th>CODIGO</th>
+                            <th>NOME</th>
+                            <th>DESCRIÇÃO</th>
+                            <th>DATA</th>
+                            <th>LOCAL</th>
+                            <th>STATUS</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i<evento.length; i++){ %>
+                                <tr>
+                                    <td><%= evento[i].eventoCodigo %></td>
+                                    <td><%= evento[i].eventoNome %></td>
+                                    <td><%= evento[i].eventoDescricao %></td>
+                                    <td><%= evento[i].eventoData.toLocaleString() %></td>
+                                    <td><%= evento[i].eventoLocal %></td>
+                                    <td><%= evento[i].eventoStatus %></td>                                           
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>

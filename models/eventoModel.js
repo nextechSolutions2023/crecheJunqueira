@@ -4,7 +4,6 @@ const conexao = new Database();
 class EventoModel {
 
     #eventoCodigo;
-    #eventoRef;
     #eventoNome;
     #eventoDescricao;
     #imagem;
@@ -14,7 +13,6 @@ class EventoModel {
     #eventoStatus;
 
     get eventoCodigo() { return this.#eventoCodigo; } set eventoCodigo(eventoCodigo) {this.#eventoCodigo = eventoCodigo;}
-    get eventoRef() { return this.#eventoRef; } set eventoRef(eventoRef) {this.#eventoRef = eventoRef;}
     get eventoNome() { return this.#eventoNome; } set eventoNome(eventoNome) {this.#eventoNome = eventoNome;}
     get eventoDescricao() { return this.#eventoDescricao; } set eventoDescricao(eventoDescricao) {this.#eventoDescricao = eventoDescricao;}
     get imagem() { return this.#imagem; } set imagem(imagem) {this.#imagem = imagem;}
@@ -23,9 +21,8 @@ class EventoModel {
     get eventoLocal() { return this.#eventoLocal; } set eventoLocal(eventoLocal) {this.#eventoLocal = eventoLocal;}
     get eventoStatus() { return this.#eventoStatus; } set eventoStatus(eventoStatus) {this.#eventoStatus = eventoStatus;}
    
-    constructor(eventoCodigo, eventoRef, eventoNome, eventoDescricao, imagem, eventoData, eventoStatus, eventoLocal) {
+    constructor(eventoCodigo, eventoNome, eventoDescricao, imagem, eventoData, eventoStatus, eventoLocal) {
         this.#eventoCodigo = eventoCodigo
-        this.#eventoRef = eventoRef
         this.#eventoNome = eventoNome
         this.#eventoDescricao = eventoDescricao
         this.#imagem = imagem;
@@ -45,17 +42,17 @@ class EventoModel {
 
     async gravar() {
         if(this.#eventoCodigo == 0){
-            let sql = "insert into tb_evento (descricao, ref, nome, imagem, data, local) values (?, ?, ?, ?, ?, ?)";
+            let sql = "insert into tb_evento (descricao, nome, imagem, data, local) values (?, ?, ?, ?, ?)";
 
-            let valores = [this.#eventoDescricao, this.#eventoRef, this.#eventoNome, this.#imagem, this.#eventoData, this.#eventoLocal];
+            let valores = [this.#eventoDescricao, this.#eventoNome, this.#imagem, this.#eventoData, this.#eventoLocal];
 
             return await conexao.ExecutaComandoNonQuery(sql, valores);
         }
         else{
             //alterar
-            let sql = "update tb_evento set descricao = ?, ref = ?, nome = ?, imagem = ?, data = ?, local = ? where codigo = ?";
+            let sql = "update tb_evento set descricao = ?, nome = ?, imagem = ?, data = ?, local = ? where codigo = ?";
 
-            let valores = [this.#eventoDescricao, this.#eventoRef, this.#eventoNome, this.#imagem, this.#eventoData, this.#eventoLocal, this.#eventoCodigo];
+            let valores = [this.#eventoDescricao, this.#eventoNome, this.#imagem, this.#eventoData, this.#eventoLocal, this.#eventoCodigo];
             return await conexao.ExecutaComandoNonQuery(sql, valores) > 0;
         }
     }
@@ -73,7 +70,7 @@ class EventoModel {
             let imagem = "";
             
             evento = new EventoModel(row['codigo'], 
-             row['ref'], row['nome'], row['descricao'], null, row['data'], row['status'], row['local']);
+             row['nome'], row['descricao'], null, row['data'], row['status'], row['local']);
 
             if(row["imagem"] != null) {
                 evento.imagem = global.CAMINHO_IMG_EVENTO_BROWSER + row["imagem"];
@@ -112,7 +109,7 @@ class EventoModel {
                 }
 
                 listaRetorno.push(new EventoModel(row['codigo'], 
-                row['ref'], row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
+                 row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
             }
         }
 
@@ -142,12 +139,54 @@ class EventoModel {
                 }
 
                 listaRetorno.push(new EventoModel(row['codigo'], 
-                row['ref'], row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
+                 row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
             }
         }
 
         return listaRetorno;
     }
+ 
+    // Relatório
+    async listarEventos(termo, filtro, startDate, endDate) {
+        let sqlFiltro = "";
+        let valores = [];
+
+        if (filtro == "1") {
+            if (termo != "") {
+                sqlFiltro = ` WHERE CODIGO = ?`;
+                valores.push(termo);
+            }
+        } else if (filtro == "2") {
+            sqlFiltro = ` WHERE status = 'APROVADO'`;
+        } else if (filtro == "3") {
+            sqlFiltro = ` WHERE status = 'REPROVADO'`;
+        } else if (filtro == "4") {
+            sqlFiltro = ` WHERE status = 'EM ANALISE'`;
+        } else if (filtro == "5") {
+            sqlFiltro = ` WHERE data < CURDATE() && status = 'APROVADO'`;
+        } else if (filtro == "6") {
+            sqlFiltro = ` WHERE data >= CURDATE() && status = 'APROVADO'`;
+        } else if (filtro == "7") {
+            sqlFiltro = "";
+        } else if (filtro == "8") {
+            if (startDate && endDate) {
+                sqlFiltro = ` WHERE data BETWEEN ? AND ?`;
+                valores.push(startDate, endDate);
+            }
+        }
+
+        let sql = `select * from tb_evento ${sqlFiltro}`;
+        let rows = await conexao.ExecutaComando(sql, valores);
+        let lista = [];
+
+        for (let i = 0; i < rows.length; i++) {
+            let row = rows[i];
+            lista.push(new EventoModel(row['codigo'], row['nome'], row['descricao'], null, row['data'], row['status'], row['local']));
+        }
+
+        return lista;
+    }
+
 
     //aprovar
     async aprovar(){
