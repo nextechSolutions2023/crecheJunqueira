@@ -8,6 +8,7 @@ class voluntarioModel extends PessoaModel{
     #codigo;
     #disponibilidade;
     #habilidadecodigo;
+    #ativo_inativo;
 
     set codigo(codigo) { this.#codigo = codigo};
     get codigo() { return this.#codigo;}
@@ -18,7 +19,10 @@ class voluntarioModel extends PessoaModel{
     set habilidadecodigo(habilidadecodigo) { this.#habilidadecodigo = habilidadecodigo}
     get habilidadecodigo() { return this.#habilidadecodigo;}
 
-    constructor(cpf, nome, codigo, disponibilidade ,habilidadecodigo, crechecodigo) {
+    set ativo_inativo(ativo_inativo) { this.#ativo_inativo = ativo_inativo}
+    get ativo_inativo() { return this.#ativo_inativo;}
+
+    constructor(cpf, nome, codigo, disponibilidade ,habilidadecodigo, crechecodigo, ativo_inativo) {
 
         super (cpf, nome, crechecodigo);
         this.#codigo = codigo;
@@ -26,9 +30,15 @@ class voluntarioModel extends PessoaModel{
         this.#habilidadecodigo = habilidadecodigo;
     }
 
+    #telefone;
+    set telefone(telefone) { this.#telefone = telefone}
+    get telefone() { return this.#telefone;}
+
     async listar() {
 
-        let sql = "select * from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf";
+        let sql = "select v.codigo, nome, v.pessoa_cpf, disponibilidade, habilidade_codigo, creche_codigo, t.numero " +
+                  "from tb_voluntarios v join tb_pessoa p on p.cpf = v.pessoa_cpf " +
+                  "left join tb_telefone t on t.pessoa_cpf = v.pessoa_cpf";
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
@@ -40,6 +50,7 @@ class voluntarioModel extends PessoaModel{
         }
         return lista;
     }
+    
 
     async cadastrar() {
         await super.cadastrarPessoa();
@@ -79,6 +90,23 @@ class voluntarioModel extends PessoaModel{
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
         await super.deletarPessoa();
 
+        return result;
+    }
+
+    // async atualizarStatusVoluntario(codigo){
+    //     let sql = "update tb_voluntarios set ativo_inativo = ? where codigo = " + codigo;
+
+    //     let valores = [this.#ativo_inativo, this.#codigo];
+
+    //     let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+    //     return result;
+    // }
+
+    async atualizarStatusVoluntario(codigo) {
+        let sql = "update tb_voluntarios set ativo_inativo = ? where codigo = ?";
+        let valores = ["Inativo", codigo]; 
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
         return result;
     }
 }

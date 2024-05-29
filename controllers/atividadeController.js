@@ -5,7 +5,7 @@ class AtividadeController{
     async listagemView(req, resp){
         let atividade = new AtividadeModel();
         let listaAtividades = await atividade.listar();
-        resp.render("atividades/listagem", { lista: listaAtividades,layout:false });//chamar o layout adim aqui
+        resp.render("atividades/listagem", { lista: listaAtividades,layout:"layoutAdmin" });
     }
 
     cadastrarView(req, resp){
@@ -19,7 +19,7 @@ class AtividadeController{
         if(req.body.disponibilidade != "" && req.body.cpf != "" &&
         req.body.nome != "" ) {
 
-            let atividade = new AtividadeModel(0, req.body.descricao );
+            let atividade = new AtividadeModel(0,req.body.descricao);
 
             let result = await atividade.cadastrar();
 
@@ -49,14 +49,14 @@ class AtividadeController{
     async alterarView(req, res) {
         let atividadeModel = new AtividadeModel();
         let atividade = await atividadeModel.obter(req.params.codigo) ;
-        res.render('atividades/alterar', {atividade:atividade, layout:false});
+        res.render('atividades/alterar', {atividade:atividade, layout:"layoutAdmin"});
     }
 
     async alterar(req, resp){
 
 
         if(req.body.descricao != "" ) {
-            let atividade = new AtividadeModel(req.body.codigo, req.body.descricao );
+            let atividade = new AtividadeModel(req.body.codigo,req.body.descricao );
             let result = await atividade.alterar();
 
             if(result) {
@@ -85,7 +85,7 @@ class AtividadeController{
     async deletarView(req, res) {
         let atividadeModel = new AtividadeModel();
         let atividade = await atividadeModel.obter(req.params.codigo);
-        res.render('atividades/deletar', {atividade:atividade, layout:false});
+        res.render('atividades/deletar', {atividade:atividade, layout:"layoutAdmin"});
     }
 
     async deletar(req, resp){

@@ -7,7 +7,7 @@
       <link rel="icon" type="image/png" href="../assets/img/favicon.png">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
       <title>
-          Doadores
+          Doador
       </title>
       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
       <!--     Fonts and icons     -->
@@ -33,55 +33,67 @@
                   </a>
               </div>
               <div class="sidebar-wrapper">
-                  <ul class="nav">
+                <ul class="nav">
                   <li class="active ">
-                      <a href="dashboard">
+                      <a href="/dashboard">
                       <i class="nc-icon nc-bank"></i>
                       <p>Dashboard</p>
                       </a>
                   </li>
                   <li>
-                      <a href="doadors/">
+                      <a href="/voluntarios">
                       <i class="nc-icon nc-satisfied"></i>
                       <p>voluntários</p>
                       </a>
                   </li>
                   <li>
-                      <a href="doadores/">
+                      <a href="/doadores">
                       <i class="nc-icon nc-circle-10"></i>
                       <p>Doadores</p>
                       </a>
                   </li>
                   <li>
-                      <a href="atividades/">
-                      <i class="nc-icon nc-calendar-60"></i>
+                      <a href="/atividades">
+                      <i class="nc-icon nc-tile-56"></i>
                       <p>Atividades</p>
                       </a>
                   </li>
                   <li>
-                      <a href="#">
+                      <a href="/produtos">
                       <i class="nc-icon nc-shop"></i>
+                      <p>Produtos</p>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/patrimonio">
+                      <i class="nc-icon nc-calendar-60"></i>
                       <p>Patrimônio</p>
                       </a>
                   </li>
                   <li>
-                      <a href="#">
+                      <a href="/evento">
                       <i class="nc-icon nc-bank"></i>
-                      <p>Caixa</p>
+                      <p>Eventos</p>
                       </a>
                   </li>
                   <li>
-                      <a href="./typography.html">
+                      <a href="#">
                       <i class="nc-icon nc-caps-small"></i>
-                      <p>Typography</p>
+                      <p>Caixa</p>
                       </a>
                   </li>
-                  <li class="active-pro">
+                  <li class="#">
                       <a href="./upgrade.html">
                       <i class="nc-icon nc-spaceship"></i>
-                      <p>Upgrade to PRO</p>
+                          <p>Usuários</p>
                       </a>
                   </li>
+                  <li class="#">
+                    <a href="/vendas">
+                    <i class="nc-icon nc-spaceship"></i>
+                        <p>Vendas</p>
+                    </a>
+                </li>
                   </ul>
               </div>
               </div>
@@ -198,6 +210,7 @@
 
                       <input type="hidden" id="codigo"   value="<%= doador.codigo %>">
                       <input type="hidden" id="codigoEndereco"  value="<%= endereco.codigo %>">
+                    <input type="hidden" id="codigoTelefone" value="<%= telefone.codigo %>">
 
                       <div class="col-md-4 pl-1">
                         <div class="form-group">
@@ -231,8 +244,8 @@
 
                         <div class="col-md-4 pl-1">
                           <div class="form-group">
-                            <label for="telefone">Celular <b class="required">*</b></label>
-                            <input disabled class="form-control" type="text" id="celular" value="<%= doador.celular %>" onkeyup="validarCelular(this)" required placeholder="(99) 99999 - 9999">
+                            <label for="telefone">Telefone <b class="required">*</b></label>
+                            <input disabled class="form-control" type="text" id="telefone" value="<%= telefone == null ? "" : telefone.numeroTel %>" onkeyup="validarTelefone(this)" required placeholder="(99) 99999 - 9999">
                           </div>
                         </div>
                         
@@ -242,18 +255,18 @@
                       <div class="col-md-8 px-1 pl-3">
                         <div class="form-group">
                           <label for="tipo_doacao">Tipo de Doação <b class="required">*</b></label>
-                          <select class="form-control" id="tipo_doacao" required>
+                          <select disabled class="form-control" id="tipo_doacao" required>
                             <option value="">Selecione uma Opção</option> 
-                            <option value="Alimentos">Alimentos</option>
-                            <option value="Dinheiro">Dinheiro</option>
-                            <option value="Outros">Outros</option>
+                            <option value="Alimentos" <% if(doador.tipo_doacao === 'Alimentos') {%>selected<%} %>>Alimentos</option>
+                          <option value="dinheiro" <% if(doador.tipo_doacao === 'Dinheiro') {%>selected<%} %>>Dinheiro</option>
+                          <option value="Outros" <% if(doador.tipo_doacao === 'Outros') {%>selected<%} %>>Outros</option>
                           </select>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="update ml-auto mr-auto">
-                        <button type="button" class="btn btn-primary btn-round submit" id="btnDeletar">Confirmar Exclusão</button>
+                        <button type="button" class="btn btn-primary btn-round " id="btnDeletar">Confirmar Exclusão</button>
                       </div>
                     </div>
                   </form>

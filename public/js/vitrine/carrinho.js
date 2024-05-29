@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     var btnAddCarrinho = document.querySelectorAll(".btnAddCarrinho");
+
+    var btnConfirmar = document.querySelector("#btnConfirmarPedido");
+    btnConfirmar.addEventListener("click", gravarVendas);
     
     let carrinho = [];
 
-    //carrega a quantidade de itens no carrinho quando carrega a tela
+    //carrega a quantcodigoade de itens no carrinho quando carrega a tela
     if(localStorage.getItem("carrinho") != null) {
         carrinho = JSON.parse(localStorage.getItem("carrinho"));
         document.getElementById("contadorCarrinho").innerText = carrinho.length;
@@ -15,12 +18,43 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     var modalCarrinho = document.getElementById('modalCarrinho')
-    modalCarrinho.addEventListener('show.bs.modal', function (event) {
+        modalCarrinho.addEventListener('show.bs.modal', function (event) {
         carregarCarrinho();
     })
 
+    function gravarVendas() {
+
+        let listaCarrinho = JSON.parse(localStorage.getItem("carrinho"));
+        if(listaCarrinho.length > 0) {
+
+            fetch("/vendas/gravar", {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(listaCarrinho)
+            })
+            .then(r=> {
+                return r.json();
+            })
+            .then(r=> {
+                console.log(r);
+                alert(r.msg);
+                if(r.ok == true){
+                    localStorage.removeItem("carrinho");
+                    location.reload();
+                }
+
+            })
+
+        }
+        else{
+            alert("O carrinho está vazio!");
+        }
+    }
+
     function incrementarItem(){
-        let id = this.dataset.produtoid;
+        let codigo = this.dataset.codigo;
         let lista = localStorage.getItem("carrinho");
         let carrinho = JSON.parse(lista);
         let qtdeAtualizada = 0;
@@ -28,11 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
        
         //atualiza o carrinho
         for(let i = 0; i < carrinho.length;i++){
-            if(carrinho[i].produtoId == id && carrinho[i].quantidade < 999){
+            if(carrinho[i].codigo == codigo && carrinho[i].quantidade < 999){
                 carrinho[i].quantidade++;
                 qtdeAtualizada = carrinho[i].quantidade;
-                valorItem = parseFloat(carrinho[i].produtoValor);
-                
+                valorItem = parseFloat(carrinho[i].preco);  
             }
         }
 
@@ -43,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function decrementarItem(){
-        let id = this.dataset.produtoid;
+        let codigo = this.dataset.codigo;
         let lista = localStorage.getItem("carrinho");
         let carrinho = JSON.parse(lista);
         let qtdeAtualizada = 0;
@@ -51,11 +84,11 @@ document.addEventListener("DOMContentLoaded", function() {
        
         //atualiza o carrinho
         for(let i = 0; i < carrinho.length;i++){
-            if(carrinho[i].produtoId == id){
+            if(carrinho[i].codigo == codigo){
                 carrinho[i].quantidade--;
                 qtdeAtualizada = carrinho[i].quantidade;
-                valorItem = carrinho[i].produtoValor;
-                
+                valorItem = parseFloat(carrinho[i].preco);
+
             }
         }
 
@@ -63,18 +96,18 @@ document.addEventListener("DOMContentLoaded", function() {
         carregarCarrinho();
         
         if (qtdeAtualizada == 0) {
-            lixeira(id);
+            lixeira(codigo);
         }
 
     }
 
-    function lixeira(idDecrementa){
-        let id;
-        if(isNaN(idDecrementa) == false){
-            id = idDecrementa;
+    function lixeira(codigoDecrementa){
+        let codigo;
+        if(isNaN(codigoDecrementa) == false){
+            codigo = codigoDecrementa;
         }
         else{
-            id = this.dataset.produtoid;
+            codigo = this.dataset.codigo;
         }
         
         let lista = localStorage.getItem("carrinho");
@@ -86,10 +119,10 @@ document.addEventListener("DOMContentLoaded", function() {
         //atualiza o carrinho
         for(let i = 0; i < carrinho.length;i++){
             //vai excluir
-            if(carrinho[i].produtoId == id){
+            if(carrinho[i].codigo == codigo){
                 carrinho[i].quantidade;
                 qtdeAtualizada = carrinho[i].quantidade;
-                valorItem = carrinho[i].produtoValor;
+                valorItem = parseFloat(carrinho[i].preco);
             }
             else{
                 carrinhoAtualizado.push(carrinho[i]);
@@ -110,28 +143,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for(let i = 0; i< carrinhoModal.length; i++) {
 
-            let valorTotalItem = carrinhoModal[i].produtoValor * carrinhoModal[i].quantidade;
+            let valorTotalItem = carrinhoModal[i].preco * carrinhoModal[i].quantidade;
             valorTotal += valorTotalItem;
 
             html += `<tr>
-                        <td>${carrinhoModal[i].produtoId}</td>                       
-                        <td><img width="100" src="${carrinhoModal[i].produtoImagem}" /></td>
-                        <td>${carrinhoModal[i].produtoNome}</td>
-                        <td>R$ ${carrinhoModal[i].produtoValor}</td>
+                                             
+                        <td><img wcodigoth="100" src="${carrinhoModal[i].imagem}" /></td>
+                        <td>${carrinhoModal[i].descricao}</td>
+                        <td>R$ ${parseFloat(carrinhoModal[i].preco).toFixed(2)}</td>
                         <td>
-                            <button data-produtoid="${carrinhoModal[i].produtoId}" class="btnDecrementa" style="font-size: smaller;"><i class="bi bi-dash-lg"></i></button>
-                            <input class="iQtd" data-produtoid="${carrinhoModal[i].produtoId}" type="number" style="width: 50px; height: 30px; font-size: smaller; text-align:center;" min="0" max="999" value="${carrinhoModal[i].quantidade}">&nbsp;
-                            <button data-produtoid="${carrinhoModal[i].produtoId}" class="btnIncrementa" style="font-size: smaller;"><i class="bi bi-plus-lg"></i></button>&nbsp;
+                            <button data-codigo="${carrinhoModal[i].codigo}" class="btnDecrementa" style="background-color: red; color: white; padding: 5px;border-radius: 5px; border: none; font-size: smaller;"><i class="bi bi-dash"></i></button>
+                            <input class="iQtd" data-codigo="${carrinhoModal[i].codigo}" type="number" style="wcodigoth: 50px; height: 30px; border-radius: 5px; border-color: gray;font-size: smaller; text-align:center;" min="0" max="999" value="${carrinhoModal[i].quantidade}">&nbsp;
+                            <button data-codigo="${carrinhoModal[i].codigo}" class="btnIncrementa" style="background-color: green; color: white; padding: 5px;border-radius: 5px; border: none; font-size: smaller;"><i class="bi bi-plus"></i></button>&nbsp;
                         </td>
-                        <td class="valorItem" data-produtoid="${carrinhoModal[i].produtoId}" style="text-align:center";>R$ ${valorTotalItem.toFixed(2)}</td>
-                        <td class="btnLixeira" data-produtoid="${carrinhoModal[i].produtoId}"><i class="bi bi-trash-fill"></i></td>
+                        <td class="valorItem" data-codigo="${carrinhoModal[i].codigo}" style="text-align:center";>R$ ${valorTotalItem.toFixed(2)}</td>
+                        <td class="btnLixeira" data-codigo="${carrinhoModal[i].codigo}" style="text-align:center";><i class="bi bi-trash-fill"></i></td>
                     </tr>`;
         }
 
         html += `
             <tr>
                 <td colspan="5" style="text-align: right;">Total R$</td>
-                <td id="valorTotal" style="text-align:center";>${valorTotal.toFixed(2)}</td>
+                <td codigo="valorTotal" style="text-align:center";>${valorTotal.toFixed(2)}</td>
             </tr>`;
 
         document.querySelector("#tabelaCarrinho > tbody").innerHTML = html;
@@ -170,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     valor = 1;
                 }
 
-                let id = this.dataset.produtoid;
+                let codigo = this.dataset.codigo;
 
                 if(valor > 0){
                     let lista = localStorage.getItem("carrinho");
@@ -178,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //atualiza o carrinho
                     for(let i = 0; i < carrinho.length;i++){
-                        if(carrinho[i].produtoId == id){
+                        if(carrinho[i].codigo == codigo){
                             carrinho[i].quantidade = this.value;
                         }
                     }
@@ -188,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }   
                 else{
                     if(this.value != '')
-                        lixeira(id);
+                        lixeira(codigo);
                 }
                 
         
@@ -204,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function() {
             carrinho = JSON.parse(lista);
             let achou = false;
             for(let i = 0; i < carrinho.length;i++){
-                if(carrinho[i].produtoId == item.produtoId){
+                if(carrinho[i].codigo == item.codigo){
                     carrinho[i].quantidade++;
                     achou = true;
                 }
@@ -218,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.setItem("carrinho", JSON.stringify(carrinho));
         }
         else{
-            item.carrinho = 1;
+            item.quantidade = 1;
             carrinho.push(item);
             localStorage.setItem("carrinho", JSON.stringify(carrinho));
         }
@@ -229,10 +262,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function adicionarAoCarrinho(){
-        let id = this.dataset.produtoid;
-        console.log(id);
+        let codigo = this.dataset.codigo;
 
-        fetch("/produto/obter/" + id)
+        fetch("/produtos/obter/" + codigo)
         .then(r=> {
             return r.json();
         })

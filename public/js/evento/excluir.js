@@ -45,7 +45,7 @@ function excluirEvento() {
         .then(r=> {
             if(r.ok) {
                 alert(r.msg);
-                window.location.href = "/evento";
+                window.location.href="/evento/";
             }
             else{
                 alert(r.msg);

@@ -48,6 +48,17 @@ class PatrimonioModel {
         return lista;
     }
 
+    async validarEstoque(id, quantidade) {
+
+        let sql = "select * from tb_patrimonio where id = ? and quantidade >= ?";
+        let valores = [id, quantidade];
+
+        let rows = await banco.ExecutaComando(sql, valores);
+        
+        return rows.length > 0;
+    }
+
+
     async gravar() {
         if(this.#id == 0){
             let sql = "insert into tb_patrimonio (id, codigo, descricao, quantidade) values (?, ?, ?, ?)";

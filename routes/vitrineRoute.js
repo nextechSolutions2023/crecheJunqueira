@@ -1,11 +1,9 @@
 const express = require('express');
-// const ProdutoController = require('../controllers/produtoController');
+const ProdutoController = require('../controllers/produtoController');
 const VitrineController = require('../controllers/vitrineController');
 
-// const router = express.Router();
-const vitrineRouter = express.Router();
+let router = express.Router();
+let ctrl = new VitrineController();
+router.get("/", ctrl.vitrineView);
 
-// let ctrl = new ProdutoController();
-// vitrineRouter.get('/vitrine', ctrl.listarView);
-
-module.exports = vitrineRouter;
+module.exports = router;

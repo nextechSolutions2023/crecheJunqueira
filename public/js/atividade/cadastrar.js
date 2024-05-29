@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
 
         let listaErros = [];
-        if(descricao == "" || descricao.length < 5) {
+        if(descricao == "" || descricao.length < 2) {
             listaErros.push("descricao");
         }
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/atividades";
+                    window.location.href="/atividades/";
                 }   
                 else {
                     alert(r.msg);

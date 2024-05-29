@@ -42,6 +42,7 @@ function gravarEvento() {
         .then(r=> {
             if(r.ok) {
                 alert("Patrimonio cadastrado!");
+                window.location.href="/patrimonio/";
             }
             else{
                 alert("Erro ao cadastrar patrimonio");

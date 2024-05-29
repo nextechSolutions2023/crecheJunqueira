@@ -23,13 +23,14 @@ class doadorModel extends PessoaModel{
 
     async listar() {
 
-        let sql = "select * from tb_doador v join tb_pessoa p on p.cpf = v.pessoa_cpf";
+        let sql = "select * from tb_doador d join tb_pessoa p on p.cpf = d.pessoa_cpf";
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
         
 
         for(let i = 0; i < rows.length; i++) {
+            console.log(rows[i]);
             let doador = new doadorModel(rows[i]["pessoa_cpf"], rows[i]["nome"], rows[i]["codigo"], rows[i]["tipo_doacao"], rows[i]["creche_codigo"] );
             lista.push(doador);
         }
@@ -50,7 +51,7 @@ class doadorModel extends PessoaModel{
         let sql = "select * from tb_doador v join tb_pessoa p on p.cpf = v.pessoa_cpf where v.codigo = " + codigo;
 
         let rows = await banco.ExecutaComando(sql);
-        let doador = new doadorModel(rows[0]["pessoa_cpf"], rows[0]["nome"], rows[0]["codigo"], rows[0]["tipo_doacao"], rows[0]["creche_codigo"] );
+        let doador = new doadorModel(rows[0]["pessoa_cpf"], rows[0]["nome"], rows[0]["codigo"], rows[0]["tipo_doacao"], rows[0]["creche_codigo"]);
         return doador;
     }
 
