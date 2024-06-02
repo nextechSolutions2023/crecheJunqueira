@@ -70,9 +70,9 @@ class EventoController {
         // else{
         //     ok = false;
         // }
-        if(req.body.ref != "" && req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
+        if(req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
             let arquivo = req.file != null ? req.file.filename : null;
-            let evento = new EventoModel(0, req.body.ref, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
+            let evento = new EventoModel(0, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
             ok = await evento.gravar();
         }
         else{
@@ -95,7 +95,7 @@ class EventoController {
     async alterarEvento(req, res) {
         var ok = true;
         // if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
-        if(req.body.ref != "" && req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
+        if(req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
             let eventoOld = new EventoModel();
             eventoOld = await eventoOld.buscarEvento(req.body.codigo);
             //apagar a imagem do evento se tiver uma nova imagem na alteração e se o antigo tiver imagem
@@ -115,7 +115,7 @@ class EventoController {
                 }
             }
 
-            let evento = new EventoModel(req.body.codigo, req.body.ref, req.body.nome, req.body.descricao, imagem, req.body.data, req.body.status, req.body.local)
+            let evento = new EventoModel(req.body.codigo, req.body.nome, req.body.descricao, imagem, req.body.data, req.body.status, req.body.local)
            
             ok = await evento.gravar();
         }

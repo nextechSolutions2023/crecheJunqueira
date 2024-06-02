@@ -27,15 +27,16 @@ function excluirPatrimonio() {
             })
             .then(r=> {
                 if(r.ok){
-                    window.location.href="/patrimonio/";
+                    alert(r.msg);
+                    window.location.href="/patrimonio";
                 }
                 else{
-                    alert("Erro ao excluir patrimonio");
+                    alert(r.msg);
                 }
             })
-            .catch(e => {
-                console.log(e);
-            })
+            // .catch(e => {
+            //     console.log(e);
+            // })
         }
     }
 

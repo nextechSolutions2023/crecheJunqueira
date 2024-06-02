@@ -3,7 +3,7 @@ const UsuarioModel = require("../models/usuarioModel");
 class LoginController {
 
     loginView(req,res){
-        res.render('./login/login', {layout:"layoutAdmin"});
+        res.render('./login/login', {layout:false});
     }
 
     async login(req, res) {

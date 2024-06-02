@@ -143,26 +143,35 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating">
-                                    <label for="habilidade">Habilidade<b class="required" style="color:red">*</b></label>
+                                    <!-- <label for="habilidade">Habilidade<b class="required" style="color:red">*</b></label> -->
                                     <select class="form-control border-0"  id="habilidade" required>
                                         <option></option>
                                         <% for(let i = 0; i < habilidades.length; i++){ %>
-                                            <option value="<%= habilidades[i].codigo %>"><%= habilidades[i].descricao %></option>
+                                            <option selected value="<%= habilidades[i].codigo %>"><%= habilidades[i].descricao %></option>
                                         <% } %>
                                       </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                               <div class="form-floating">
-                                <label  for="disponibilidade">Disponibilidade <b class="required" style="color:red">*</b></label>
+                                <!-- <label  for="disponibilidade">Disponibilidade <b class="required" style="color:red">*</b></label> -->
                                 <select class="form-control border-0"  id="disponibilidade" required>
-                                  <option value=""></option> 
-                                  <option value="Presencial">Presencial</option>
+                                  <!-- <option value=""></option>  -->
+                                  <option value="Presencial" selected>Presencial</option>
                                   <option value="Hibrido">Hibrido</option>
                                   <option value="Remoto">Remoto</option>
                                 </select>
                               </div>
                             </div>  
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                  <label  for="ativoInativo"><b class="required" style="color:red"></b></label>
+                                  <select class="form-control border-0"  id="ativoInativo" required>
+                                    <option value="Ativo" selected>Ativo</option>
+                                    <option value="Inativo">Inativo</option>
+                                  </select>
+                                </div>
+                              </div>  
                             <div>
                                 <button class="btn btn-success cadastrar w-100 py-3 " id="btnCadastrar" type="button">Cadastrar</button>
                             </div>

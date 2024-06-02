@@ -12,6 +12,10 @@ let atividadeRoute = require("./routes/atividadeRoute");
 let eventoRoute = require("./routes/eventoRoute");
 let vitrineRouter = require('./routes/vitrineRoute');
 let patrimonioRoute = require("./routes/patrimonioRoute");
+let saidaEventoRoute = require("./routes/saidaEventoRoute");
+let produtoRoute = require("./routes/produtoRoute");
+let vendasRouter = require("./routes/vendasRoute");
+
 
 let auth = new AuthMiddleware();
 const app = express();
@@ -27,6 +31,8 @@ app.use(express.static("public"));
 
 //configuração da nossa página de layout pública
 app.set('layout', './layout');
+
+
 app.use(expressLayouts);
 
 app.use("/",  homeRoute);
