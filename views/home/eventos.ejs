@@ -19,8 +19,15 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <h1 class="mb-3">Confira nossos eventos!</h1>
-            <p>Explore o que está acontecendo e venha fazer parte desses momentos que preparamos especialmente para você e sua família.</p>
+            <!-- <h1 class="mb-3">Confira nossos eventos!</h1>
+            <p>Explore o que está acontecendo e venha fazer parte desses momentos que preparamos especialmente para você e sua família.</p> -->
+            <% if (lista.length === 0) { %>
+                <h1 class="mb-3">Sem eventos no momento</h1>
+                <p>Nenhum evento disponível. Por favor, volte mais tarde.</p>
+            <% } else { %>
+                <h1 class="mb-3">Confira nossos eventos!</h1>
+                <p>Explore o que está acontecendo e venha fazer parte desses momentos que preparamos especialmente para você e sua família.</p>
+            <% } %>
         </div>
         <div class="row g-5 justify-content-center">
 

@@ -2,6 +2,23 @@ const EventoModel = require("../models/eventoModel");
 const fs = require("fs");
 
 class EventoController {
+    //Relatório
+    async listar(req, res) {
+        let eventoRelatorio = new EventoModel();
+        let evento = await eventoRelatorio.listarEventos();
+        res.render('evento/relatorio', { evento: evento, layout:"layoutAdmin"});
+    }
+    // Relatório
+    async filtrar(req, res) {
+        let termo = req.params.termo;
+        let filtro = req.params.filtro;
+        let startDate = req.query.startDate;
+        let endDate = req.query.endDate;
+        let eventoRelatorio = new EventoModel();
+        var lista = await eventoRelatorio.listarEventos(termo, filtro, startDate, endDate);
+        res.send(lista);
+    }
+
 
     async listarView(req, res) {
         let even = new EventoModel();
@@ -9,26 +26,6 @@ class EventoController {
         res.render('evento/listar', {lista: lista, layout:"layoutAdmin"});
     }
 
-    //
-    // async excluirEvento(req, res){
-    //     var ok = true;
-    //     if(req.body.ref != "") {
-    //         let evento = new EventoModel();
-    //         ok = await evento.excluir(req.body.ref);
-    //     }
-    //     else{
-    //         ok = false;
-    //     }
-
-    //     res.send({ok: ok});
-    // }
-
-    //excluir
-    // async excluirView(req, res) {
-    //     let eventoModel = new EventoModel();
-    //     let evento = await eventoModel.buscarEvento(req.params.codigo);
-    //     res.render('evento/excluir', {eventoExcluir: evento, layout:"layoutAdmin"});
-    // }
     async excluirView(req, res) {
         let eventoModel = new EventoModel();
         let evento = await eventoModel.buscarEvento(req.params.codigo);
@@ -138,7 +135,6 @@ class EventoController {
         res.send({eventoEncontrado: evento});
     }
 
-    //aprovar
     async aprovar(req, resp){
         
         let eventoModel = new EventoModel();
@@ -169,7 +165,6 @@ class EventoController {
         }
     }
 
-    
     async reprovar(req, resp){
         
         let eventoModel = new EventoModel();

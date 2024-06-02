@@ -109,7 +109,7 @@ class EventoModel {
                 }
 
                 listaRetorno.push(new EventoModel(row['codigo'], 
-                row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
+                 row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
             }
         }
 
@@ -139,12 +139,54 @@ class EventoModel {
                 }
 
                 listaRetorno.push(new EventoModel(row['codigo'], 
-                row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
+                 row['nome'], row['descricao'],  imagem, row['data'], row['status'], row['local']));
             }
         }
 
         return listaRetorno;
     }
+ 
+    // Relatório
+    async listarEventos(termo, filtro, startDate, endDate) {
+        let sqlFiltro = "";
+        let valores = [];
+
+        if (filtro == "1") {
+            if (termo != "") {
+                sqlFiltro = ` WHERE CODIGO = ?`;
+                valores.push(termo);
+            }
+        } else if (filtro == "2") {
+            sqlFiltro = ` WHERE status = 'APROVADO'`;
+        } else if (filtro == "3") {
+            sqlFiltro = ` WHERE status = 'REPROVADO'`;
+        } else if (filtro == "4") {
+            sqlFiltro = ` WHERE status = 'EM ANALISE'`;
+        } else if (filtro == "5") {
+            sqlFiltro = ` WHERE data < CURDATE() && status = 'APROVADO'`;
+        } else if (filtro == "6") {
+            sqlFiltro = ` WHERE data >= CURDATE() && status = 'APROVADO'`;
+        } else if (filtro == "7") {
+            sqlFiltro = "";
+        } else if (filtro == "8") {
+            if (startDate && endDate) {
+                sqlFiltro = ` WHERE data BETWEEN ? AND ?`;
+                valores.push(startDate, endDate);
+            }
+        }
+
+        let sql = `select * from tb_evento ${sqlFiltro}`;
+        let rows = await conexao.ExecutaComando(sql, valores);
+        let lista = [];
+
+        for (let i = 0; i < rows.length; i++) {
+            let row = rows[i];
+            lista.push(new EventoModel(row['codigo'], row['nome'], row['descricao'], null, row['data'], row['status'], row['local']));
+        }
+
+        return lista;
+    }
+
 
     //aprovar
     async aprovar(){
