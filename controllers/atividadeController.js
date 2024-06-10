@@ -9,7 +9,7 @@ class AtividadeController{
     }
 
     cadastrarView(req, resp){
-        resp.render("atividades/cadastrar", {layout:false});
+        resp.render("atividades/cadastrar", {layout:"layoutAdmin"});
     }
 
     //cadastrar
