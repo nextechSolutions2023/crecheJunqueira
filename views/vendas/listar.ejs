@@ -183,19 +183,23 @@
                             <button id="btnExportarExcel" class="btn btn-success" >Exportar para Excel</button>
                             <button id="btnExportarPdf" class="btn btn-danger" onclick="window.print()" >Imprimir</button>
                         </div>
-                        <div style="margin: 0px 0px 15px 10px;" id="divFiltros">
+                        <div style="margin: 0px 0px 15px 10px;" id="divFiltros" class="row">
                             <label for="filtro">Filtros:</label>
-                            <div class="input-group">
-                                <input id="filtro" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control" aria-label="Text input with dropdown button">
+                            <div class="input-group form-group">
+                                <input id="filtro" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control col-md-10 px-1 pl-3" aria-label="Text input with dropdown button">
+
                                 <div class="input-group-append">
-                                  <button id="btnEscolherFiltro" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Filtros</button>
+                                <div class="dropdown">
+                                    <button id="btnEscolherFiltro" class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">Filtros </button>
                                   <div class="dropdown-menu">
-                                    <a class="dropdown-item itemFiltro" data-valor="2" data-nome="Código Pedido" style="cursor:pointer">Código da Venda</a>
-                                    <a class="dropdown-item itemFiltro" data-valor="1" data-nome="Nome do Produto" style="cursor:pointer">Nome do Produto</a>
+                                    <a class="dropdown-item itemFiltro" href="#" data-valor="2" data-nome="Código da Venda " style="cursor:pointer">Código da Venda </a>
+                                    <a class="dropdown-item itemFiltro" href="#" data-valor="1" data-nome="Nome do Produto" style="cursor:pointer">Nome do Produto</a>
                                   </div>
-                                  <button id="btnFiltrar" class="btn btn-primary" type="button"><i class="fa-search"></i> Buscar</button>
                                 </div>
-                              </div>
+                                 
+                                  <button id="btnFiltrar" class="btn btn-primary" type="button"><i class="nc-icon nc-zoom-split" style="margin-right: 10px;"></i> Buscar</button>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- fim da div do botao de excel e drop personalizar-->
@@ -205,7 +209,6 @@
                             <div class="table-responsive">
                             <table class="table" id="tabelaVendas">
                                 <thead class="text-primary">
-                                    <!-- corrigir as colunas q vai trazer na tabela -->
                                     <th>Código</th>
                                     <th>Data</th>
                                     <th>Cód. do Produto</th>
@@ -264,18 +267,18 @@
     </div>
     <!--   Core JS Files   -->
     <script src="/administrativo/js/core/jquery.min.js"></script>
-    <script src="/administrativo/js/core/popper.min.js"></script>
+    <!-- <script src="/administrativo/js/core/popper.min.js"></script> -->
     <script src="/administrativo/js/core/bootstrap.min.js"></script>
-    <script src="/administrativo/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- <script src="/administrativo/js/plugins/perfect-scrollbar.jquery.min.js"></script> -->
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Chart JS -->
-    <script src="/administrativo/js/plugins/chartjs.min.js"></script>
+    <!-- <script src="/administrativo/js/plugins/chartjs.min.js"></script> -->
     <!--  Notifications Plugin    -->
-    <script src="/administrativo/js/plugins/bootstrap-notify.js"></script>
+    <!-- <script src="/administrativo/js/plugins/bootstrap-notify.js"></script> -->
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="/administrativo/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-    <script src="/administrativo/demo/demo.js"></script>
+    <!-- <script src="/administrativo/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>Paper Dashboard DEMO methods, don't include it in your project! -->
+    <!-- <script src="/administrativo/demo/demo.js"></script> -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 
     <script>
@@ -285,7 +288,6 @@
     });
     </script>
     <script src="/js/vendas/vendas.js"></script>
-    <script src="/js/dashboard/dashboard.js"></script>
     <script>
         document.getElementById('btnExportarExcel').addEventListener('click', function () {
             var tabela = document.getElementById('tabelaVendas');

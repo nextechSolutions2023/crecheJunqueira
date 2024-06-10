@@ -82,7 +82,7 @@ class VendasProdutosModel {
         if(termo !== "") {
             if(filtro === "1") {
                 termo = "%" + termo + "%";
-                sqlFiltro = ` WHERE p.descricao LIKE ?`;
+                sqlFiltro = `WHERE p.descricao LIKE ?`;
             } else if(filtro === "2") {
                 sqlFiltro = ` WHERE v.codigo = ?`;
             }

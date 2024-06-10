@@ -49,7 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
     
                     document.querySelector("#tabelaVendas > tbody").innerHTML = htmlCorpo;
-                } else {
+                } 
+                else 
+                {
                     // Se nenhum resultado for encontrado, exibir mensagem de "Nenhuma Venda Encontrada"
                     document.querySelector("#tabelaVendas > tbody").innerHTML = `
                         <tr>
@@ -57,10 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         </tr>
                     `;
                 }
-            });
+        });
     }
-    
-    
 
     function exportarExcel() {
         //chama a biblioteca para gerar o excel
