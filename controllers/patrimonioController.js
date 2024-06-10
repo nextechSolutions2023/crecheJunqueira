@@ -67,17 +67,17 @@ class patrimonioController{
     async excluirPatrimonio(req, res) {
         if(req.body.id != null) {
             let patrimonio = new patrimonioModel();
-            let ok = await patrimonio.excluir(req.body.id);
-            if(ok) {
-                res.send({ok: true});
+            let result = await patrimonio.excluir(req.body.id);
+            if(result) {
+                res.send({ok: true, msg: "Patrimonio excluido com sucesso!"});
             }
             else{
                 res.send({ok: false, msg: "Erro ao excluir patrimonio"})
             }
         }
-        else{
-            res.send({ok: false, msg: "O id para exclusão não foi enviado"})
-        }
+        // else{
+        //     res.send({ok: false, msg: "O id para exclusão não foi enviado"})
+        // }
     }
 }
 

@@ -32,5 +32,8 @@ eventoRouter.post("/alterar", upload.single("imagem"), ctrl.alterarEvento);
 eventoRouter.get("/obter/:evento", ctrl.obter)
 eventoRouter.post("/aprovar",  ctrl.aprovar);
 eventoRouter.post("/reprovar",  ctrl.reprovar);
+//Relatório
+eventoRouter.get('/relatorios', ctrl.listar);
+eventoRouter.get("/filtrar/:termo/:filtro", ctrl.filtrar);
 
 module.exports = eventoRouter;

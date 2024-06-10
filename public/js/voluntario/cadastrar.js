@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
         let uf = document.querySelector("#uf").value;
         let telefone = document.querySelector("#telefone").value;
         let disponibilidade = document.querySelector("#disponibilidade").value;
-        let habilidadecodigo = document.querySelector("#habilidade").value; 
+        let habilidadecodigo = document.querySelector("#habilidade").value;
+        let ativoInativo = document.querySelector("#ativoInativo").value; 
 
         
         cpf = limparPontosTracosCPF(cpf);
@@ -97,7 +98,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 telefone: telefone,
                 disponibilidade: disponibilidade,
                 creche_codigo: 0,
-                habilidadecodigo: habilidadecodigo
+                habilidadecodigo: habilidadecodigo,
+                ativoInativo: ativoInativo
             }
             fetch("/voluntarios/cadastrar", {
                 method: 'POST',

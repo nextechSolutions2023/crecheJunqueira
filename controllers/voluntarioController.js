@@ -26,7 +26,7 @@ class VoluntarioController{
         if(req.body.disponibilidade != "" && req.body.cpf != "" &&
         req.body.nome != "" ) {
 
-            let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, 0,req.body.disponibilidade, req.body.habilidadecodigo,req.body.creche_codigo);
+            let voluntario = new VoluntarioModel(req.body.cpf, req.body.nome, 0,req.body.disponibilidade, req.body.habilidadecodigo, req.body.ativoInativo, req.body.creche_codigo);
             let endereco = new EnderecoModel(0,req.body.logradouro, req.body.numero, req.body.complemento, req.body.bairro, req.body.cidade, req.body.cep, req.body.uf,req.body.cpf);
             let telefone = new TelefoneModel(0, req.body.telefone, req.body.cpf);
 
@@ -64,13 +64,13 @@ class VoluntarioController{
         let enderecoModel = new EnderecoModel();
         let endereco = await enderecoModel.obterPorCpf(voluntario.cpf) ;
 
+        let telefoneModel = new TelefoneModel();
+        let telefone = await telefoneModel.obterPorCpf(voluntario.cpf) ;
+
         let habilidade = new HabilidadeModel();
         let listaHabilidades = await habilidade.listar();
+        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, telefone: telefone, habilidades: listaHabilidades, layout:"layoutAdmin"});
 
-        let telefoneModel = new TelefoneModel();
-        let telefone = await telefoneModel.obterPorCpf(voluntario.cpf);
-        
-        res.render('voluntarios/alterar', {voluntario:voluntario, endereco: endereco, habilidades: listaHabilidades, telefone:telefone, layout:"layoutAdmin"});
     }
 
     async alterar(req, resp) {

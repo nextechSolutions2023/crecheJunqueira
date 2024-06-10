@@ -142,16 +142,16 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                              <div class="form-floating">
-                                <label  for="tipo_doacao">Tipo de Doação <b class="required" style="color:red">*</b></label>
-                                <select class="form-control border-0"  id="tipo_doacao" required>
-                                  <option value=""></option> 
-                                  <option value="Alimentos">Alimentos</option>
-                                  <option value="Dinheiro">Dinheiro</option>
-                                  <option value="Outros">Outros</option>
-                                </select>
-                              </div>
-                            </div>  
+                                <div class="form-floating">
+                                  <label for="tipo_doacao" id="label_tipo_doacao">Tipo de Doação <b class="required" style="color:red">*</b></label>
+                                  <select class="form-control border-0" id="tipo_doacao" required>
+                                    <option value=""></option>
+                                    <option value="Alimentos">Alimentos</option>
+                                    <option value="Dinheiro">Dinheiro</option>
+                                    <option value="Outros">Outros</option>
+                                  </select>
+                                </div>
+                              </div> 
                             <div>
                                 <button  class="btn btn-success cadastrar w-100 py-3 " id="btnCadastrar" type="button">Cadastrar</button>
                             </div>
@@ -258,6 +258,16 @@
   <!-- Template Javascript -->
   <script src="/js/main.js"></script>
   <script src="/js/doador/cadastrar.js"></script>
+  <script>
+    document.getElementById('tipo_doacao').addEventListener('change', function() {
+      var label = document.getElementById('label_tipo_doacao');
+      if (this.value) {
+        label.style.display = 'none';
+      } else {
+        label.style.display = 'block';
+      }
+    });
+  </script>
 </body>
 
 </html>

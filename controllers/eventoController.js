@@ -2,6 +2,23 @@ const EventoModel = require("../models/eventoModel");
 const fs = require("fs");
 
 class EventoController {
+    //Relatório
+    async listar(req, res) {
+        let eventoRelatorio = new EventoModel();
+        let evento = await eventoRelatorio.listarEventos();
+        res.render('evento/relatorio', { evento: evento, layout:"layoutAdmin"});
+    }
+    // Relatório
+    async filtrar(req, res) {
+        let termo = req.params.termo;
+        let filtro = req.params.filtro;
+        let startDate = req.query.startDate;
+        let endDate = req.query.endDate;
+        let eventoRelatorio = new EventoModel();
+        var lista = await eventoRelatorio.listarEventos(termo, filtro, startDate, endDate);
+        res.send(lista);
+    }
+
 
     async listarView(req, res) {
         let even = new EventoModel();
@@ -9,26 +26,6 @@ class EventoController {
         res.render('evento/listar', {lista: lista, layout:"layoutAdmin"});
     }
 
-    //
-    // async excluirEvento(req, res){
-    //     var ok = true;
-    //     if(req.body.ref != "") {
-    //         let evento = new EventoModel();
-    //         ok = await evento.excluir(req.body.ref);
-    //     }
-    //     else{
-    //         ok = false;
-    //     }
-
-    //     res.send({ok: ok});
-    // }
-
-    //excluir
-    // async excluirView(req, res) {
-    //     let eventoModel = new EventoModel();
-    //     let evento = await eventoModel.buscarEvento(req.params.codigo);
-    //     res.render('evento/excluir', {eventoExcluir: evento, layout:"layoutAdmin"});
-    // }
     async excluirView(req, res) {
         let eventoModel = new EventoModel();
         let evento = await eventoModel.buscarEvento(req.params.codigo);
@@ -70,9 +67,9 @@ class EventoController {
         // else{
         //     ok = false;
         // }
-        if(req.body.ref != "" && req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
+        if(req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
             let arquivo = req.file != null ? req.file.filename : null;
-            let evento = new EventoModel(0, req.body.ref, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
+            let evento = new EventoModel(0, req.body.nome, req.body.descricao, arquivo, req.body.data, null, req.body.local);
             ok = await evento.gravar();
         }
         else{
@@ -95,7 +92,7 @@ class EventoController {
     async alterarEvento(req, res) {
         var ok = true;
         // if(req.body.descricao != "" && req.body.ref != "" && req.body.nome != "" ) {
-        if(req.body.ref != "" && req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
+        if(req.body.nome != "" &&  req.body.descricao != "" && req.body.data != "" && req.body.local != "") {
             let eventoOld = new EventoModel();
             eventoOld = await eventoOld.buscarEvento(req.body.codigo);
             //apagar a imagem do evento se tiver uma nova imagem na alteração e se o antigo tiver imagem
@@ -115,7 +112,7 @@ class EventoController {
                 }
             }
 
-            let evento = new EventoModel(req.body.codigo, req.body.ref, req.body.nome, req.body.descricao, imagem, req.body.data, req.body.status, req.body.local)
+            let evento = new EventoModel(req.body.codigo, req.body.nome, req.body.descricao, imagem, req.body.data, req.body.status, req.body.local)
            
             ok = await evento.gravar();
         }
@@ -138,7 +135,6 @@ class EventoController {
         res.send({eventoEncontrado: evento});
     }
 
-    //aprovar
     async aprovar(req, resp){
         
         let eventoModel = new EventoModel();
@@ -169,7 +165,6 @@ class EventoController {
         }
     }
 
-    
     async reprovar(req, resp){
         
         let eventoModel = new EventoModel();

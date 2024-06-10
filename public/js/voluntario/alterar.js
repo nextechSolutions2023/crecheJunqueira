@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let codigo = document.querySelector("#codigo").value;
         let codigoEndereco = document.querySelector("#codigoEndereco").value;
         let codigoTelefone = document.querySelector("#codigoTelefone").value;        
-        
-        let habilidadecodigo = document.querySelector("#habilidade").value; 
+        let habilidadecodigo = document.querySelector("#habilidade").value;
          
 
 
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 creche_codigo: 0,
                 habilidadecodigo: habilidadecodigo,
                 codigoTelefone: codigoTelefone,
-                telefone
+                telefone: telefone,
             }
 
             fetch("/voluntarios/alterar", {

@@ -50,8 +50,7 @@ class habilidadeModel{
         let sql = "SELECT * FROM tb_habilidade where codigo = " + codigo;
 
         let rows = await banco.ExecutaComando(sql);
-        let habilidade = new habilidadeModel(  
-            rows[i]["codigo"], rows[i]["descricao"]);
+        let habilidade = new habilidadeModel(rows[0]["codigo"], rows[0]["descricao"]);
         return habilidade;
     }
 
