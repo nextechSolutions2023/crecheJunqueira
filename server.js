@@ -37,17 +37,18 @@ app.use(expressLayouts);
 app.use("/",  homeRoute);
 app.use("/login", loginRoute);
 app.use("/vitrine", vitrineRouter);
-
-app.use(auth.verificarUsuarioLogado);
 app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
+
+
+// app.use(auth.verificarUsuarioLogado);
+
 app.use("/atividades", atividadeRoute);
 app.use("/evento", eventoRoute);
 app.use("/saidaEvento", saidaEventoRoute);
 app.use("/patrimonio", patrimonioRoute);
 app.use("/produtos", produtoRoute);
 app.use("/vendas", vendasRouter);
-
 
 //implementando pagina 404
 app.get("*", function(req, res) {
