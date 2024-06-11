@@ -105,7 +105,8 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(r=> {
                 if(r.ok) {
                     alert(r.msg);
-                    window.location.href="/doadores/";
+                    alert("Um link foi enviado por SMS para prosseguir com a doação.");
+                    window.location.href="/";
                 }   
                 else {
                     alert(r.msg);
