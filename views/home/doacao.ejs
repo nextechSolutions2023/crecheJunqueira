@@ -1,10 +1,137 @@
 
 <div class="container-xxl py-5">
-    <div class="container">
+    <!-- <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 class="mb-3">Em manutenção</h1>
         </div>
-    </div>
+    </div> -->
+
+    <!-- Page Header End -->
+    <div class="container-xxl py-5 page-header position-relative mb-5">
+      <div class="container py-5">
+          <h1 class="display-2 text-white animated slideInDown mb-4">Doação</h1>
+      </div>
+  </div>
+  <!-- Page Header End -->
+
+
+  <!-- Classes Start -->
+  <div class="container-xxl py-5">
+      <div class="container">
+          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+              <h1 class="mb-3">Seja um herói da generosidade!</h1>
+              <p> Sua contribuição é valiosa e pode ser feita dessas maneiras: doações financeiras, itens essenciais ou cestas de alimentos. Junte-se a nós e faça a diferença!</p>
+          </div>
+          
+          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+              <br><br>
+              <!-- <h1 class="text_doacao">Doação</h1> -->
+          </div>
+
+          <!--VALOR 20,00-->
+          <div class="row g-4">
+              <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="classes-item">
+                      <div class="bg-light rounded w-75 mx-auto p-3">
+                          <img class="img-fluid" src="img/Valor_20.jpeg" alt="Número 20 em desenho animado">
+                      </div>
+                      <div class="bg-light rounded p-4 pt-5 mt-n5">
+                          <a class="d-block text-center h3 mt-3 mb-4">R$20,00</a>
+                          <div class="d-flex align-items-center justify-content-between mb-4">
+                          </div>
+                          <br>
+                          <div class="row g-1">                                   
+                              <a class="btn btn-primary rounded-pill py-3 px-5" href="/doadores/cadastrar">DOAR ♥</a>                           
+                                  
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!--VALOR 50,00-->
+              <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                  <div class="classes-item">
+                      <div class="bg-light rounded w-75 mx-auto p-3">
+                          <img class="img-fluid" src="img/Valor_50.jpeg" alt="Número 50 em desenho animado">
+                      </div>
+                      <div class="bg-light rounded p-4 pt-5 mt-n5">
+                          <a class="d-block text-center h3 mt-3 mb-4" >R$50,00</a>
+                          <div class="d-flex align-items-center justify-content-between mb-4">
+                          </div>
+                          <br>
+                          <div class="row g-1">                                    
+                              <a class="btn btn-primary rounded-pill py-3 px-5" href="/doadores/cadastrar">DOAR ♥</a> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!--VALOR ALTERNATIVO-->
+              <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                  <div class="classes-item">
+                      <div class="bg-light rounded w-75 mx-auto p-3">
+                          <img class="img-fluid" src="img/Valor_Personalizado.jpeg" alt="Desenho animado de dois garotinhos e um porquinho de dinheiro">
+                      </div>
+                      <div class="bg-light rounded p-4 pt-5 mt-n5">
+                          <a class="d-block text-center h3 mt-3 mb-4">Valor Personalizado</a>
+                          <div class="d-flex align-items-center justify-content-between mb-4">
+                          </div>
+                          <div class="row">
+                              <input title="moeda" class="imput_doacao" type="text" id="valorInput" onkeyup="formatarMoeda(this)">
+                          </div>                                                                    
+                          <div class="row g-1">                                                             
+                              <a class="btn btn-primary rounded-pill py-3 px-5" href="/doadores/cadastrar">DOAR ♥</a> 
+                          </div>   
+                                                       
+                      </div>
+                  </div>
+              </div>
+              <!-- Doação de Itens -->
+              <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="classes-item">
+                    <div class="bg-light rounded w-75 mx-auto p-3">
+                        <img class="img-fluid" src="/img/doacao_itens.jpg" alt="Desenho animado de dois garotinhos e um porquinho de dinheiro">
+                    </div>
+                    <div class="bg-light rounded p-4 pt-5 mt-n5">
+                        <a class="d-block text-center h3 mt-3 mb-4">Doação de Itens</a>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                        </div>
+                        <div class="row">
+                            <!-- <input title="moeda" class="imput_doacao" type="text" id="valorInput" onkeyup="formatarMoeda(this)"> -->
+                        </div>                                                                    
+                        <div class="row g-1">                                                             
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="/doadores/cadastrar">DOAR ♥</a> 
+                        </div>   
+                                                     
+                    </div>
+                </div>
+            </div>
+
+              <!-- <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                  <br><br>
+                  <h1 class="text_doacao">Doação de Itens e Cestas</h1>
+                  <br>
+                  <p>Sua doação de itens ou cestas básicas é muito bem-vinda! <br> Ao doar, você está investindo diretamente no bem-estar e na qualidade <br>de vida de nossas crianças.
+                     <br> Venha fazer parte dessa corrente de <b style="color: #FE5D37;">amor</b>  e <b style="color: #FE5D37;">apoio</b> <b style="color: #FE5D37;">♥ </b> </p>
+                  <br>
+                  <p><b>Clique no botão abaixo e entre em contato conosco para fazer a sua doação!</b></p>
+                  <br>
+                  <button title="button" class="btn btn-primary rounded-pill py-3 px-5"> <a rel="noopener" title="contato" href="https://www.whatsapp.com/?lang=pt_BR" target="_blank"><img title="img" src="img/Icone_Whats2.png"></a></button>
+              
+              </div> -->
+      </div>    
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
     <div class="modal fade" id="modalCarrinho" tabindex="-1">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
