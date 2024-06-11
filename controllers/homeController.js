@@ -2,7 +2,11 @@ const EventoModel = require("../models/eventoModel");
 class HomeController{
     
     homeView(req, res){
-        res.render('home/home');
+        let nome = "";
+        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
+            nome = req.cookies.usuarioLogado;
+        }
+        res.render('home/home',{nome:nome});
     }
 
     contatoView(req,res){

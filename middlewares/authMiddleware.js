@@ -9,14 +9,14 @@ class AuthMiddleware {
             let usuario = new UsuarioModel();
             usuario = await usuario.obter(usuarioId);
             if(usuario != null && usuario.usuarioAtivo == 1 && usuario.perfilId == 1) {
-               return next(); // teste return
+               return next(); 
             }
             else{
-              return res.redirect("/login"); // teste
+              return res.redirect("/login"); 
             }
         }
         else{
-           return res.redirect("/login"); // teste
+           return res.redirect("/login"); 
         }
     }
 

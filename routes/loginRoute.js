@@ -7,5 +7,6 @@ let ctrl = new LoginController();
 
 router.get('/', ctrl.loginView);
 router.post('/validar', ctrl.login);
+router.get('/deslogar',ctrl.deslogar);
 
 module.exports = router;
