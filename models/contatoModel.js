@@ -1,7 +1,7 @@
 const Database = require("../utils/database");
 
 
-const banco = new Database();
+const conexao = new Database();
 
 class ContatoModel {
     #codigo;
@@ -10,74 +10,88 @@ class ContatoModel {
     #assunto;
     #mensagem;
     #arquivo;
+    #creche_codigo
 
     getCodigo() {
         return this.#codigo;
+    }
+    setCodigo(codigo) {
+        this.#codigo = codigo;
     }
 
     getNome() {
         return this.#nome;
     }
+    setNome(nome) {
+        this.#nome = nome;
+    }
 
     getEmail() {
         return this.#email;
+    }
+    setEmail(email) {
+        this.#email = email;
     }
 
     getAssunto() {
         return this.#assunto;
     }
+    setAssunto(assunto) {
+        this.#assunto = assunto;
+    }
 
     getMensagem() {
         return this.#mensagem;
+    }
+    setMensagem(mensagem) {
+        this.#mensagem = mensagem;
     }
 
     getArquivo() {
         return this.#arquivo;
     }
-
-    // Setters
-    setCodigo(codigo) {
-        this.#codigo = codigo;
-    }
-
-    setNome(nome) {
-        this.#nome = nome;
-    }
-
-    setEmail(email) {
-        this.#email = email;
-    }
-
-    setAssunto(assunto) {
-        this.#assunto = assunto;
-    }
-
-    setMensagem(mensagem) {
-        this.#mensagem = mensagem;
-    }
-
     setArquivo(arquivo) {
         this.#arquivo = arquivo;
     }
 
-    constructor(codigo, nome, email, assunto, mensagem, arquivo) {
+    getCreche_codigo() {
+        return this.#creche_codigo;
+    }
+    setCreche_codigo(creche_codigo) {
+        this.#creche_codigo = creche_codigo;
+    }
+     /// codigo_creche
+
+    
+    constructor(codigo, nome, email, assunto, mensagem, arquivo, creche_codigo) {
         this.#codigo = codigo;
         this.#nome = nome;
         this.#email = email;
         this.#assunto = assunto;
         this.#mensagem = mensagem;
         this.#arquivo = arquivo;
+        this.#creche_codigo = creche_codigo;
     }
 
-    async gravar(){
+    async gravarMensagem() {
         if(this.#codigo == 0){
-            let sql = "insert into tb_contato (nome, email, assunto, mensagem, arquivo) values (?,?,?,?,?)";
+            let sql = "insert into tb_contato (nome, email, assunto, mensagem, arquivo, creche_codigo) values (?, ?, ?, ?,?,?)";
 
-            let valores = [this.#nome, this.#email, this.#assunto, this.#mensagem, this.#arquivo];
+            let valores = [this.#nome, this.#email, this.#assunto, this.#mensagem, this.#arquivo, 0];
 
-            return await banco.ExecutaComandoNonQuery(sql, valores);
+            return await conexao.ExecutaComandoNonQuery(sql, valores);
         }
-    }
+
+    // async gravar(){
+    //     if(this.#codigo == 0){
+    //         let sql = "insert into tb_contato (nome, email, assunto, mensagem, arquivo) values (?,?,?,?,?)";
+
+    //         let valores = [this.#nome, this.#email, this.#assunto, this.#mensagem, this.#arquivo];
+
+    //         return await banco.ExecutaComandoNonQuery(sql, valores);
+    //     }
+    // }
+}
 }
 
 module.exports = ContatoModel;

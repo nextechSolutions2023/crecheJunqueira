@@ -5,6 +5,10 @@
     --dark: #103741;
 }
 
+.campoErro {
+    border-color: red !important; 
+}
+
 .back-to-top {
     position: fixed;
     display: none;

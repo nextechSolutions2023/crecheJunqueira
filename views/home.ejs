@@ -33,6 +33,7 @@
 
 
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>src="js/contato/mensagem.js"</script>
     <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
 
 </head>
@@ -514,6 +515,12 @@
         <!-- CONTATE-NOS -->
         <div class="container-xxl py-5">
             <div class="container">
+                <div class="alert alert-danger" role="alert" id="erros" style="display:none">
+
+                </div>
+                <div class="alert alert-success" role="alert" id="alertaSucesso" style="display:none;" >
+                    
+                </div>
                 <div class="bg-light rounded">
                     <div class="row g-0">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -523,14 +530,14 @@
                                     <div class="row g-3">
                                         <div class="col-sm-6">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control border-0" id="gname" placeholder="Gurdian Name">
-                                                <label for="gname">Nome Completo</label>
+                                                <input type="text" class="form-control border-0" id="nome" placeholder="Gurdian Name">
+                                                <label for="nome">Nome Completo</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control border-0" id="gmail" placeholder="Gurdian Email">
-                                                <label for="gmail">E-mail</label>
+                                                <input type="email" class="form-control border-0" id=email" placeholder="Gurdian Email">
+                                                <label for="email">E-mail</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -553,12 +560,12 @@
                                         </div>-->
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                                <label for="message">Mensagem</label>
+                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="mensagem" style="height: 100px"></textarea>
+                                                <label for="mensagem">Mensagem</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100 py-3" onclick="validacao()">Enviar mensagem</button>                                        
+                                            <button class="btn btn-primary w-100 py-3 btnEnviar">Enviar mensagem</button>                                        
                                         </div>
                                         <div class="col-12">
                                             <label for="arquivo" class="btn btn-primary w-100 py-3">
