@@ -75,6 +75,8 @@ class HomeController{
         else{
             ok = false;
         }
+        
+        res.send({ ok: ok })
     }
 }
 

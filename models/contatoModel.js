@@ -82,16 +82,7 @@ class ContatoModel {
             return await conexao.ExecutaComandoNonQuery(sql, valores);
         }
 
-    // async gravar(){
-    //     if(this.#codigo == 0){
-    //         let sql = "insert into tb_contato (nome, email, assunto, mensagem, arquivo) values (?,?,?,?,?)";
-
-    //         let valores = [this.#nome, this.#email, this.#assunto, this.#mensagem, this.#arquivo];
-
-    //         return await banco.ExecutaComandoNonQuery(sql, valores);
-    //     }
-    // }
-}
+    }
 }
 
 module.exports = ContatoModel;
