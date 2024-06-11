@@ -72,7 +72,8 @@
                 </ul>
             </div>
             </div> -->
-        <div class="main-panel">
+        <div class="dashboard";
+        >
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
                 <div class="container-fluid">
@@ -93,14 +94,6 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <form>
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                            <div class="input-group-text">
-                                <i class="nc-icon nc-zoom-split"></i>
-                            </div>
-                            </div>
-                        </div>
                         </form>
                         <ul class="navbar-nav">
                         </ul>
@@ -132,7 +125,7 @@
                         <hr>
                         <div class="stats">
                         <i class="nc-icon nc-satisfied"></i>
-                            <a href="/voluntarios" style="text-decoration: none;">Lista de Voluntários</a>
+                            <a href="/voluntarios" style="text-decoration: none;">Voluntários Cadastrados</a>
                         </div>
                     </div>
                     </div>
@@ -184,7 +177,7 @@
                         <hr>
                         <div class="stats">
                         <i class="fa fa-clock-o"></i>
-                            <a href="/atividades" style="text-decoration: none;">Lista de Atividades</a>
+                            <a href="/atividades" style="text-decoration: none;">Atividades Cadastradas</a>
                         </div>
                     </div>
                     </div>
@@ -210,76 +203,79 @@
                         <hr>
                         <div class="stats">
                         <i class="fa fa-refresh"></i>
-                            <a href="/doadores" style="text-decoration: none;">Lista de Doadores</a>
+                            <a href="/doadores" style="text-decoration: none;">Doadores Cadastrados</a>
                         </div>
                     </div>
                     </div>
                 </div>
                 </div>
                 <div class="row">
-                <div class="col-md-12">
-                    <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Users Behavior llll</h5>
-                        <p class="card-category">24 Hours performance</p>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Crianças Matriculadas</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="chartTotalEnrollments" width="400" height="150"></canvas>
+                            </div>
+                            <hr>
+                        </div>
+                        
                     </div>
-                    <div class="card-body ">
-                        <canvas id=chartHours width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer ">
-                        <hr>
-                        <div class="stats">
-                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Estatísticas de Matrículas</h5>
+                                <p class="card-category">Relação de Meninas e Meninos</p>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="chartGenderDistribution" width="400" height="200"></canvas>
+                            </div>
+                            <div class="card-footer">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-danger"></i> Meninas
+                                    <i class="fa fa-circle text-info"></i> Meninos
+                                </div>
+                                <hr>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 </div>
                 <div class="row">
-                <div class="col-md-4">
-                    <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Email Statistics</h5>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id="chartEmail"></canvas>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                        <i class="fa fa-circle text-primary"></i> Opened
-                        <i class="fa fa-circle text-warning"></i> Read
-                        <i class="fa fa-circle text-danger"></i> Deleted
-                        <i class="fa fa-circle text-gray"></i> Unopened
-                        </div>
-                        <hr>
-                        <div class="stats">
-                        <i class="fa fa-calendar"></i> Number of emails sent
+                    <div class="col-md-8">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-title">Total de Voluntários Cadastrados</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="totalVolunteersChart" width="400" height="150"></canvas>
+                            </div>
+                            <div class="card-footer">
+                                <div class="chart-legend">
+                                    <i class="fa fa-circle text-success"></i> Voluntários
+                                </div>
+                                <hr />
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card card-chart">
-                    <div class="card-header">
-                        <h5 class="card-title">NASDAQ: AAPL</h5>
-                        <p class="card-category">Line Chart with Points</p>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="speedChart" width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer">
-                        <div class="chart-legend">
-                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                        </div>
-                        <hr />
-                        <div class="card-stats">
-                        <i class="fa fa-check"></i> Data information certified
+                    <div class="col-md-4">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-title">Distribuição dos Voluntários</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="volunteerDistributionChart" width="400" height="300"></canvas>
+                            </div>
+                            <div class="card-footer">
+                                <div class="chart-legend">
+                                    <i class="fa fa-circle text-primary"></i> Presencial
+                                    <i class="fa fa-circle text-warning"></i> Remoto
+                                    <i class="fa fa-circle text-danger"></i> Híbrido
+                                </div>
+                                <hr />
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 </div>
             </div>
             <footer class="footer footer-black  footer-white ">
@@ -328,5 +324,134 @@
         demo.initChartsPages();
         });
     </script>
+
+
+<script>
+    var ctx = document.getElementById('chartTotalEnrollments').getContext('2d');
+
+    // Dados de matrículas para meninas e meninos
+    var girlsData = [60, 70, 90, 85, 100];
+    var boysData = [60, 80, 90, 85, 100];
+
+    // Calculando o total de matrículas
+    var totalEnrollmentsData = girlsData.map((num, idx) => num + boysData[idx]);
+
+    var chart = new Chart(ctx, {
+        type: 'bar', // Tipo de gráfico (barra)
+        data: {
+            labels: ['2019', '2020', '2021', '2022', '2023'], // Labels para os anos
+            datasets: [
+                {
+                    label: 'Total de Matrículas',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Cor de fundo
+                    borderColor: 'rgba(75, 192, 192, 1)', // Cor da borda
+                    borderWidth: 1,
+                    data: totalEnrollmentsData // Dados de matrículas totais
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Anos'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Quantidade de Matrículas'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('chartGenderDistribution').getContext('2d');
+
+    // Dados de matrículas de meninas e meninos
+    var girlsData = 250; // Substitua pelo número real de matrículas de meninas
+    var boysData = 300;  // Substitua pelo número real de matrículas de meninos
+
+    var chart = new Chart(ctx, {
+        type: 'pie', // Tipo de gráfico (pizza)
+        data: {
+            labels: ['Meninas', 'Meninos'],
+            datasets: [{
+                label: 'Relação de Matrículas',
+                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'], // Cores de fundo
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'], // Cores das bordas
+                borderWidth: 1,
+                data: [girlsData, boysData] // Dados de matrículas
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+
+<script>
+    // Gráfico de Barras - Total de Voluntários Cadastrados
+    var ctxTotal = document.getElementById('totalVolunteersChart').getContext('2d');
+    var totalVolunteersChart = new Chart(ctxTotal, {
+        type: 'bar', // Tipo de gráfico (barra)
+        data: {
+            labels: ['2019', '2020', '2021', '2022', '2023'], // Labels para os anos
+            datasets: [{
+                label: 'Voluntários',
+                backgroundColor: 'rgba(0, 128, 0, 0.2)', // Cor verde (alterada de 'rgba(75, 192, 192, 0.2)')
+                borderColor: 'rgba(0, 128, 0, 1)', // Cor da borda
+                borderWidth: 1,
+                data: [200, 250, 300, 350, 400] // Dados de voluntários cadastrados
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Anos'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Quantidade de Voluntários'
+                    }
+                }
+            }
+        }
+    });
+
+    // Gráfico de Pizza - Distribuição dos Voluntários
+    var ctxDistribution = document.getElementById('volunteerDistributionChart').getContext('2d');
+    var volunteerDistributionChart = new Chart(ctxDistribution, {
+        type: 'pie', // Tipo de gráfico (pizza)
+        data: {
+            labels: ['Presencial', 'Remoto', 'Híbrido'],
+            datasets: [{
+                label: 'Distribuição de Voluntários',
+                backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(255, 99, 132, 0.2)'], // Cores de fundo
+                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 99, 132, 1)'], // Cores das bordas
+                borderWidth: 1,
+                data: [150, 100, 50] // Dados de distribuição de voluntários
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+
     </body>
 </html>
