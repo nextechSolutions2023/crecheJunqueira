@@ -21,12 +21,16 @@ function enviarMensagem() {
         listaErros.push({ id: "nome", mensagem: "O campo nome é obrigatório." });
     } else if (!nomeValido(nome.value)) {
         listaErros.push({ id: "nome", mensagem: "É necessário informar o nome completo." });
+    } else if (nome.value.length > 40) {
+        listaErros.push({ id: "nome", mensagem: "O nome não pode ter mais de 40 caracteres." });
     }
 
     if (!email.value.trim()) {
         listaErros.push({ id: "email", mensagem: "O campo email é obrigatório." });
     } else if (!emailValido(email.value)) {
         listaErros.push({ id: "email", mensagem: "O campo email deve ser um email válido." });
+    } else if (email.value.length > 40) {
+        listaErros.push({ id: "email", mensagem: "O email não pode ter mais de 40 caracteres." });
     }
 
     if (assunto.value === "0" || assunto.value === undefined || assunto.value === null) {
@@ -35,6 +39,8 @@ function enviarMensagem() {
 
     if (mensagem.value === "" || mensagem.value === undefined || mensagem.value === null) {
         listaErros.push({ id: "mensagem", mensagem: "O campo mensagem é obrigatório." });
+    } else if (mensagem.value.length > 200) {
+        listaErros.push({ id: "mensagem", mensagem: "A mensagem não pode ter mais de 200 caracteres." });
     }
 
     if (listaErros.length === 0) {
@@ -42,9 +48,11 @@ function enviarMensagem() {
 
         formData.append("nome", nome.value);
         formData.append("email", email.value);
-        formData.append("assunto", assunto.value);
+        formData.append("assunto", assunto.options[assunto.selectedIndex].text);
         formData.append("mensagem", mensagem.value);
-        formData.append("arquivo", arquivo[0]);
+        if (arquivo.length > 0) {
+            formData.append("arquivo", arquivo[0]);
+        }
 
         fetch('/contato/enviar', { 
             method: "POST",
@@ -100,10 +108,10 @@ function mostrarErros(lista) {
     });
 
     var erros = document.getElementById("erros");
-    // if (erros) {
-    //     erros.innerText = "Preencha corretamente os campos abaixo:";
-    //     erros.style.display = "block";
-    // }
+    if (erros) {
+        erros.innerText = "Preencha corretamente os campos abaixo:";
+        erros.style.display = "block";
+    }
 }
 
 function limparErros() {
