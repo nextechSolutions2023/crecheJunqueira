@@ -7,6 +7,7 @@ let ctrl = new MensagemController();
 
 let router = express.Router();
 router.get('/',ctrl.listarMensagens);
+router.post('/excluir', ctrl.excluirMensagem);
 
 module.exports = router;
 

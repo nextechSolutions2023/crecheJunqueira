@@ -86,8 +86,6 @@ class ContatoModel {
         try {
             var rows = await conexao.ExecutaComando(sql);
 
-            console.log("Rows retornados:", rows); // Log dos resultados retornados
-
             let listaRetorno = [];
 
             if (rows.length > 0) {
@@ -104,53 +102,24 @@ class ContatoModel {
                         row['creche_codigo']));
                 }
             } else {
-                console.log("Nenhuma mensagem encontrada."); // Log se a lista estiver vazia
+                console.log("Nenhuma mensagem encontrada.");
             }
 
             return listaRetorno;
             
         } catch (error) {
-            console.error("Erro ao listar mensagens:", error); // Log de erro
+            console.error("Erro ao listar mensagens:", error);
             throw error;
         }
     }
     
-//     async listarMensagens() {
+    async excluirMensagem(codigo) {
+        let sql = "DELETE FROM tb_contato WHERE contato_codigo = ?";
+        let valores = [codigo];
+        let result = await conexao.ExecutaComandoNonQuery(sql, valores);
+        return result;
+    }
 
-//         let sql = 'select * from tb_contato ';
-        
-//         var rows = await conexao.ExecutaComando(sql);
-
-//         let listaRetorno = [];
-
-//         if(rows.length > 0){
-//             for(let i=0; i<rows.length; i++){
-
-//                 var row = rows[i];
-
-//                 let arquivo = "";
-//                 if(row["arquivo"] != null) {
-//                     arquivo = global.CAMINHO_DOC_CONTATO + row["arquivo"];
-//                 }
-//                 // else {
-//                 //     arquivo = global.CAMINHO_DOC_CONTATO + "sem-foto.png";
-//                 // }
-
-//                 listaRetorno.push(new ContatoModel( 
-//                 row['codigo'], row['email'], row['assunto'], row['mensagem'], arquivo,
-//                 row['creche_codigo']));
-
-
-
-//             }
-//         }
-
-//         return listaRetorno;
-//     }
-
-
-
-// }
 
 }
 module.exports = ContatoModel;
