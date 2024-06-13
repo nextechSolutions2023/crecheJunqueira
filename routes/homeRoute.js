@@ -3,10 +3,14 @@ const HomeController = require('../controllers/homeController');
 const AuthMiddleware = require('../middlewares/authMiddleware');
 const multer = require('multer');
 
+
 let router = express.Router();
+
 
 let ctrl = new HomeController();
 let auth = new AuthMiddleware()
+
+
 
 let storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -33,6 +37,8 @@ router.get("/sobre_nos", ctrl.sobrenosView);
 router.get("/nextechsolutions", ctrl.integrantesView);
 router.get("/transparencia", ctrl.transparenciaView);
 router.get("/eventos", ctrl.listarEventosView);
-router.get("/dashboard", ctrl.recursosView);
+
+//rota restrita
+router.get("/dashboard",auth.verificarUsuarioLogado, ctrl.recursosView);
 
 module.exports = router;

@@ -42,7 +42,7 @@ app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 
 
-// app.use(auth.verificarUsuarioLogado);
+app.use(auth.verificarUsuarioLogado);
 
 app.use("/atividades", atividadeRoute);
 app.use("/evento", eventoRoute);

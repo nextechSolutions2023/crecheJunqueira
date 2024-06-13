@@ -12,7 +12,7 @@ class LoginController {
             let usuario = new UsuarioModel();
             usuario = await usuario.obterPorEmailSenha(req.body.email, req.body.senha);
             if(usuario != null) {
-                res.cookie("usuarioLogado",usuario.usuarioNome)
+                res.cookie("usuarioLogado",usuario.usuarioId)
                 return res.redirect("/dashboard"); 
             }
             else {
