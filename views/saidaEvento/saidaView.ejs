@@ -67,21 +67,30 @@
                   <% }) %>
                   </tbody>
               </table>
-              <table class="table">
-                <thead class="text-primary">
-                  <th>Patrimonio</th>
-                </thead>
-                <tbody>
-                  <% infoPatrimonio.map(function(value, index) { %>
-                      <tr>
-                          <td><%= value.descricao %> 
-                              <!-- Adiciona um data-atributo para armazenar o ID do patrimônio -->
-                              <input type="number" value="<%= value.quantidade %>" data-id="<%= value.id %>">
-                          </td>
-                      </tr>
-                  <% }) %>
-              </tbody>
-              </table>
+                  <h3 class="text-primary">Patrimonio</h3>             
+                  <div class="container">
+                    <div class="row">
+                      <% 
+                      var displayedCount = 0;
+                      for (var i = 0; i < infoPatrimonio.length; i++) { 
+                        var value = infoPatrimonio[i];
+                        if (value.quantidade > 0) { 
+                          if (displayedCount > 0 && displayedCount % 3 === 0) { %>
+                            </div><div class="row">
+                          <% } %>
+                          <div class="col-md-4">
+                            <div class="mb-2">
+                              <span class="text-primary"><%= value.quantidade %></span>
+                              <span><%= value.descricao %></span>
+                              <div>
+                                <input type="number" class="form-control mt-1" data-id="<%= value.id %>" style="width: 100px;">
+                              </div>
+                            </div>
+                          </div>
+                          <% displayedCount++;%>
+                      <% } } %>
+                    </div>
+                  </div>
                 <div class="row">
                   <div class="update ml-auto mr-auto">
                     <a href="/saidaEvento" class="btn btn-secondary btn-round">Voltar</a>
