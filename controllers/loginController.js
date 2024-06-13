@@ -8,23 +8,22 @@ class LoginController {
 
     async login(req, res) {
         let msg = "";
-        if(req.body.email != null && req.body.senha != null) {
+        if (req.body.email && req.body.senha) {
             let usuario = new UsuarioModel();
             usuario = await usuario.obterPorEmailSenha(req.body.email, req.body.senha);
-            if(usuario != null) {
-                res.cookie("usuarioLogado",usuario.usuarioId)
+            if (usuario) {
+                res.cookie("usuarioLogado", JSON.stringify({ id: usuario.usuarioId, nome: usuario.usuarioNome }));
                 return res.redirect("/dashboard"); 
-            }
-            else {
+            } else {
                 msg = "Usuário/Senha incorretos!";
             }
-        }
-        else {
+        } else {
             msg = "Usuário/Senha incorretos!";
         }
-
+    
         res.render('login/login', { msg: msg, layout: 'login/login' });
     }
+    
 
     deslogar(req, res) {
         res.clearCookie("usuarioLogado");
