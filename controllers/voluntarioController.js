@@ -15,9 +15,12 @@ class VoluntarioController{
 
     async cadastrarView(req, resp){
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+        
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
+        
         let habilidade = new HabilidadeModel();
         let listaHabilidades = await habilidade.listar();
         resp.render("voluntarios/cadastrar", { habilidades: listaHabilidades,layout:false, nome:nome});
