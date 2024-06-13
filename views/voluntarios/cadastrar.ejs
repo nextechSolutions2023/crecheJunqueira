@@ -62,10 +62,22 @@
                             <a href="/transparencia" class="dropdown-item w-100">Relatórios de Gestão Fiscal</a>
                         </div>
                     </div>
-                    <a href="login" class="nav-item nav-link ms-lg-3">
-                        <span class="icon"><i class="fa fa-user"></i></span>
-                        Entrar
-                    </a>
+                    <% if (nome == null || nome == '') { %>
+                      <a href="/login" class="nav-item nav-link ms-lg-3">
+                          <span class="icon"><i class="fa fa-user"></i></span>
+                          Entrar
+                      </a>
+                  <% } else { %>
+                      <div class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Olá, <%= nome %>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                              <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                              <li><a class="dropdown-item" href="/login/deslogar">Sair</a></li>
+                          </ul>
+                      </div>
+                  <% } %>
                 </div>
                 <div class="d-flex align-items-center">
                   <a href="voluntarios/cadastrar" class="btn btn-primary rounded-pill px-3 me-3 d-none d-lg-block">Seja um voluntário<i class="fa fa-arrow-right ms-3"></i></a>

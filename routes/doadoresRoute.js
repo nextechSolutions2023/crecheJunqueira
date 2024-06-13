@@ -7,9 +7,9 @@ const AuthMiddleware = require('../middlewares/authMiddleware');
 let ctrl = new DoadoresController();
 
 
+let auth = new AuthMiddleware()
 let router = express.Router();
 
-let auth = new AuthMiddleware()
 
 router.get('/cadastrar',ctrl.cadastrarView);
 router.post('/cadastrar',ctrl.cadastrar);

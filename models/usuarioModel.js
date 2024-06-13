@@ -119,7 +119,7 @@ class UsuarioModel {
         let valores = [id];
 
         let rows = await banco.ExecutaComando(sql, valores);
-
+        
         if(rows.length > 0) {
             let row = rows[0];
             return new UsuarioModel(row["usuarioId"], row["usuarioNome"], row["usuarioEmail"], row["usuarioSenha"], row["usuarioAtivo"], row["perfilId"]);
