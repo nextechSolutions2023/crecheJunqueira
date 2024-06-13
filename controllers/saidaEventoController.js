@@ -21,6 +21,7 @@ class saidaEventoController {
 
     async alterarPatrimonioVoluntario(req, res) {
         console.log(req.body);
+        var ok = true;
     
         // Lógica para alterar o status do voluntário para inativo
         if (req.body.voluntariosSelecionados && req.body.voluntariosSelecionados.length > 0) {
@@ -35,33 +36,24 @@ class saidaEventoController {
         }
     
         if (req.body.patrimoniosQuantidades && req.body.patrimoniosQuantidades.length > 0) {
-            let listaValidacao = [];
-            let patrimoniosAtualizados = 0;
-    
+          
             for (let i = 0; i < req.body.patrimoniosQuantidades.length; i++) {
                 let id = req.body.patrimoniosQuantidades[i].id;
                 let quantidade = req.body.patrimoniosQuantidades[i].quantidade;
                 if (quantidade > 0) { // Verifica se a quantidade é maior que zero
                     let patrimonio = new PatrimonioModel();
                     if (!await patrimonio.validarEstoque(id, quantidade)) {
-                        listaValidacao.push(id);
+                        ok = false;                       
                     } else {
-                        patrimoniosAtualizados++;
+                        
                         patrimonio = await patrimonio.obter(id);
                         patrimonio.quantidade -= quantidade;
-                        await patrimonio.gravar();
+                        ok = await patrimonio.gravar();
                     }
                 }
             }
-    
-            if (patrimoniosAtualizados === req.body.patrimoniosQuantidades.length) {
-                res.send({ ok: true, msg: "Pedido realizado!" });
-            } else {
-                res.send({ ok: false, msg: "Erro durante a validação de estoque", lista: listaValidacao });
-            }
-        } else {
-            res.send({ ok: false, msg: "Patrimônio não informado!" });
-        }
+        } 
+        res.send({ ok: ok })
     }
     
     
