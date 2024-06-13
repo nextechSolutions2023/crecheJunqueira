@@ -22,7 +22,6 @@ class atividadeModel {
     async listar() {
 
         let sql = "select * from tb_atividade";
-
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
         
@@ -37,7 +36,6 @@ class atividadeModel {
     async cadastrar() {
         let sql = "insert into tb_atividade (descricao) values (?)";
         let valores = [this.#descricao];
-
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
         return result;
@@ -45,7 +43,6 @@ class atividadeModel {
 
     async obter(codigo){
         let sql = "select * from tb_atividade where codigo = " + codigo;
-
         let rows = await banco.ExecutaComando(sql);
         let atividade = new atividadeModel(rows[0]["codigo"], rows[0]["descricao"]);
         return atividade;
@@ -56,7 +53,6 @@ class atividadeModel {
         let sql = "update tb_atividade set descricao = ? where codigo = ?";
 
         let valores = [this.#descricao,this.#codigo];
-
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
         return result;
