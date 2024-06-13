@@ -3,27 +3,36 @@ const ContatoModel = require("../models/contatoModel");
 
 class HomeController{
     
-    homeView(req, res){
+    homeView(req, res) {
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+    
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
-        res.render('home/home',{nome:nome});
+    
+        
+        res.render('home/home', { nome: nome });
     }
+    
 
     contatoView(req,res){
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
+    
         res.render('home/contato',{nome:nome});
     }
 
     DoacaoView(req,res){
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
+    
         res.render('home/doacao',{nome:nome});
     }
 
@@ -33,9 +42,11 @@ class HomeController{
 
     sobrenosView(req,res){
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
+    
         res.render('home/sobre_nos',{nome:nome});
     }
 
@@ -45,17 +56,21 @@ class HomeController{
 
     transparenciaView(req, res){
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
+    
         res.render('transparencia', {layout:false, nome:nome});
     }
 
     async listarEventosView(req, res) {
         let nome = "";
-        if(req.cookies != undefined && req.cookies.usuarioLogado != null){
-            nome = req.cookies.usuarioLogado;
+        if (req.cookies && req.cookies.usuarioLogado != null) {
+            const usuarioLogado = JSON.parse(req.cookies.usuarioLogado);
+            nome = usuarioLogado.nome;
         }
+    
         let eventoModel = new EventoModel();
         let lista = await eventoModel.listarEventosPublico();
         res.render('home/eventos', {lista: lista, nome:nome});
