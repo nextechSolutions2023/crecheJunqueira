@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    function armazenarDados() {
+    function armazenarDados(event) {
+        event.preventDefault(); // Impede a submissão imediata do formulário
+
         let voluntariosSelecionados = [];
         let patrimoniosQuantidades = [];
 
         const checkboxesVoluntarios = document.querySelectorAll('input[type="checkbox"]');
         checkboxesVoluntarios.forEach((checkbox) => {
             if (checkbox.checked) {
-                
                 voluntariosSelecionados.push({ codigo: checkbox.id.split("_")[1] });
             }
         });
@@ -15,14 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
         inputsQuantidade.forEach((input) => {
             const idPatrimonio = input.dataset.id;
             const quantidade = input.value;
-            patrimoniosQuantidades.push({ id: idPatrimonio, quantidade: quantidade });
+            if (quantidade > 0) { // Verifica se a quantidade é maior que zero
+                patrimoniosQuantidades.push({ id: idPatrimonio, quantidade: quantidade });
+            }
         });
 
-        localStorage.setItem('voluntariosSelecionados', JSON.stringify(voluntariosSelecionados));
-        localStorage.setItem('patrimoniosQuantidades', JSON.stringify(patrimoniosQuantidades));
-
-        alterarBanco();
-
+        if (voluntariosSelecionados.length > 0 || patrimoniosQuantidades.length > 0) {
+            localStorage.setItem('voluntariosSelecionados', JSON.stringify(voluntariosSelecionados));
+            localStorage.setItem('patrimoniosQuantidades', JSON.stringify(patrimoniosQuantidades));
+            alterarBanco();
+        } else {
+            alert("Não há dados para enviar para o servidor!");
+        }
     }
 
     function atualizarLocalStorage(idPatrimonio, quantidade) {
@@ -51,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const voluntariosSelecionados = JSON.parse(localStorage.getItem('voluntariosSelecionados'));
         const patrimoniosQuantidades = JSON.parse(localStorage.getItem('patrimoniosQuantidades'));
 
-        if (patrimoniosQuantidades.length > 0) {
+        if (patrimoniosQuantidades.length > 0 || voluntariosSelecionados.length > 0 ) {
             const data = {
                 voluntariosSelecionados: voluntariosSelecionados,
                 patrimoniosQuantidades: patrimoniosQuantidades
@@ -66,14 +71,18 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(r => r.json())
             .then(r => {
-                if(r.ok){
-                    alert("Banco atualizado");
-                }else{
+                if (r.ok) {
+                    alert("Concluido!");
+                    localStorage.removeItem('voluntariosSelecionados');
+                    localStorage.removeItem('patrimoniosQuantidades');
+                    window.location.href = "/saidaEvento";
+                } else {
                     alert("Erro");
                 }
             })
-            .catch(error => {
-                console.log(error);
+            .catch(e => {
+                console.log(e);
+                alert("Erro ao enviar dados para o servidor!");
             });
         } else {
             alert("Não há dados para enviar para o servidor!");

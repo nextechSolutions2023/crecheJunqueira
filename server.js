@@ -15,6 +15,7 @@ let patrimonioRoute = require("./routes/patrimonioRoute");
 let saidaEventoRoute = require("./routes/saidaEventoRoute");
 let produtoRoute = require("./routes/produtoRoute");
 let vendasRouter = require("./routes/vendasRoute");
+let mensagensRouter = require("./routes/mensagensRoute");
 
 
 let auth = new AuthMiddleware();
@@ -41,7 +42,7 @@ app.use("/voluntarios", voluntarioRoute);
 app.use("/doadores", doadoresRoute);
 
 
-// app.use(auth.verificarUsuarioLogado);
+app.use(auth.verificarUsuarioLogado);
 
 app.use("/atividades", atividadeRoute);
 app.use("/evento", eventoRoute);
@@ -49,6 +50,7 @@ app.use("/saidaEvento", saidaEventoRoute);
 app.use("/patrimonio", patrimonioRoute);
 app.use("/produtos", produtoRoute);
 app.use("/vendas", vendasRouter);
+app.use("/mensagens", mensagensRouter);
 
 //implementando pagina 404
 app.get("*", function(req, res) {
@@ -57,6 +59,7 @@ app.get("*", function(req, res) {
 
 global.CAMINHO_IMG_EVENTO_BROWSER = "/img/eventos/"
 global.CAMINHO_IMG_BROWSER = "/img/produtos/"
+global.CAMINHO_DOC_CONTATO = "/docs/"
 global.RAIZ_PROJETO = __dirname;
 
 app.listen(7000, function() {

@@ -34,7 +34,15 @@
                     <img class="imagem-menu"src="/img/Logo_CrecheJunqueira.png" alt="Logotipo da Creche Junqueira" width="150px"/>
                 </a>
             </div>
+            >
+            
             <div class="sidebar-wrapper">
+                <div style="color:#51cbce; font-size: medium; font-weight: bold; text-align: center;">
+                    Olá <%= usuarioLogado.nome %> !
+                </div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <a href="/login/deslogar" style="color: red; text-decoration: none;">Sair</a>
+                </div>
                 <ul class="nav">
                 <li class="active ">
                     <a href="/dashboard">
@@ -106,6 +114,12 @@
                     <a href="/saidaEvento">
                     <i class="nc-icon nc-bank"></i>
                     <p>Saida Evento</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/mensagens">
+                    <i class="nc-icon nc-chat-33"></i>
+                    <p>Mensagens</p>
                     </a>
                 </li>
                 
