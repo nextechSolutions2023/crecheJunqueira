@@ -31,8 +31,10 @@
                                         <p><strong>Mensagem:</strong> <%= mensagem.getMensagem() %></p>
                                         <!-- Verifica se existe um arquivo associado à mensagem -->
                                         <% if (mensagem.getArquivo()) { %>
-                                            <!-- Renderiza um link para visualizar o arquivo -->
-                                            <p><a href="/public/docs/<% mensagem.getArquivo() %>" target="_blank">Visualizar Arquivo</a></p>
+                                            <!-- Corrigido o link para download -->
+                                            <button class="btn btn-primary btnDownload" data-nome="<%= mensagem.getArquivo() %>">
+                                                Download Arquivo
+                                            </button>
                                         <% } %>
                                         <button data-codigo="<%= mensagem.getCodigo() %>" class="btn btn-danger btnExcluir">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">

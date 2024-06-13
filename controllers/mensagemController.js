@@ -25,6 +25,18 @@ class MensagemController{
                 res.status(500).send({ ok: false, error: 'Erro ao excluir mensagem' });
             }
         }
+
+        async downloadArquivo(req, res) {
+            const { nomeArquivo } = req.params;
+            const filePath = path.join(__dirname, '../public/docs', nomeArquivo);
+    
+            res.download(filePath, (err) => {
+                if (err) {
+                    console.error('Erro ao fazer download do arquivo:', err);
+                    res.status(500).send('Erro ao fazer download do arquivo');
+                }
+            });
+        }
 }
 
 module.exports = MensagemController;
